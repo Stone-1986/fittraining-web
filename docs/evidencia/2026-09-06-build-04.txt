@@ -1,0 +1,111 @@
+2026-09-06T03:24:41.603Z [INFO]: # Build environment configured with Standard build compute type: 8GiB Memory, 4vCPUs, 128GB Disk Space
+2026-09-06T03:24:49.086Z [INFO]: # Cloning repository: git@github.com:Stone-1986/fittraining-web.git
+2026-09-06T03:24:49.802Z [INFO]: 
+2026-09-06T03:24:49.802Z [INFO]: Cloning into 'fittraining-web'...
+2026-09-06T03:24:49.802Z [INFO]: # Switching to commit: 1d919cd2eff92dab08421229ea6c3a84dbbe0daf
+2026-09-06T03:24:49.811Z [INFO]: Note: switching to '1d919cd2eff92dab08421229ea6c3a84dbbe0daf'.
+                                 You are in 'detached HEAD' state. You can look around, make experimental
+                                 changes and commit them, and you can discard any commits you make in this
+                                 state without impacting any branches by switching back to a branch.
+                                 If you want to create a new branch to retain commits you create, you may
+                                 do so (now or later) by using -c with the switch command. Example:
+                                 git switch -c <new-branch-name>
+                                 Or undo this operation with:
+                                 git switch -
+                                 Turn off this advice by setting config variable advice.detachedHead to false
+                                 HEAD is now at 1d919cd docs(amplify): un cambio de caché tarda dos builds en verse
+2026-09-06T03:24:49.862Z [INFO]: Successfully cleaned up Git credentials
+2026-09-06T03:24:49.863Z [INFO]: # Checking for Git submodules at: /codebuild/output/src3043894777/src/fittraining-web/.gitmodules
+2026-09-06T03:24:49.871Z [INFO]: # Retrieving environment cache...
+2026-09-06T03:24:49.927Z [WARNING]: ! Unable to write cache: {"code":"ERR_BAD_REQUEST","message":"Request failed with status code 404"})}
+2026-09-06T03:24:49.927Z [INFO]: ---- Setting Up SSM Secrets ----
+2026-09-06T03:24:49.927Z [INFO]: SSM params {"Path":"/amplify/d2km5210mv8hal/main/","WithDecryption":true}
+2026-09-06T03:24:49.972Z [WARNING]: !Failed to set up process.env.secrets
+2026-09-06T03:24:50.617Z [INFO]: # No package override configuration found.
+2026-09-06T03:24:50.628Z [INFO]: # Retrieving cache...
+2026-09-06T03:24:51.285Z [INFO]: # Extracting cache...
+2026-09-06T03:24:51.394Z [INFO]: # Extraction completed
+2026-09-06T03:24:51.400Z [INFO]: # Retrieved cache
+2026-09-06T03:24:55.738Z [INFO]: ## Starting Backend Build
+                                 ## Checking for associated backend environment...
+                                 ## No backend environment association found, continuing...
+                                 ## Completed Backend Build
+2026-09-06T03:24:55.743Z [INFO]: {"backendDuration": 0}
+                                 ## Starting Frontend Build
+                                 # Starting phase: preBuild
+                                 # Executing command: node -v
+                                 v22.18.0
+2026-09-06T03:24:55.744Z [INFO]: # Executing command: corepack enable
+2026-09-06T03:24:57.587Z [INFO]: # Executing command: corepack prepare --activate
+2026-09-06T03:24:57.660Z [INFO]: Preparing pnpm@10.30.1 for immediate activation...
+2026-09-06T03:24:58.481Z [INFO]: # Executing command: pnpm install --frozen-lockfile
+2026-09-06T03:24:59.186Z [INFO]: Lockfile is up to date, resolution step is skipped
+2026-09-06T03:24:59.216Z [INFO]: Progress: resolved 1, reused 0, downloaded 0, added 0
+2026-09-06T03:24:59.270Z [INFO]: Packages: +322
+                                 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+2026-09-06T03:25:00.219Z [INFO]: Progress: resolved 322, reused 0, downloaded 66, added 22
+2026-09-06T03:25:01.220Z [INFO]: Progress: resolved 322, reused 0, downloaded 290, added 137
+2026-09-06T03:25:02.161Z [INFO]: Progress: resolved 322, reused 0, downloaded 322, added 322, done
+2026-09-06T03:25:03.948Z [INFO]: dependencies:
+                                 + next 15.5.25
+                                 + react 19.1.0
+                                 + react-dom 19.1.0
+                                 devDependencies:
+                                 + @eslint/eslintrc 3.3.7
+                                 + @tailwindcss/postcss 4.3.3
+                                 + @types/node 22.20.1
+                                 + @types/react 19.2.18
+                                 + @types/react-dom 19.2.7
+                                 + eslint 9.39.5
+                                 + eslint-config-next 15.5.25
+                                 + eslint-config-prettier 10.1.8
+                                 + prettier 3.9.6
+                                 + tailwindcss 4.3.3
+                                 + typescript 5.9.3
+2026-09-06T03:25:03.957Z [INFO]: ╭ Warning ─────────────────────────────────────────────────────────────────────╮
+                                 │                                                                              │
+                                 │   Ignored build scripts: unrs-resolver@1.12.2.                               │
+                                 │   Run "pnpm approve-builds" to pick which dependencies should be allowed     │
+                                 │   to run scripts.                                                            │
+                                 │                                                                              │
+                                 ╰──────────────────────────────────────────────────────────────────────────────╯
+2026-09-06T03:25:03.968Z [INFO]: Done in 5.4s using pnpm v10.30.1
+2026-09-06T03:25:03.990Z [INFO]: # Completed phase: preBuild
+                                 # Starting phase: build
+                                 # Executing command: pnpm run build
+2026-09-06T03:25:04.216Z [INFO]: > fittraining-web@0.1.0 build /codebuild/output/src3043894777/src/fittraining-web
+                                 > next build
+2026-09-06T03:25:04.862Z [INFO]: ▲ Next.js 15.5.25
+2026-09-06T03:25:04.862Z [INFO]: 
+2026-09-06T03:25:04.926Z [INFO]: Creating an optimized production build ...
+2026-09-06T03:25:10.684Z [INFO]: ✓ Compiled successfully in 3.9s
+2026-09-06T03:25:10.688Z [INFO]: Linting and checking validity of types ...
+2026-09-06T03:25:12.547Z [INFO]: Collecting page data ...
+2026-09-06T03:25:13.508Z [INFO]: Generating static pages (0/5) ...
+2026-09-06T03:25:14.115Z [INFO]: Generating static pages (1/5)
+2026-09-06T03:25:14.120Z [INFO]: Generating static pages (2/5)
+                                 Generating static pages (3/5)
+                                 ✓ Generating static pages (5/5)
+2026-09-06T03:25:14.524Z [INFO]: Finalizing page optimization ...
+                                 Collecting build traces ...
+2026-09-06T03:25:28.023Z [INFO]: 
+2026-09-06T03:25:28.026Z [INFO]: Route (app)                                 Size  First Load JS
+                                 ┌ ○ /                                      123 B         102 kB
+                                 └ ○ /_not-found                            994 B         103 kB
+                                 + First Load JS shared by all             102 kB
+                                 ├ chunks/558-edd235d3d449612c.js       45.9 kB
+                                 ├ chunks/a46412ee-c268cce23d698579.js  54.2 kB
+                                 └ other shared chunks (total)           1.9 kB
+                                 ○  (Static)  prerendered as static content
+2026-09-06T03:25:28.058Z [INFO]: # Completed phase: build
+                                 ## Completed Frontend Build
+2026-09-06T03:25:28.091Z [INFO]: ## Build completed successfully
+2026-09-06T03:25:28.092Z [INFO]: # Starting caching...
+2026-09-06T03:25:28.098Z [INFO]: # Creating cache artifact...
+2026-09-06T03:25:28.188Z [INFO]: # Created cache artifact
+2026-09-06T03:25:28.188Z [INFO]: # Uploading cache artifact...
+2026-09-06T03:25:28.826Z [INFO]: # Uploaded cache artifact
+2026-09-06T03:25:28.826Z [INFO]: # Caching completed
+2026-09-06T03:25:44.354Z [INFO]: # Starting environment caching...
+2026-09-06T03:25:44.410Z [INFO]: # Environment caching completed
+

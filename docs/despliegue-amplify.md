@@ -220,39 +220,42 @@ found`). Eran dos cachés distintas y esta nota las confundía.
   así que el resolver nativo no hace falta, y ejecutar menos scripts de terceros en el build es
   preferible. Desbloquearlo sería `pnpm approve-builds`.
 
-### La caché de `node_modules` costaba más de lo que ahorraba — medido
+### La caché de `node_modules` costaba más de lo que ahorraba — medido y confirmado
 
-`amplify.yml` **ya no cachea `node_modules`**, y es una decisión con números, no una omisión:
+`amplify.yml` **no cachea `node_modules`**, y es una decisión con cuatro builds de evidencia
+(`docs/evidencia/`), no una omisión:
 
-|                                  | Build 1 (sin caché) | Build 2 (caché con `node_modules`) | Build 3 (`cache.paths` ya sin `node_modules`) |
-| -------------------------------- | ------------------- | ---------------------------------- | --------------------------------------------- |
-| **Total de la fase de build**    | **41 s**            | **70 s**                           | **74 s**                                      |
-| Restaurar la caché (al arrancar) | ~0 s (no existía)   | 29,1 s                             | 30,4 s                                        |
-| Guardar la caché (al terminar)   | —                   | **23,7 s**                         | **0,7 s**                                     |
-| `pnpm install`                   | 5,4 s               | 6,0 s                              | 6,5 s                                         |
+| Build | Configuración                        | Total      | Restaurar caché | Resto  |
+| ----- | ------------------------------------ | ---------- | --------------- | ------ |
+| 1     | sin caché (primera vez)              | 40,7 s     | 0,0 s           | 40,6 s |
+| 2     | caché **con** `node_modules`         | 70,0 s     | 29,1 s          | 40,9 s |
+| 3     | `cache.paths` cambiado en este build | 74,0 s     | 30,4 s          | 43,5 s |
+| 4     | caché ya **sin** `node_modules`      | **46,5 s** | **0,8 s**       | 45,7 s |
 
-Instalar 322 paquetes en frío desde el registry tarda **5,4 s**; descargar y extraer el artefacto
-que evita ese trabajo tarda **29 s**. Con un proyecto de este tamaño y desde dentro de AWS, la red
-al registry es más rápida que la caché.
+**La columna «resto» se queda en una banda de 41–46 s en los cuatro.** Toda la diferencia de tiempo
+era la restauración de la caché y nada más: instalar los 322 paquetes en frío desde el registry
+tarda 5,4 s, y descargar y extraer el artefacto que evita ese trabajo tardaba 29–30 s. Con un
+proyecto de este tamaño y desde dentro de AWS, la red al registry es más rápida que la caché.
 
-### Un cambio en `cache.paths` tarda DOS builds en verse, y la predicción fallada lo demuestra
+`.next/cache` **sí se queda, y sirve**: en el build 4 se restaura en 0,8 s, Next no dice
+`No build cache found` y la compilación bajó a 3,9 s (contra 4,5 s en frío). El día que el proyecto
+tenga muchas más dependencias, esto se vuelve a medir con la misma tabla — no se decide de memoria.
 
-Al sacar `node_modules` se predijo que el build 3 volvería a ~41 s. **Dio 74 s.** La predicción
-estaba mal y el log explica por qué, en los dos extremos del mismo build:
+### Un cambio en `cache.paths` tarda DOS builds en verse
 
-- **Guardar la caché pasó de 23,7 s a 0,7 s.** El cambio SÍ tomó efecto: el artefacto que el build 3
-  escribió ya no lleva `node_modules`.
+Al sacar `node_modules` se predijo que el **build 3** volvería a ~41 s. **Dio 74 s**, y el error
+enseñó más que el ahorro. El log lo explica en los dos extremos del mismo build:
+
+- **Guardar la caché pasó de 23,7 s a 0,7 s.** El cambio SÍ había tomado efecto: el artefacto que
+  escribió el build 3 ya no llevaba `node_modules`.
 - **Restaurarla siguió costando 30,4 s**, porque lo que un build restaura es el artefacto que
-  **guardó el build anterior** — y el del build 2 todavía tenía `node_modules` adentro.
+  **guardó el build anterior** — y el del build 2 todavía lo tenía adentro.
 
-O sea: **`cache.paths` afecta el guardado de este build y la restauración del siguiente.** El efecto
-sobre el tiempo total no se ve en el build donde se cambia, sino en el que viene después. **El
-build 4 es la verificación real** — si baja a ~45 s, la conclusión se confirma; si sigue en ~74 s,
-el costo estaba en otro lado y hay que revisar todo este apartado.
-
-`.next/cache` **sí se queda**: es lo que hace que Next deje de decir `No build cache found`, y pesa
-casi nada (los 0,7 s de guardado del build 3 son él). El día que el proyecto tenga muchas más
-dependencias, esto se vuelve a medir con los mismos números — no se decide de memoria.
+**`cache.paths` afecta el guardado de este build y la restauración del siguiente**, así que el
+efecto sobre el tiempo total nunca se ve en el build donde se cambia. El build 4 lo confirmó
+midiendo lo predicho (~45 s contra 46,5 s reales). Quien vuelva a tocar la caché tiene que esperar
+**dos** builds antes de sacar conclusiones; con uno solo, la medición dice lo contrario de la
+verdad.
 
 ### Lo que el build de Amplify SÍ verifica, y lo que no
 
