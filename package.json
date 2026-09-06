@@ -2,11 +2,19 @@
   "name": "fittraining-web",
   "version": "0.1.0",
   "private": true,
+  "packageManager": "pnpm@10.30.1",
+  "engines": {
+    "node": ">=22 <23"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "gates": "pnpm run typecheck && pnpm run lint && pnpm run format:check && pnpm run build"
   },
   "dependencies": {
     "react": "19.1.0",
@@ -15,13 +23,15 @@
   },
   "devDependencies": {
     "typescript": "^5",
-    "@types/node": "^20",
+    "@types/node": "^22",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "@tailwindcss/postcss": "^4",
     "tailwindcss": "^4",
     "eslint": "^9",
     "eslint-config-next": "15.5.25",
+    "eslint-config-prettier": "^10",
+    "prettier": "^3",
     "@eslint/eslintrc": "^3"
   }
 }

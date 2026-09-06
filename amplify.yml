@@ -1,0 +1,28 @@
+# Especificacion de build para AWS Amplify Hosting.
+#
+# Es explicita y no autodetectada por UNA razon: Amplify asume npm para Next.js
+# y este repo usa pnpm, igual que la API. Si el build falla, lo PRIMERO que hay
+# que aislar es si el problema es pnpm o la version de Next — el procedimiento
+# esta en `docs/despliegue-amplify.md` § 4.
+version: 1
+frontend:
+  phases:
+    preBuild:
+      commands:
+        # corepack lee el campo `packageManager` de package.json y activa esa
+        # version exacta de pnpm. No se instala pnpm con `npm i -g`: eso
+        # ignoraria el pin y podria traer otra major.
+        - corepack enable
+        - corepack prepare --activate
+        - pnpm install --frozen-lockfile
+    build:
+      commands:
+        - pnpm run build
+  artifacts:
+    baseDirectory: .next
+    files:
+      - '**/*'
+  cache:
+    paths:
+      - .next/cache/**/*
+      - node_modules/**/*
