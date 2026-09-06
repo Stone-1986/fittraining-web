@@ -1,0 +1,112 @@
+2026-09-06T03:11:49.437Z [INFO]: # Build environment configured with Standard build compute type: 8GiB Memory, 4vCPUs, 128GB Disk Space
+2026-09-06T03:11:49.902Z [INFO]: # Cloning repository: git@github.com:Stone-1986/fittraining-web.git
+2026-09-06T03:11:50.582Z [INFO]: 
+2026-09-06T03:11:50.583Z [INFO]: Cloning into 'fittraining-web'...
+2026-09-06T03:11:50.583Z [INFO]: # Switching to commit: ef2afe1965dee923928129dd3691f9b7e7aafea8
+2026-09-06T03:11:50.594Z [INFO]: Note: switching to 'ef2afe1965dee923928129dd3691f9b7e7aafea8'.
+                                 You are in 'detached HEAD' state. You can look around, make experimental
+                                 changes and commit them, and you can discard any commits you make in this
+                                 state without impacting any branches by switching back to a branch.
+                                 If you want to create a new branch to retain commits you create, you may
+                                 do so (now or later) by using -c with the switch command. Example:
+                                 git switch -c <new-branch-name>
+                                 Or undo this operation with:
+                                 git switch -
+                                 Turn off this advice by setting config variable advice.detachedHead to false
+                                 HEAD is now at ef2afe1 chore(amplify): sacar node_modules del caché y cerrar el checklist
+2026-09-06T03:11:50.640Z [INFO]: Successfully cleaned up Git credentials
+2026-09-06T03:11:50.641Z [INFO]: # Checking for Git submodules at: /codebuild/output/src2335187550/src/fittraining-web/.gitmodules
+2026-09-06T03:11:50.648Z [INFO]: # Retrieving environment cache...
+2026-09-06T03:11:50.677Z [WARNING]: ! Unable to write cache: {"code":"ERR_BAD_REQUEST","message":"Request failed with status code 404"})}
+2026-09-06T03:11:50.678Z [INFO]: ---- Setting Up SSM Secrets ----
+2026-09-06T03:11:50.678Z [INFO]: SSM params {"Path":"/amplify/d2km5210mv8hal/main/","WithDecryption":true}
+2026-09-06T03:11:50.729Z [WARNING]: !Failed to set up process.env.secrets
+2026-09-06T03:11:51.378Z [INFO]: # No package override configuration found.
+2026-09-06T03:11:51.382Z [INFO]: # Retrieving cache...
+2026-09-06T03:12:06.476Z [INFO]: # Extracting cache...
+2026-09-06T03:12:21.643Z [INFO]: # Extraction completed
+2026-09-06T03:12:21.830Z [INFO]: # Retrieved cache
+2026-09-06T03:12:26.105Z [INFO]: ## Starting Backend Build
+                                 ## Checking for associated backend environment...
+                                 ## No backend environment association found, continuing...
+                                 ## Completed Backend Build
+2026-09-06T03:12:26.110Z [INFO]: {"backendDuration": 0}
+                                 ## Starting Frontend Build
+                                 # Starting phase: preBuild
+                                 # Executing command: node -v
+2026-09-06T03:12:26.112Z [INFO]: v22.18.0
+2026-09-06T03:12:26.112Z [INFO]: # Executing command: corepack enable
+2026-09-06T03:12:27.961Z [INFO]: # Executing command: corepack prepare --activate
+2026-09-06T03:12:28.069Z [INFO]: Preparing pnpm@10.30.1 for immediate activation...
+2026-09-06T03:12:28.939Z [INFO]: # Executing command: pnpm install --frozen-lockfile
+2026-09-06T03:12:29.699Z [INFO]: Recreating /codebuild/output/src2335187550/src/fittraining-web/node_modules
+2026-09-06T03:12:31.820Z [INFO]: Lockfile is up to date, resolution step is skipped
+2026-09-06T03:12:31.846Z [INFO]: Progress: resolved 1, reused 0, downloaded 0, added 0
+2026-09-06T03:12:31.877Z [INFO]: Packages: +322
+                                 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+2026-09-06T03:12:32.847Z [INFO]: Progress: resolved 322, reused 0, downloaded 52, added 17
+2026-09-06T03:12:33.856Z [INFO]: Progress: resolved 322, reused 0, downloaded 268, added 121
+2026-09-06T03:12:34.267Z [INFO]: Progress: resolved 322, reused 0, downloaded 322, added 322, done
+2026-09-06T03:12:35.496Z [INFO]: dependencies:
+                                 + next 15.5.25
+                                 + react 19.1.0
+                                 + react-dom 19.1.0
+                                 devDependencies:
+                                 + @eslint/eslintrc 3.3.7
+                                 + @tailwindcss/postcss 4.3.3
+                                 + @types/node 22.20.1
+                                 + @types/react 19.2.18
+                                 + @types/react-dom 19.2.7
+                                 + eslint 9.39.5
+                                 + eslint-config-next 15.5.25
+                                 + eslint-config-prettier 10.1.8
+                                 + prettier 3.9.6
+                                 + tailwindcss 4.3.3
+                                 + typescript 5.9.3
+2026-09-06T03:12:35.504Z [INFO]: ╭ Warning ─────────────────────────────────────────────────────────────────────╮
+                                 │                                                                              │
+                                 │   Ignored build scripts: unrs-resolver@1.12.2.                               │
+                                 │   Run "pnpm approve-builds" to pick which dependencies should be allowed     │
+                                 │   to run scripts.                                                            │
+                                 │                                                                              │
+                                 ╰──────────────────────────────────────────────────────────────────────────────╯
+2026-09-06T03:12:35.518Z [INFO]: Done in 6.5s using pnpm v10.30.1
+2026-09-06T03:12:35.554Z [INFO]: # Completed phase: preBuild
+                                 # Starting phase: build
+                                 # Executing command: pnpm run build
+2026-09-06T03:12:35.826Z [INFO]: > fittraining-web@0.1.0 build /codebuild/output/src2335187550/src/fittraining-web
+                                 > next build
+2026-09-06T03:12:36.552Z [INFO]: ▲ Next.js 15.5.25
+2026-09-06T03:12:36.557Z [INFO]: 
+2026-09-06T03:12:36.634Z [INFO]: Creating an optimized production build ...
+2026-09-06T03:12:43.217Z [INFO]: ✓ Compiled successfully in 4.5s
+2026-09-06T03:12:43.221Z [INFO]: Linting and checking validity of types ...
+2026-09-06T03:12:45.037Z [INFO]: Collecting page data ...
+2026-09-06T03:12:46.112Z [INFO]: Generating static pages (0/5) ...
+2026-09-06T03:12:46.615Z [INFO]: Generating static pages (1/5)
+2026-09-06T03:12:46.621Z [INFO]: Generating static pages (2/5)
+                                 Generating static pages (3/5)
+                                 ✓ Generating static pages (5/5)
+2026-09-06T03:12:47.310Z [INFO]: Finalizing page optimization ...
+                                 Collecting build traces ...
+2026-09-06T03:13:03.330Z [INFO]: 
+2026-09-06T03:13:03.335Z [INFO]: Route (app)                                 Size  First Load JS
+                                 ┌ ○ /                                      123 B         102 kB
+                                 └ ○ /_not-found                            994 B         103 kB
+                                 + First Load JS shared by all             102 kB
+                                 ├ chunks/558-edd235d3d449612c.js       45.9 kB
+                                 ├ chunks/a46412ee-c268cce23d698579.js  54.2 kB
+                                 └ other shared chunks (total)           1.9 kB
+                                 ○  (Static)  prerendered as static content
+2026-09-06T03:13:03.382Z [INFO]: # Completed phase: build
+                                 ## Completed Frontend Build
+2026-09-06T03:13:03.404Z [INFO]: ## Build completed successfully
+2026-09-06T03:13:03.405Z [INFO]: # Starting caching...
+2026-09-06T03:13:03.408Z [INFO]: # Creating cache artifact...
+2026-09-06T03:13:03.479Z [INFO]: # Created cache artifact
+2026-09-06T03:13:03.479Z [INFO]: # Uploading cache artifact...
+2026-09-06T03:13:04.092Z [INFO]: # Uploaded cache artifact
+2026-09-06T03:13:04.092Z [INFO]: # Caching completed
+2026-09-06T03:13:21.796Z [INFO]: # Starting environment caching...
+2026-09-06T03:13:21.859Z [INFO]: # Environment caching completed
+
