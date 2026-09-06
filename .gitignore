@@ -39,3 +39,6 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Artefacto de Windows al copiar archivos a WSL
+*:Zone.Identifier

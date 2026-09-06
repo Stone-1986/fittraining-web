@@ -150,7 +150,7 @@ Lo que tiene que quedar comprobado antes de escribir la primera página real:
 
 - [x] Amplify construye el repo con `next@15.5.25` y **pnpm vía corepack**
 - [x] El sitio responde sobre `*.amplifyapp.com`
-- [ ] **El runtime es Node 22** — _sin confirmar, y el log no lo dice_, ver abajo
+- [x] **El runtime es Node 22** — `v22.18.0`, confirmado en el build del 2026-09-06
 - [x] El log de build no trae advertencias de versión no soportada
 - [x] `pnpm run gates` pasa en local (typecheck, lint, format:check, build)
 
@@ -183,26 +183,60 @@ aparecido con seis páginas escritas en vez de con una.
 | `+ next 15.5.25` · `▲ Next.js 15.5.25`               | la versión fijada es la que construyó           |
 | `✓ Generating static pages (5/5)` · `○ (Static)`     | las páginas salen prerenderizadas               |
 
-**Y lo que el log NO dice: la versión de Node.** No aparece en ninguna de las 100 líneas — ni Amplify
-ni Next la imprimen, y `# No package override configuration found.` solo confirma que el campo
-_Live package updates_ de la consola está vacío. O sea que el único ítem del checklist que quedó
-abierto es el que más importa, **y no por falta de mirar: la evidencia no existía**.
+**Lo que ese primer log NO decía: la versión de Node.** No aparecía en ninguna de sus 100 líneas —ni
+Amplify ni Next la imprimen— y `# No package override configuration found.` solo confirma que el
+campo _Live package updates_ de la consola está vacío. O sea que el único ítem del checklist que
+quedó abierto era el que más importa, **y no por falta de mirar: la evidencia no existía**.
 
-Desde el 2026-09-05 el `preBuild` corre `node -v`, así que el próximo build lo deja escrito. Si no
-fuera 22, la corrección es agregar `nvm use 22` en la misma fase.
+**Cerrado en el build siguiente, el 2026-09-06:** el `preBuild` corre `node -v` desde entonces y la
+respuesta fue **`v22.18.0`**. Node 22, que es lo que `.nvmrc` y `engines` piden y lo que la imagen
+AL2023 trae por defecto.
+
+Dos cosas que ese número deja claras y conviene no perder:
+
+- **El entorno local y el de Amplify no son la misma versión exacta** — acá corre `v22.22.0` y allá
+  `v22.18.0`. `engines: ">=22 <23"` acepta las dos a propósito: **un pin exacto habría convertido una
+  diferencia irrelevante de minor en un build roto**, y lo que importa es el major, que es lo que
+  determina el runtime de la función.
+- **Sigue sin haber nada que _fuerce_ el 22.** Hoy coincide porque es el default de la imagen. Lo que
+  cambió no es la garantía sino la visibilidad: el log lo dice en cada build, así que el día que
+  Amplify mueva su default se ve en la primera línea en vez de descubrirse por un fallo raro en
+  runtime. Si eso pasa, la corrección es `nvm use 22` en la misma fase.
 
 ### Tres avisos del log que son benignos, y por qué
 
 Quedan escritos para que nadie los persiga creyéndolos fallas:
 
-- `! Unable to write cache: ... status code 404` — **primer build, la caché todavía no existe**. Si
-  reaparece en el segundo build sí es un problema real: los builds no estarían cacheando.
+- `! Unable to write cache: ... status code 404` — **es de la _environment cache_, no de la caché de
+  build.** Aparece pegado a `# Retrieving environment cache...`, que es otro mecanismo. **Corregido
+  el 2026-09-06:** esta línea decía que si el aviso reaparecía en el segundo build era un problema
+  real porque «los builds no estarían cacheando», y el segundo build lo refutó — el aviso reapareció
+  **y** la caché de build funcionó (`# Retrieved cache`, y Next dejó de decir `No build cache
+found`). Eran dos cachés distintas y esta nota las confundía.
 - `!Failed to set up process.env.secrets` — no hay secretos en SSM para esta app y hoy no hacen
   falta. Va a reaparecer hasta que se configure alguno.
 - `Ignored build scripts: unrs-resolver@1.12.2` — pnpm bloquea los postinstall por defecto. **Se
   deja bloqueado a propósito**: el lint y el chequeo de tipos que `next build` corre pasaron igual,
   así que el resolver nativo no hace falta, y ejecutar menos scripts de terceros en el build es
   preferible. Desbloquearlo sería `pnpm approve-builds`.
+
+### La caché de `node_modules` costaba más de lo que ahorraba — medido
+
+`amplify.yml` **ya no cachea `node_modules`**, y es una decisión con números, no una omisión:
+
+|                              | Build 1 (2026-09-05, sin caché) | Build 2 (2026-09-06, con caché) |
+| ---------------------------- | ------------------------------- | ------------------------------- |
+| Total de la fase de build    | **41 s**                        | **70 s**                        |
+| Recuperar + extraer la caché | ~0 s (no existía)               | **29 s**                        |
+| `pnpm install`               | 5,4 s                           | 6,0 s                           |
+
+La caché **hizo el build 29 s más lento y no ahorró nada**: instalar 322 paquetes en frío desde el
+registry tarda 5,4 s, y descargar y extraer el artefacto que evita ese trabajo tarda 29 s. Con un
+proyecto de este tamaño y desde dentro de AWS, la red al registry es más rápida que la caché.
+
+`.next/cache` **sí se queda**: es lo que hace que Next deje de decir `No build cache found`, y no
+pesa. El día que el proyecto tenga muchas más dependencias, esto se vuelve a medir con los mismos
+dos números — no se decide de memoria.
 
 ### Lo que el build de Amplify SÍ verifica, y lo que no
 

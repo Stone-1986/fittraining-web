@@ -28,6 +28,12 @@ frontend:
     files:
       - '**/*'
   cache:
+    # `node_modules` NO se cachea, y es una decision medida y no una omision.
+    # Con el cache puesto, el build 2 (2026-09-06) tardo 70 s contra los 41 s
+    # del build 1 sin cache: recuperar y extraer el artefacto costo 29 s para
+    # ahorrar CERO —`pnpm install` en frio tarda 5,4 s desde el registry, y con
+    # cache tardo 6,0 s—. Con 322 paquetes el cache cuesta mas que el trabajo
+    # que evita. `.next/cache` SI se queda: es lo que hace que Next no diga
+    # "No build cache found", y no pesa.
     paths:
       - .next/cache/**/*
-      - node_modules/**/*
