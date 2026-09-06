@@ -12,6 +12,11 @@ frontend:
         # corepack lee el campo `packageManager` de package.json y activa esa
         # version exacta de pnpm. No se instala pnpm con `npm i -g`: eso
         # ignoraria el pin y podria traer otra major.
+        # Deja constancia del entorno en el log. El build del 2026-09-05 NO
+        # imprimia la version de Node por ningun lado —ni Amplify ni Next lo
+        # dicen—, asi que el unico item del checklist de W-02 que no se pudo
+        # confirmar fue justamente el que mas importa (ver docs/despliegue-amplify.md § 2).
+        - node -v
         - corepack enable
         - corepack prepare --activate
         - pnpm install --frozen-lockfile

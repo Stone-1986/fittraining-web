@@ -76,6 +76,18 @@ Amplify autodetecta Next.js **asumiendo npm**. Este repo usa **pnpm**, igual que
 `amplify.yml` es explícito y activa pnpm con `corepack` leyendo el campo `packageManager` de
 `package.json` (versión exacta; nunca `npm i -g pnpm`, que ignoraría el pin).
 
+### El `amplify.yml` del repo le gana a la consola
+
+La consola de Amplify muestra un «Comando de compilación de frontend» que autodetectó de
+`package.json` — y **no es lo que corre**. La documentación de AWS lo dice textual:
+
+> «Amplify applies these settings to all of your branches **unless there is an `amplify.yml` file
+> stored in your repository**»
+
+Consecuencia práctica para depurar: **editar el comando en la consola no cambia nada** mientras este
+archivo exista en la raíz. Verificado el 2026-09-05, cuando la consola mostraba `pnpm run build` y el
+build corrió el `preBuild` con corepack que la consola no mostraba en ningún lado.
+
 **Si el primer build falla, hay dos variables sospechosas a la vez** —la versión de Next y el gestor
 de paquetes—, y confundirlas cuesta horas. El orden para aislarlas:
 
@@ -136,11 +148,68 @@ de publicar las legales, nunca después.**
 
 Lo que tiene que quedar comprobado antes de escribir la primera página real:
 
-- [ ] Amplify construye el repo con `next@15.5.25` y **pnpm vía corepack**
-- [ ] El sitio responde sobre `*.amplifyapp.com`
-- [ ] El runtime de la función es Node 22 (lo elige el major del build — § 2)
-- [ ] El log de build no trae advertencias de versión no soportada
-- [ ] `pnpm run gates` pasa en local (typecheck, lint, format:check, build)
+- [x] Amplify construye el repo con `next@15.5.25` y **pnpm vía corepack**
+- [x] El sitio responde sobre `*.amplifyapp.com`
+- [ ] **El runtime es Node 22** — _sin confirmar, y el log no lo dice_, ver abajo
+- [x] El log de build no trae advertencias de versión no soportada
+- [x] `pnpm run gates` pasa en local (typecheck, lint, format:check, build)
+
+### Resultado del primer despliegue — 2026-09-05
+
+`https://main.d2km5210mv8hal.amplifyapp.com` · build de **2 min 18 s** (1:57 compilar + 0:20
+implementar) sobre el commit inicial de la rama `main`.
+
+**Verificado desde fuera de la consola**, que es lo único que prueba que el sitio existe para un
+tercero:
+
+```
+HTTP/2 200            <title>fittraining</title>
+x-nextjs-prerender: 1 → se sirve prerenderizada, no rendereada por request
+x-nextjs-cache: HIT
+x-amz-cf-pop: BOG50   → CloudFront la sirve desde el edge de Bogotá
+404                   → en una ruta inexistente
+```
+
+**El riesgo del § 7 era real y estaba activo el mismo día:** la última estable de Next es la 16, que
+Amplify no soporta. Un `create-next-app` sin versión no habría construido, y el fallo habría
+aparecido con seis páginas escritas en vez de con una.
+
+**Lo que el log confirma** (`docs/evidencia/2026-09-05-build-01.txt`, 100 líneas):
+
+| Línea del log                                        | Qué prueba                                      |
+| ---------------------------------------------------- | ----------------------------------------------- |
+| `Preparing pnpm@10.30.1 for immediate activation...` | corepack respetó el pin de `packageManager`     |
+| `Lockfile is up to date, resolution step is skipped` | `--frozen-lockfile` encontró el lock commiteado |
+| `+ next 15.5.25` · `▲ Next.js 15.5.25`               | la versión fijada es la que construyó           |
+| `✓ Generating static pages (5/5)` · `○ (Static)`     | las páginas salen prerenderizadas               |
+
+**Y lo que el log NO dice: la versión de Node.** No aparece en ninguna de las 100 líneas — ni Amplify
+ni Next la imprimen, y `# No package override configuration found.` solo confirma que el campo
+_Live package updates_ de la consola está vacío. O sea que el único ítem del checklist que quedó
+abierto es el que más importa, **y no por falta de mirar: la evidencia no existía**.
+
+Desde el 2026-09-05 el `preBuild` corre `node -v`, así que el próximo build lo deja escrito. Si no
+fuera 22, la corrección es agregar `nvm use 22` en la misma fase.
+
+### Tres avisos del log que son benignos, y por qué
+
+Quedan escritos para que nadie los persiga creyéndolos fallas:
+
+- `! Unable to write cache: ... status code 404` — **primer build, la caché todavía no existe**. Si
+  reaparece en el segundo build sí es un problema real: los builds no estarían cacheando.
+- `!Failed to set up process.env.secrets` — no hay secretos en SSM para esta app y hoy no hacen
+  falta. Va a reaparecer hasta que se configure alguno.
+- `Ignored build scripts: unrs-resolver@1.12.2` — pnpm bloquea los postinstall por defecto. **Se
+  deja bloqueado a propósito**: el lint y el chequeo de tipos que `next build` corre pasaron igual,
+  así que el resolver nativo no hace falta, y ejecutar menos scripts de terceros en el build es
+  preferible. Desbloquearlo sería `pnpm approve-builds`.
+
+### Lo que el build de Amplify SÍ verifica, y lo que no
+
+`next build` corre `Linting and checking validity of types` por su cuenta, así que un error de tipos
+o de ESLint **rompe el despliegue**. Lo que Amplify **no** corre es `format:check`: un archivo mal
+formateado despliega igual. Esa es la mitad de **W-05** que todavía no tiene red — hoy solo la cubre
+`pnpm run gates` corrido a mano.
 
 ---
 

@@ -1,0 +1,100 @@
+2026-09-06T02:38:33.856Z [INFO]: # Build environment configured with Standard build compute type: 8GiB Memory, 4vCPUs, 128GB Disk Space
+2026-09-06T02:38:34.339Z [INFO]: # Cloning repository: git@github.com:Stone-1986/fittraining-web.git
+2026-09-06T02:38:35.032Z [INFO]: 
+2026-09-06T02:38:35.032Z [INFO]: Cloning into 'fittraining-web'...
+2026-09-06T02:38:35.032Z [INFO]: # Checking for Git submodules at: /codebuild/output/src2802120963/src/fittraining-web/.gitmodules
+2026-09-06T02:38:35.040Z [INFO]: # Retrieving environment cache...
+2026-09-06T02:38:35.085Z [WARNING]: ! Unable to write cache: {"code":"ERR_BAD_REQUEST","message":"Request failed with status code 404"})}
+2026-09-06T02:38:35.085Z [INFO]: ---- Setting Up SSM Secrets ----
+2026-09-06T02:38:35.085Z [INFO]: SSM params {"Path":"/amplify/d2km5210mv8hal/main/","WithDecryption":true}
+2026-09-06T02:38:35.134Z [WARNING]: !Failed to set up process.env.secrets
+2026-09-06T02:38:35.624Z [INFO]: # No package override configuration found.
+2026-09-06T02:38:35.628Z [INFO]: # Retrieving cache...
+2026-09-06T02:38:35.671Z [INFO]: # Retrieved cache
+2026-09-06T02:38:39.013Z [INFO]: ## Starting Backend Build
+                                 ## Checking for associated backend environment...
+                                 ## No backend environment association found, continuing...
+                                 ## Completed Backend Build
+2026-09-06T02:38:39.018Z [INFO]: {"backendDuration": 0}
+                                 ## Starting Frontend Build
+                                 # Starting phase: preBuild
+                                 # Executing command: corepack enable
+2026-09-06T02:38:40.253Z [INFO]: # Executing command: corepack prepare --activate
+2026-09-06T02:38:40.355Z [INFO]: Preparing pnpm@10.30.1 for immediate activation...
+2026-09-06T02:38:41.109Z [INFO]: # Executing command: pnpm install --frozen-lockfile
+2026-09-06T02:38:41.769Z [INFO]: Lockfile is up to date, resolution step is skipped
+2026-09-06T02:38:41.803Z [INFO]: Progress: resolved 1, reused 0, downloaded 0, added 0
+2026-09-06T02:38:41.900Z [INFO]: Packages: +322
+                                 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+2026-09-06T02:38:42.803Z [INFO]: Progress: resolved 322, reused 0, downloaded 59, added 16
+2026-09-06T02:38:43.804Z [INFO]: Progress: resolved 322, reused 0, downloaded 266, added 114
+2026-09-06T02:38:44.804Z [INFO]: Progress: resolved 322, reused 0, downloaded 322, added 321
+2026-09-06T02:38:44.843Z [INFO]: Progress: resolved 322, reused 0, downloaded 322, added 322, done
+2026-09-06T02:38:46.554Z [INFO]: dependencies:
+                                 + next 15.5.25
+                                 + react 19.1.0
+                                 + react-dom 19.1.0
+                                 devDependencies:
+                                 + @eslint/eslintrc 3.3.7
+                                 + @tailwindcss/postcss 4.3.3
+                                 + @types/node 22.20.1
+                                 + @types/react 19.2.18
+                                 + @types/react-dom 19.2.7
+                                 + eslint 9.39.5
+                                 + eslint-config-next 15.5.25
+                                 + eslint-config-prettier 10.1.8
+                                 + prettier 3.9.6
+                                 + tailwindcss 4.3.3
+                                 + typescript 5.9.3
+2026-09-06T02:38:46.566Z [INFO]: ╭ Warning ─────────────────────────────────────────────────────────────────────╮
+                                 │                                                                              │
+                                 │   Ignored build scripts: unrs-resolver@1.12.2.                               │
+                                 │   Run "pnpm approve-builds" to pick which dependencies should be allowed     │
+                                 │   to run scripts.                                                            │
+                                 │                                                                              │
+                                 ╰──────────────────────────────────────────────────────────────────────────────╯
+2026-09-06T02:38:46.572Z [INFO]: Done in 5.4s using pnpm v10.30.1
+2026-09-06T02:38:46.597Z [INFO]: # Completed phase: preBuild
+                                 # Starting phase: build
+                                 # Executing command: pnpm run build
+2026-09-06T02:38:46.863Z [INFO]: > fittraining-web@0.1.0 build /codebuild/output/src2802120963/src/fittraining-web
+                                 > next build
+2026-09-06T02:38:47.514Z [INFO]: ⚠ No build cache found. Please configure build caching for faster rebuilds. Read more: https://nextjs.org/docs/messages/no-cache
+2026-09-06T02:38:47.521Z [INFO]: Attention: Next.js now collects completely anonymous telemetry regarding usage.
+                                 This information is used to shape Next.js' roadmap and prioritize features.
+2026-09-06T02:38:47.521Z [INFO]: You can learn more, including how to opt-out if you'd not like to participate in this anonymous program, by visiting the following URL:
+                                 https://nextjs.org/telemetry
+2026-09-06T02:38:47.597Z [INFO]: ▲ Next.js 15.5.25
+2026-09-06T02:38:47.597Z [INFO]: 
+2026-09-06T02:38:47.672Z [INFO]: Creating an optimized production build ...
+2026-09-06T02:38:54.269Z [INFO]: ✓ Compiled successfully in 4.5s
+2026-09-06T02:38:54.274Z [INFO]: Linting and checking validity of types ...
+2026-09-06T02:38:56.292Z [INFO]: Collecting page data ...
+2026-09-06T02:38:57.388Z [INFO]: Generating static pages (0/5) ...
+2026-09-06T02:38:57.856Z [INFO]: Generating static pages (1/5)
+                                 Generating static pages (2/5)
+                                 Generating static pages (3/5)
+2026-09-06T02:38:57.856Z [INFO]: ✓ Generating static pages (5/5)
+2026-09-06T02:38:58.495Z [INFO]: Finalizing page optimization ...
+2026-09-06T02:38:58.495Z [INFO]: Collecting build traces ...
+2026-09-06T02:39:14.441Z [INFO]: 
+2026-09-06T02:39:14.445Z [INFO]: Route (app)                                 Size  First Load JS
+                                 ┌ ○ /                                      123 B         102 kB
+                                 └ ○ /_not-found                            994 B         103 kB
+                                 + First Load JS shared by all             102 kB
+                                 ├ chunks/558-edd235d3d449612c.js       45.9 kB
+                                 ├ chunks/a46412ee-c268cce23d698579.js  54.2 kB
+                                 └ other shared chunks (total)           1.9 kB
+                                 ○  (Static)  prerendered as static content
+2026-09-06T02:39:14.491Z [INFO]: # Completed phase: build
+                                 ## Completed Frontend Build
+2026-09-06T02:39:14.530Z [INFO]: ## Build completed successfully
+2026-09-06T02:39:14.531Z [INFO]: # Starting caching...
+2026-09-06T02:39:14.535Z [INFO]: # Creating cache artifact...
+2026-09-06T02:39:26.462Z [INFO]: # Created cache artifact
+2026-09-06T02:39:26.543Z [INFO]: # Uploading cache artifact...
+2026-09-06T02:39:39.528Z [INFO]: # Uploaded cache artifact
+2026-09-06T02:39:39.603Z [INFO]: # Caching completed
+2026-09-06T02:39:57.810Z [INFO]: # Starting environment caching...
+2026-09-06T02:39:57.885Z [INFO]: # Environment caching completed
+
