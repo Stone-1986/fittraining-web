@@ -359,8 +359,29 @@ verdad.
 
 `next build` corre `Linting and checking validity of types` por su cuenta, así que un error de tipos
 o de ESLint **rompe el despliegue**. Lo que Amplify **no** corre es `format:check`: un archivo mal
-formateado despliega igual. Esa es la mitad de **W-05** que todavía no tiene red — hoy solo la cubre
-`pnpm run gates` corrido a mano.
+formateado despliega igual.
+
+**Esa mitad la cubre CI desde el 2026-09-07.** `.github/workflows/gates.yml` corre los cuatro gates
+—`typecheck`, `lint`, `format:check`, `build`— sobre cada PR a `main` y cada push a `develop`, con
+la versión de pnpm leída de `packageManager` y la de Node de `.nvmrc`, las mismas fuentes que usa
+`amplify.yml`. Con eso **W-05 queda completo**.
+
+## 9. El flujo de ramas
+
+`main` es la rama que Amplify construye y despliega. **`develop` es donde se trabaja.**
+
+```
+develop  ──(commits del día a día)──▶  PR  ──▶  main  ──▶  despliegue
+```
+
+Tres consecuencias, y la primera es la razón de existir del arreglo:
+
+- **Un push ya no despliega.** El despliegue pasa a ser un acto deliberado —mergear un PR— en vez
+  de un efecto secundario de guardar. También baja los minutos de build, que es lo único que este
+  proyecto le paga a Amplify.
+- **El PR es donde corren los gates.** Sin PR, `format:check` no lo corre nadie.
+- **`develop` NO se conecta en Amplify.** Conectarla crearía una segunda URL y duplicaría los
+  builds, a cambio de nada: para ver un cambio antes de desplegarlo está `pnpm run dev`.
 
 ---
 

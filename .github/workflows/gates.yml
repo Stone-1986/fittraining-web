@@ -1,0 +1,42 @@
+# Los cuatro gates del repo, sobre cada PR a `main` y sobre cada push a `develop`.
+#
+# Existe por un hueco medido, no por costumbre: `next build` corre lint y
+# chequeo de tipos por su cuenta, asi que un error de tipos ya rompe el
+# despliegue de Amplify sin que haya que montar nada. Lo que Amplify NO corre
+# es `format:check` — un archivo mal formateado despliega igual. Esta es la
+# mitad de W-05 que no tenia red.
+name: gates
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [develop]
+
+# Un push nuevo cancela la corrida anterior de la misma rama: no tiene sentido
+# esperar el resultado de un commit que ya quedo atras.
+concurrency:
+  group: gates-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  gates:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      # Lee el campo `packageManager` de package.json, igual que corepack en
+      # amplify.yml: una sola fuente de verdad para la version de pnpm.
+      - uses: pnpm/action-setup@v6
+
+      # Y `.nvmrc` para la version de Node, por el mismo motivo. Va DESPUES de
+      # instalar pnpm porque `cache: pnpm` necesita que pnpm ya exista.
+      - uses: actions/setup-node@v7
+        with:
+          node-version-file: .nvmrc
+          cache: pnpm
+
+      - run: pnpm install --frozen-lockfile
+
+      # typecheck + lint + format:check + build, lo mismo que corre en local.
+      - run: pnpm run gates

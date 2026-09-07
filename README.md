@@ -24,6 +24,11 @@ pnpm run build         # next build
 Next 16.** Leer `docs/despliegue-amplify.md` antes de subir cualquiera de las dos, y antes de
 usar streaming, Edge middleware o ISR on-demand — que Amplify tampoco soporta.
 
+## Ramas
+
+`main` es lo que Amplify despliega; **el trabajo va en `develop`** y llega a `main` por PR. Un push
+a `develop` no despliega: corre los gates en CI. El despliegue ocurre al mergear el PR.
+
 ## Estado
 
 Fase 1 — las seis páginas públicas. Hoy solo está la página de verificación del despliegue (W-02).
