@@ -113,6 +113,104 @@ registros en modo solo DNS**.
 - **El hola mundo NO espera al dominio:** corre sobre `*.amplifyapp.com`. El dominio se conecta
   después.
 
+### Conectado y verificado el 2026-09-07
+
+`https://fittraining.app` responde 200 con la página del sitio. Comprobado desde fuera de las dos
+consolas, que es lo único que prueba que existe para un tercero:
+
+```
+fittraining.app       A     → 3.174.240.159 .176 .122 .161   (IPs de CloudFront)
+www.fittraining.app   CNAME → dp50dntay5qpx.cloudfront.net
+certificado           CN = *.fittraining.app · emisor Amazon RSA 2048 S19
+                      SAN: fittraining.app + *.fittraining.app
+                      2026-09-07 → 2027-03-24, renovación automática de Amplify
+```
+
+**El CNAME flattening dejó de ser una suposición:** preguntar por el ápice devuelve las IPs de
+CloudFront y no un alias, con Cloudflare en modo solo DNS. Era el punto que este documento marcaba
+como «verificarlo, no asumirlo».
+
+Los tres registros que hubo que crear a mano en Cloudflare: el CNAME de validación de ACM
+(`_1efa9ade…` → `…acm-validations.aws`), un CNAME en `@` y otro en `www`, los tres apuntando a la
+distribución y los tres en **DNS only**. El «Nombre de host» que muestra Amplify trae el dominio
+incluido y en Cloudflare va **solo la parte izquierda**.
+
+### La redirección de `www` a la raíz funciona para las rutas y NO para la portada
+
+Se probaron **dos** formas de la regla de la raíz en _Reescrituras y redirecciones_, y las dos
+fallaron de manera distinta:
+
+| `source` de la regla                       | Resultado medido                                                                |
+| ------------------------------------------ | ------------------------------------------------------------------------------- |
+| `https://www.fittraining.app` (sin barra)  | la portada de `www` responde **200**, la regla nunca matchea                    |
+| `https://www.fittraining.app/` (con barra) | además **rompe** la regla de rutas: `/politica-de-privacidad` pasó de 301 a 404 |
+
+**La configuración que funciona necesita las DOS reglas de `www`**, y esto es lo menos obvio de
+toda esta sección:
+
+```json
+[
+  {
+    "source": "https://www.fittraining.app",
+    "target": "https://fittraining.app",
+    "status": "301"
+  },
+  {
+    "source": "https://www.fittraining.app/<*>",
+    "target": "https://fittraining.app/<*>",
+    "status": "301"
+  },
+  { "source": "/<*>", "status": "404-200", "target": "/index.html" }
+]
+```
+
+Tres configuraciones medidas el 2026-09-07, en este orden:
+
+| Reglas de `www` presentes           | `/favicon.ico` por `www`              | `/politica-de-privacidad` por `www` |
+| ----------------------------------- | ------------------------------------- | ----------------------------------- |
+| sin barra **+** `/<*>`              | **301** al ápice                      | **301** al ápice                    |
+| con barra final **+** `/<*>`        | —                                     | 404 (rompe la de rutas)             |
+| **solo** `/<*>`                     | **200**, sirve el archivo desde `www` | 404                                 |
+| sin barra **+** `/<*>` (restaurada) | **301** al ápice                      | **301** al ápice                    |
+
+**LA PRIMERA REGLA PARECE NO HACER NADA Y ES LA QUE HABILITA A LA SEGUNDA.** Por sí sola nunca
+redirige la portada —`https://www.fittraining.app` responde 200 con las cuatro configuraciones—, así
+que a cualquiera que ordene esta lista le va a parecer basura y la va a borrar. Cuando la sacamos,
+la redirección de rutas **dejó de funcionar en silencio**: sin ella, `/<*>` no matchea por host y el
+sitio empieza a servirse por dos dominios sin que nada avise. No se toca.
+
+### Cómo se prueba esto sin engañarse
+
+**Un 404 no sirve como prueba.** Mientras no existan páginas reales, pedir
+`www.fittraining.app/politica-de-privacidad` devuelve 404 tanto si la regla no se aplicó como si se
+aplicó y el destino no existe — son dos causas distintas con el mismo síntoma, y por perseguir esa
+ambigüedad se fueron varias vueltas.
+
+**Se prueba contra una ruta que EXISTE**, y hoy la hay: `/favicon.ico`. Ahí sí, **301 significa que
+la regla funciona y 200 significa que no**, sin interpretación posible.
+
+**Se deja así a propósito, y la portada duplicada se resuelve desde el código.** `layout.tsx`
+declara `metadataBase` + `alternates.canonical`, que emite un `<link rel="canonical">` con el origen
+correcto en cada página — verificado en el HTML generado: `/` produce
+`https://fittraining.app` y `/_not-found` produce `https://fittraining.app/_not-found`. Así, aunque
+alguien llegue por `www`, el buscador sabe cuál es la URL buena.
+
+Es una decisión de proporción: seguir probando sintaxis no documentada de una consola cuesta más que
+el problema —una portada accesible por dos URLs en un sitio de prueba cerrada—, y la solución del
+canonical **vive en el repo, entra por PR y la verifican los gates**, a diferencia de una regla que
+solo existe en la consola de alguien.
+
+**Lo que NO se hizo, y por qué:** invertir la canónica marcando el checkbox de Amplify (que redirige
+la raíz hacia `www`) sí funcionaría de una, pero dejaría las URLs legales como
+`www.fittraining.app/politica-de-privacidad` — más largas, con `www`, y escritas para siempre en
+Play Console y dentro del texto legal.
+
+### Pendiente antes de P0-02
+
+Si en algún momento se activa la protección por contraseña del sitio mientras es un placeholder,
+**hay que quitarla antes de publicar las páginas legales**: Google y Play tienen que poder leer la
+política sin credenciales. Una protección que sobrevive a la publicación es un rechazo de revisión.
+
 ---
 
 ## 6. Por qué la web va en Amplify y no en la instancia de la API
