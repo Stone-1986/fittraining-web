@@ -1,3 +1,11 @@
 .next
 node_modules
 pnpm-lock.yaml
+
+# Los textos legales publicados. NO son codigo: son el documento exacto que
+# una persona acepto, y `legal_acceptances.documentVersion` apunta a el como
+# prueba. Prettier reflowaria parrafos, normalizaria marcadores de lista y
+# alinearia tablas — cambios inocuos en un .md cualquiera, inaceptables en un
+# archivo cuyo contenido literal es la evidencia. Ademas los desincronizaria
+# de la copia historica del repo de la API.
+src/content/legal/
