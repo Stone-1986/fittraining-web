@@ -42,3 +42,11 @@ next-env.d.ts
 
 # Artefacto de Windows al copiar archivos a WSL
 *:Zone.Identifier
+
+# Reporte de los gates: se regenera con `pnpm run gates` y su valor es el
+# mtime local, no el historial. Commitearlo produciria un conflicto en cada PR.
+/outputs
+/coverage
+
+# Marcadores de arranque de subagentes y log de hooks: estado local.
+.claude/tmp/

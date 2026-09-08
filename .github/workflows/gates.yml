@@ -1,4 +1,4 @@
-# Los cuatro gates del repo, sobre cada PR a `main` y sobre cada push a `develop`.
+# Los cinco gates del repo, sobre cada PR a `main` y sobre cada push a `develop`.
 #
 # Existe por un hueco medido, no por costumbre: `next build` corre lint y
 # chequeo de tipos por su cuenta, asi que un error de tipos ya rompe el
@@ -38,5 +38,7 @@ jobs:
 
       - run: pnpm install --frozen-lockfile
 
-      # typecheck + lint + format:check + build, lo mismo que corre en local.
+      # typecheck + lint + format:check + test:cov + build — `scripts/gates.mjs`,
+      # exactamente lo mismo que corre en local. Escribe outputs/gates.json, que
+      # esta gitignored: en CI su valor es el codigo de salida, no el archivo.
       - run: pnpm run gates

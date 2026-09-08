@@ -19,22 +19,22 @@ export const metadata: Metadata = {
   alternates: { canonical: '/legal' },
 };
 
-export default function IndiceLegal() {
+export default function LegalIndex() {
   return (
     <LegalShell>
-      <div className={styles.indice}>
+      <div className={styles.index}>
         <h1>Documentos legales</h1>
         <p>
           Estos son los documentos que rigen el uso de fittraining. Cada uno
           tiene su propia dirección permanente y se conserva sin cambios una vez
           publicado.
         </p>
-        <ul className={styles.indiceLista}>
+        <ul className={styles.indexList}>
           {LEGAL_DOCUMENTS.map((doc) => (
-            <li key={doc.slug} className={styles.indiceItem}>
+            <li key={doc.slug} className={styles.indexItem}>
               <Link href={`/${doc.slug}`}>
-                <span className={styles.indiceNombre}>{doc.title}</span>
-                <span className={styles.indiceResumen}>{doc.summary}</span>
+                <span className={styles.indexName}>{doc.title}</span>
+                <span className={styles.indexSummary}>{doc.summary}</span>
               </Link>
             </li>
           ))}

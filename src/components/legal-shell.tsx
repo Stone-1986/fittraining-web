@@ -21,38 +21,38 @@ import styles from './legal-shell.module.css';
  * Sin una linea de JavaScript de cliente: son cinco documentos estaticos.
  */
 export function LegalShell({
-  slugActivo,
+  activeSlug,
   toc = [],
   children,
 }: {
   /** `undefined` en el indice `/legal`, donde no hay documento abierto. */
-  slugActivo?: string;
+  activeSlug?: string;
   toc?: TocEntry[];
   children: React.ReactNode;
 }) {
-  const activo = LEGAL_DOCUMENTS.find((d) => d.slug === slugActivo);
+  const activeDoc = LEGAL_DOCUMENTS.find((d) => d.slug === activeSlug);
 
   const nav = (
     <>
-      <p className={styles.navTitulo}>Documentos legales</p>
-      <ul className={styles.navLista}>
+      <p className={styles.navTitle}>Documentos legales</p>
+      <ul className={styles.navList}>
         {LEGAL_DOCUMENTS.map((doc) => {
-          const esActivo = doc.slug === slugActivo;
+          const isActive = doc.slug === activeSlug;
           return (
             <li key={doc.slug}>
               <Link
                 href={`/${doc.slug}`}
-                className={`${styles.navEnlace} ${esActivo ? styles.navEnlaceActivo : ''}`}
-                aria-current={esActivo ? 'page' : undefined}
+                className={`${styles.navLink} ${isActive ? styles.navLinkActive : ''}`}
+                aria-current={isActive ? 'page' : undefined}
               >
                 {doc.navLabel}
               </Link>
-              {esActivo && toc.length > 0 && (
-                <ul className={styles.subLista}>
-                  {toc.map((entrada) => (
-                    <li key={entrada.id}>
-                      <a href={`#${entrada.id}`} className={styles.subEnlace}>
-                        {entrada.text}
+              {isActive && toc.length > 0 && (
+                <ul className={styles.subList}>
+                  {toc.map((entry) => (
+                    <li key={entry.id}>
+                      <a href={`#${entry.id}`} className={styles.subLink}>
+                        {entry.text}
                       </a>
                     </li>
                   ))}
@@ -72,21 +72,21 @@ export function LegalShell({
       </a>
 
       <header className={styles.topbar}>
-        <Link href="/" className={styles.marca}>
+        <Link href="/" className={styles.brand}>
           fittraining
         </Link>
       </header>
 
       <div className={styles.layout}>
         {/* Movil: disclosure nativo que dice donde esta parado el lector. */}
-        <details className={styles.navMovil}>
-          <summary className={styles.navMovilResumen}>
-            {activo ? activo.navLabel : 'Documentos legales'}
+        <details className={styles.navMobile}>
+          <summary className={styles.navMobileSummary}>
+            {activeDoc ? activeDoc.navLabel : 'Documentos legales'}
           </summary>
-          <div className={styles.navMovilCuerpo}>{nav}</div>
+          <div className={styles.navMobileBody}>{nav}</div>
         </details>
 
-        <nav className={styles.navEscritorio} aria-label="Documentos legales">
+        <nav className={styles.navDesktop} aria-label="Documentos legales">
           {nav}
         </nav>
 

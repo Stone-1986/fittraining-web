@@ -1,10 +1,19 @@
 /*
  * Hoja unica de las paginas legales (W-11).
  *
- * La direccion visual (W-D3) todavia no esta decidida para el resto del
- * sitio; esto NO la prejuzga. Es deliberadamente sobrio —un solo acento,
- * tipografia del sistema, sin animaciones— porque son documentos que se
- * leen, no una interfaz que se opera.
+ * POR QUE ESTAS PAGINAS SIGUEN EN CSS MODULES Y NO EN TAILWIND, que es la
+ * regla del resto del repo: lo que se estiliza aqui es el HTML que genera
+ * `marked` a partir del markdown. Ese HTML no tiene clases y nunca las va a
+ * tener, asi que no hay donde colgar una utilidad de Tailwind; hay que
+ * apuntarle con selectores (`.prose h2`, `.prose table`). Es la excepcion
+ * justificada, no una inconsistencia, y esta escrita en
+ * docs/sistema-de-diseno.md como la unica que existe.
+ *
+ * LO QUE CAMBIO CON W-D3: esta hoja tenia SU PROPIA PALETA (`--legal-ink`,
+ * `--legal-acento`...), duplicando en privado colores que ahora son del
+ * sistema. Se borro entera. Aqui ya no se declara ni un color: todo sale de
+ * los tokens de `globals.css`, asi que estas paginas cambian con la marca en
+ * vez de quedarse atras.
  *
  * MOBILE-FIRST A PROPOSITO (W-D6): estas paginas se abren desde un correo o
  * desde la ficha de Play Store, en un telefono. El menu lateral es una
@@ -13,32 +22,10 @@
  */
 
 .page {
-  --legal-ink: #1c1d1f;
-  --legal-ink-suave: #5c6066;
-  --legal-borde: #e3e5e8;
-  --legal-fondo-suave: #f7f8f9;
-  --legal-acento: #1f5f8b;
-  --legal-aviso-fondo: #fdf6e3;
-  --legal-aviso-borde: #e0c974;
-  --legal-aviso-ink: #6b5310;
-
-  color: var(--legal-ink);
+  color: var(--foreground);
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-}
-
-@media (prefers-color-scheme: dark) {
-  .page {
-    --legal-ink: #e8e9ea;
-    --legal-ink-suave: #9ca1a8;
-    --legal-borde: #2c2f33;
-    --legal-fondo-suave: #17191c;
-    --legal-acento: #7db6dd;
-    --legal-aviso-fondo: #2a2415;
-    --legal-aviso-borde: #6b5a25;
-    --legal-aviso-ink: #e0c974;
-  }
 }
 
 /* El enlace de salto: invisible hasta que se le da foco con el teclado. */
@@ -46,8 +33,8 @@
   position: absolute;
   left: -9999px;
   top: 0;
-  background: var(--legal-acento);
-  color: #fff;
+  background: var(--primary);
+  color: var(--primary-foreground);
   padding: 0.6rem 1rem;
   z-index: 10;
 }
@@ -56,15 +43,16 @@
 }
 
 .topbar {
-  border-bottom: 1px solid var(--legal-borde);
+  border-bottom: 1px solid var(--border);
   padding: 0.9rem 1.25rem;
 }
 
-.marca {
+.brand {
+  font-family: var(--font-display);
   font-weight: 650;
   font-size: 1rem;
   letter-spacing: -0.01em;
-  color: var(--legal-ink);
+  color: var(--foreground);
   text-decoration: none;
 }
 
@@ -78,71 +66,71 @@
 
 /* --- Navegacion --- */
 
-.navTitulo {
+.navTitle {
   font-size: 0.72rem;
   font-weight: 650;
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  color: var(--legal-ink-suave);
+  color: var(--muted-foreground);
   margin: 0 0 0.6rem;
 }
 
-.navLista {
+.navList {
   list-style: none;
   margin: 0;
   padding: 0;
 }
 
-.navEnlace {
+.navLink {
   display: block;
   padding: 0.42rem 0.75rem;
   border-left: 2px solid transparent;
-  color: var(--legal-ink-suave);
+  color: var(--muted-foreground);
   text-decoration: none;
   font-size: 0.9rem;
   line-height: 1.35;
-  border-radius: 0 3px 3px 0;
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
 }
-.navEnlace:hover {
-  color: var(--legal-ink);
-  background: var(--legal-fondo-suave);
+.navLink:hover {
+  color: var(--foreground);
+  background: var(--muted);
 }
-.navEnlaceActivo {
-  color: var(--legal-ink);
+.navLinkActive {
+  color: var(--foreground);
   font-weight: 600;
-  border-left-color: var(--legal-acento);
-  background: var(--legal-fondo-suave);
+  border-left-color: var(--primary);
+  background: var(--muted);
 }
 
 /* Las secciones del documento abierto, anidadas bajo su nombre. */
-.subLista {
+.subList {
   list-style: none;
   margin: 0.15rem 0 0.5rem;
   padding: 0 0 0 0.75rem;
-  border-left: 2px solid var(--legal-borde);
+  border-left: 2px solid var(--border);
 }
-.subEnlace {
+.subLink {
   display: block;
   padding: 0.24rem 0.6rem;
-  color: var(--legal-ink-suave);
+  color: var(--muted-foreground);
   text-decoration: none;
   font-size: 0.82rem;
   line-height: 1.35;
 }
-.subEnlace:hover {
-  color: var(--legal-acento);
+.subLink:hover {
+  color: var(--primary);
   text-decoration: underline;
 }
 
 /* --- Movil: el menu es un <details> nativo, sin una linea de JS --- */
 
-.navMovil {
+.navMobile {
   margin: 1rem 0 0;
-  border: 1px solid var(--legal-borde);
-  border-radius: 8px;
-  background: var(--legal-fondo-suave);
+  border: 1px solid var(--border);
+  border-radius: 0;
+  background: var(--muted);
 }
-.navMovilResumen {
+.navMobileSummary {
   padding: 0.7rem 0.9rem;
   cursor: pointer;
   font-size: 0.9rem;
@@ -152,24 +140,24 @@
   justify-content: space-between;
   gap: 0.5rem;
 }
-.navMovilResumen::-webkit-details-marker {
+.navMobileSummary::-webkit-details-marker {
   display: none;
 }
-.navMovilResumen::after {
+.navMobileSummary::after {
   content: 'Ver todos';
   font-weight: 400;
-  color: var(--legal-acento);
+  color: var(--primary);
   white-space: nowrap;
 }
-.navMovil[open] .navMovilResumen::after {
+.navMobile[open] .navMobileSummary::after {
   content: 'Cerrar';
 }
-.navMovilCuerpo {
+.navMobileBody {
   padding: 0 0.5rem 0.6rem;
-  border-top: 1px solid var(--legal-borde);
+  border-top: 1px solid var(--border);
 }
 
-.navEscritorio {
+.navDesktop {
   display: none;
 }
 
@@ -180,10 +168,10 @@
     gap: 3rem;
     padding-top: 2rem;
   }
-  .navMovil {
+  .navMobile {
     display: none;
   }
-  .navEscritorio {
+  .navDesktop {
     display: block;
     position: sticky;
     top: 2rem;
@@ -193,26 +181,31 @@
   }
 }
 
-/* --- Aviso de version no vigente --- */
-
-.avisoVersion {
+/* --- Aviso de version no vigente ---
+ *
+ * El fondo y el borde se DERIVAN del token de aviso con `color-mix` en vez
+ * de ser tres tokens mas. Es lo mismo que hariamos a ojo —el color de aviso
+ * diluido en el fondo— pero calculado, y con una ventaja concreta: al
+ * mezclar contra `--background`, en modo oscuro sale un ambar apagado sobre
+ * negro sin tener que declararlo aparte. */
+.versionNotice {
   margin: 1.5rem 0 0;
   padding: 0.85rem 1rem;
-  border: 1px solid var(--legal-aviso-borde);
-  background: var(--legal-aviso-fondo);
-  color: var(--legal-aviso-ink);
-  border-radius: 8px;
+  border: 1px solid color-mix(in oklab, var(--warning) 35%, var(--background));
+  background: color-mix(in oklab, var(--warning) 12%, var(--background));
+  color: var(--warning);
+  border-radius: 0;
   font-size: 0.88rem;
   line-height: 1.5;
 }
-.avisoVersion a {
+.versionNotice a {
   color: inherit;
   font-weight: 650;
 }
 
 /* --- El documento --- */
 
-.prosa {
+.prose {
   max-width: 68ch;
   padding-top: 1.5rem;
   font-size: 1rem;
@@ -220,67 +213,72 @@
   overflow-wrap: break-word;
 }
 
-.prosa :global(h1) {
+.prose :global(h1),
+.prose :global(h2),
+.prose :global(h3) {
+  font-family: var(--font-display);
+}
+.prose :global(h1) {
   font-size: 1.6rem;
   line-height: 1.25;
   letter-spacing: -0.02em;
   margin: 0 0 0.75rem;
 }
-.prosa :global(h2) {
+.prose :global(h2) {
   font-size: 1.17rem;
   line-height: 1.3;
   margin: 2.4rem 0 0.7rem;
   padding-top: 0.4rem;
   scroll-margin-top: 1.5rem;
 }
-.prosa :global(h3) {
+.prose :global(h3) {
   font-size: 1rem;
   margin: 1.6rem 0 0.5rem;
   scroll-margin-top: 1.5rem;
 }
-.prosa :global(p),
-.prosa :global(li) {
+.prose :global(p),
+.prose :global(li) {
   margin: 0 0 0.85rem;
 }
-.prosa :global(ul),
-.prosa :global(ol) {
+.prose :global(ul),
+.prose :global(ol) {
   padding-left: 1.35rem;
   margin: 0 0 1rem;
 }
-.prosa :global(li) {
+.prose :global(li) {
   margin-bottom: 0.4rem;
 }
-.prosa :global(li > ul) {
+.prose :global(li > ul) {
   margin-top: 0.4rem;
 }
-.prosa :global(strong) {
+.prose :global(strong) {
   font-weight: 650;
 }
-.prosa :global(a) {
-  color: var(--legal-acento);
+.prose :global(a) {
+  color: var(--primary);
   text-decoration: underline;
   text-underline-offset: 2px;
 }
-.prosa :global(hr) {
+.prose :global(hr) {
   border: 0;
-  border-top: 1px solid var(--legal-borde);
+  border-top: 1px solid var(--border);
   margin: 2rem 0;
 }
-.prosa :global(blockquote) {
+.prose :global(blockquote) {
   margin: 1.2rem 0;
   padding: 0.1rem 0 0.1rem 1rem;
-  border-left: 3px solid var(--legal-acento);
-  color: var(--legal-ink-suave);
+  border-left: 3px solid var(--primary);
+  color: var(--muted-foreground);
 }
-.prosa :global(em) {
-  color: var(--legal-ink-suave);
+.prose :global(em) {
+  color: var(--muted-foreground);
 }
 
 /*
  * Las tablas de § 5 y § 8 de la politica son anchas. Se envuelven en su
  * propio scroll horizontal para que la PAGINA nunca lo tenga.
  */
-.prosa :global(table) {
+.prose :global(table) {
   display: block;
   overflow-x: auto;
   width: 100%;
@@ -288,68 +286,85 @@
   margin: 0 0 1.2rem;
   font-size: 0.9rem;
 }
-.prosa :global(th),
-.prosa :global(td) {
-  border: 1px solid var(--legal-borde);
+.prose :global(th),
+.prose :global(td) {
+  border: 1px solid var(--border);
   padding: 0.5rem 0.7rem;
   text-align: left;
   vertical-align: top;
 }
-.prosa :global(th) {
-  background: var(--legal-fondo-suave);
+.prose :global(th) {
+  background: var(--muted);
   font-weight: 650;
 }
 
 /* --- Pie --- */
 
-.pie {
+.footer {
   max-width: 68ch;
   margin-top: 3rem;
   padding-top: 1.25rem;
-  border-top: 1px solid var(--legal-borde);
+  border-top: 1px solid var(--border);
   font-size: 0.85rem;
   line-height: 1.6;
-  color: var(--legal-ink-suave);
+  color: var(--muted-foreground);
 }
-.pie a {
-  color: var(--legal-acento);
+.footer a {
+  color: var(--primary);
 }
 
 /* --- Indice de /legal --- */
 
-.indice {
+.index {
   max-width: 68ch;
   padding-top: 1.5rem;
 }
-.indiceLista {
+/* Estos dos faltaban: el `preflight` de Tailwind deja los <h1> del mismo
+ * tamaño que un parrafo, asi que el titulo de `/legal` se veia como texto
+ * normal. En `.prose` no pasaba porque alli si hay reglas para h1. */
+.index h1 {
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+  margin: 0 0 0.75rem;
+}
+.index p {
+  margin: 0;
+  line-height: 1.7;
+  color: var(--muted-foreground);
+}
+.indexList {
   list-style: none;
   margin: 1.5rem 0 0;
   padding: 0;
   display: grid;
   gap: 0.75rem;
 }
-.indiceItem a {
+.indexItem a {
   display: block;
   padding: 1rem 1.1rem;
-  border: 1px solid var(--legal-borde);
-  border-radius: 10px;
+  border: 1px solid var(--border);
+  border-radius: 0;
+  background: var(--card);
   text-decoration: none;
   color: inherit;
 }
-.indiceItem a:hover {
-  border-color: var(--legal-acento);
-  background: var(--legal-fondo-suave);
+.indexItem a:hover {
+  border-color: var(--primary);
+  background: var(--muted);
 }
-.indiceNombre {
+.indexName {
   display: block;
+  font-family: var(--font-display);
   font-weight: 650;
   font-size: 1rem;
   margin-bottom: 0.2rem;
-  color: var(--legal-acento);
+  color: var(--primary);
 }
-.indiceResumen {
+.indexSummary {
   display: block;
   font-size: 0.88rem;
   line-height: 1.5;
-  color: var(--legal-ink-suave);
+  color: var(--muted-foreground);
 }

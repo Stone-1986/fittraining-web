@@ -49,7 +49,7 @@ export async function generateMetadata({
   const doc = findDocument(slug);
   if (!doc) return {};
 
-  const esVigente = version === doc.currentVersion;
+  const isCurrent = version === doc.currentVersion;
 
   return {
     title: `${doc.title} ${version} — fittraining`,
@@ -57,13 +57,13 @@ export async function generateMetadata({
     // La vigente apunta al canonico de la URL corta para no competir consigo
     // misma; una version retirada no se indexa, pero sigue siendo accesible
     // para cualquiera que llegue con el enlace de su propia aceptacion.
-    ...(esVigente
+    ...(isCurrent
       ? { alternates: { canonical: `/${doc.slug}` } }
       : { robots: { index: false, follow: true } }),
   };
 }
 
-export default async function PaginaLegalVersionada({
+export default async function LegalVersionPage({
   params,
 }: {
   params: Promise<{ slug: string; version: string }>;
@@ -73,12 +73,12 @@ export default async function PaginaLegalVersionada({
   if (!doc) notFound();
 
   const { html, toc } = renderDocument(doc.slug, version);
-  const esVigente = version === doc.currentVersion;
+  const isCurrent = version === doc.currentVersion;
 
   return (
-    <LegalShell slugActivo={doc.slug} toc={toc}>
-      {!esVigente && (
-        <p className={styles.avisoVersion}>
+    <LegalShell activeSlug={doc.slug} toc={toc}>
+      {!isCurrent && (
+        <p className={styles.versionNotice}>
           Está viendo la <strong>versión {version}</strong>, que ya no es la
           vigente. Se conserva sin cambios porque es el texto que aceptaron
           quienes lo hicieron mientras estuvo en vigor.{' '}
@@ -86,10 +86,10 @@ export default async function PaginaLegalVersionada({
         </p>
       )}
       <article
-        className={styles.prosa}
+        className={styles.prose}
         dangerouslySetInnerHTML={{ __html: html }}
       />
-      <footer className={styles.pie}>
+      <footer className={styles.footer}>
         <p>
           Enlace permanente a esta versión: fittraining.app/{doc.slug}/{version}
           . No cambia cuando se publica una versión nueva.

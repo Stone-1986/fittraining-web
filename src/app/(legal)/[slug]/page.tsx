@@ -39,7 +39,7 @@ export async function generateMetadata({
   };
 }
 
-export default async function PaginaLegal({
+export default async function LegalPage({
   params,
 }: {
   params: Promise<{ slug: string }>;
@@ -51,12 +51,12 @@ export default async function PaginaLegal({
   const { html, toc } = renderDocument(doc.slug, doc.currentVersion);
 
   return (
-    <LegalShell slugActivo={doc.slug} toc={toc}>
+    <LegalShell activeSlug={doc.slug} toc={toc}>
       <article
-        className={styles.prosa}
+        className={styles.prose}
         dangerouslySetInnerHTML={{ __html: html }}
       />
-      <footer className={styles.pie}>
+      <footer className={styles.footer}>
         <p>
           Está viendo la versión vigente ({doc.currentVersion}). Su enlace
           permanente, que no cambiará cuando se publique una versión nueva, es{' '}
