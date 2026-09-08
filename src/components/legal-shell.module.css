@@ -1,0 +1,355 @@
+/*
+ * Hoja unica de las paginas legales (W-11).
+ *
+ * La direccion visual (W-D3) todavia no esta decidida para el resto del
+ * sitio; esto NO la prejuzga. Es deliberadamente sobrio —un solo acento,
+ * tipografia del sistema, sin animaciones— porque son documentos que se
+ * leen, no una interfaz que se opera.
+ *
+ * MOBILE-FIRST A PROPOSITO (W-D6): estas paginas se abren desde un correo o
+ * desde la ficha de Play Store, en un telefono. El menu lateral es una
+ * columna solo a partir de 900px; por debajo es un `<details>` nativo que
+ * muestra en que documento esta parado.
+ */
+
+.page {
+  --legal-ink: #1c1d1f;
+  --legal-ink-suave: #5c6066;
+  --legal-borde: #e3e5e8;
+  --legal-fondo-suave: #f7f8f9;
+  --legal-acento: #1f5f8b;
+  --legal-aviso-fondo: #fdf6e3;
+  --legal-aviso-borde: #e0c974;
+  --legal-aviso-ink: #6b5310;
+
+  color: var(--legal-ink);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+@media (prefers-color-scheme: dark) {
+  .page {
+    --legal-ink: #e8e9ea;
+    --legal-ink-suave: #9ca1a8;
+    --legal-borde: #2c2f33;
+    --legal-fondo-suave: #17191c;
+    --legal-acento: #7db6dd;
+    --legal-aviso-fondo: #2a2415;
+    --legal-aviso-borde: #6b5a25;
+    --legal-aviso-ink: #e0c974;
+  }
+}
+
+/* El enlace de salto: invisible hasta que se le da foco con el teclado. */
+.skip {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  background: var(--legal-acento);
+  color: #fff;
+  padding: 0.6rem 1rem;
+  z-index: 10;
+}
+.skip:focus {
+  left: 0;
+}
+
+.topbar {
+  border-bottom: 1px solid var(--legal-borde);
+  padding: 0.9rem 1.25rem;
+}
+
+.marca {
+  font-weight: 650;
+  font-size: 1rem;
+  letter-spacing: -0.01em;
+  color: var(--legal-ink);
+  text-decoration: none;
+}
+
+.layout {
+  flex: 1;
+  width: 100%;
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 0 1.25rem 4rem;
+}
+
+/* --- Navegacion --- */
+
+.navTitulo {
+  font-size: 0.72rem;
+  font-weight: 650;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--legal-ink-suave);
+  margin: 0 0 0.6rem;
+}
+
+.navLista {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.navEnlace {
+  display: block;
+  padding: 0.42rem 0.75rem;
+  border-left: 2px solid transparent;
+  color: var(--legal-ink-suave);
+  text-decoration: none;
+  font-size: 0.9rem;
+  line-height: 1.35;
+  border-radius: 0 3px 3px 0;
+}
+.navEnlace:hover {
+  color: var(--legal-ink);
+  background: var(--legal-fondo-suave);
+}
+.navEnlaceActivo {
+  color: var(--legal-ink);
+  font-weight: 600;
+  border-left-color: var(--legal-acento);
+  background: var(--legal-fondo-suave);
+}
+
+/* Las secciones del documento abierto, anidadas bajo su nombre. */
+.subLista {
+  list-style: none;
+  margin: 0.15rem 0 0.5rem;
+  padding: 0 0 0 0.75rem;
+  border-left: 2px solid var(--legal-borde);
+}
+.subEnlace {
+  display: block;
+  padding: 0.24rem 0.6rem;
+  color: var(--legal-ink-suave);
+  text-decoration: none;
+  font-size: 0.82rem;
+  line-height: 1.35;
+}
+.subEnlace:hover {
+  color: var(--legal-acento);
+  text-decoration: underline;
+}
+
+/* --- Movil: el menu es un <details> nativo, sin una linea de JS --- */
+
+.navMovil {
+  margin: 1rem 0 0;
+  border: 1px solid var(--legal-borde);
+  border-radius: 8px;
+  background: var(--legal-fondo-suave);
+}
+.navMovilResumen {
+  padding: 0.7rem 0.9rem;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 600;
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+.navMovilResumen::-webkit-details-marker {
+  display: none;
+}
+.navMovilResumen::after {
+  content: 'Ver todos';
+  font-weight: 400;
+  color: var(--legal-acento);
+  white-space: nowrap;
+}
+.navMovil[open] .navMovilResumen::after {
+  content: 'Cerrar';
+}
+.navMovilCuerpo {
+  padding: 0 0.5rem 0.6rem;
+  border-top: 1px solid var(--legal-borde);
+}
+
+.navEscritorio {
+  display: none;
+}
+
+@media (min-width: 900px) {
+  .layout {
+    display: grid;
+    grid-template-columns: 232px minmax(0, 1fr);
+    gap: 3rem;
+    padding-top: 2rem;
+  }
+  .navMovil {
+    display: none;
+  }
+  .navEscritorio {
+    display: block;
+    position: sticky;
+    top: 2rem;
+    align-self: start;
+    max-height: calc(100vh - 4rem);
+    overflow-y: auto;
+  }
+}
+
+/* --- Aviso de version no vigente --- */
+
+.avisoVersion {
+  margin: 1.5rem 0 0;
+  padding: 0.85rem 1rem;
+  border: 1px solid var(--legal-aviso-borde);
+  background: var(--legal-aviso-fondo);
+  color: var(--legal-aviso-ink);
+  border-radius: 8px;
+  font-size: 0.88rem;
+  line-height: 1.5;
+}
+.avisoVersion a {
+  color: inherit;
+  font-weight: 650;
+}
+
+/* --- El documento --- */
+
+.prosa {
+  max-width: 68ch;
+  padding-top: 1.5rem;
+  font-size: 1rem;
+  line-height: 1.7;
+  overflow-wrap: break-word;
+}
+
+.prosa :global(h1) {
+  font-size: 1.6rem;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+  margin: 0 0 0.75rem;
+}
+.prosa :global(h2) {
+  font-size: 1.17rem;
+  line-height: 1.3;
+  margin: 2.4rem 0 0.7rem;
+  padding-top: 0.4rem;
+  scroll-margin-top: 1.5rem;
+}
+.prosa :global(h3) {
+  font-size: 1rem;
+  margin: 1.6rem 0 0.5rem;
+  scroll-margin-top: 1.5rem;
+}
+.prosa :global(p),
+.prosa :global(li) {
+  margin: 0 0 0.85rem;
+}
+.prosa :global(ul),
+.prosa :global(ol) {
+  padding-left: 1.35rem;
+  margin: 0 0 1rem;
+}
+.prosa :global(li) {
+  margin-bottom: 0.4rem;
+}
+.prosa :global(li > ul) {
+  margin-top: 0.4rem;
+}
+.prosa :global(strong) {
+  font-weight: 650;
+}
+.prosa :global(a) {
+  color: var(--legal-acento);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.prosa :global(hr) {
+  border: 0;
+  border-top: 1px solid var(--legal-borde);
+  margin: 2rem 0;
+}
+.prosa :global(blockquote) {
+  margin: 1.2rem 0;
+  padding: 0.1rem 0 0.1rem 1rem;
+  border-left: 3px solid var(--legal-acento);
+  color: var(--legal-ink-suave);
+}
+.prosa :global(em) {
+  color: var(--legal-ink-suave);
+}
+
+/*
+ * Las tablas de § 5 y § 8 de la politica son anchas. Se envuelven en su
+ * propio scroll horizontal para que la PAGINA nunca lo tenga.
+ */
+.prosa :global(table) {
+  display: block;
+  overflow-x: auto;
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0 0 1.2rem;
+  font-size: 0.9rem;
+}
+.prosa :global(th),
+.prosa :global(td) {
+  border: 1px solid var(--legal-borde);
+  padding: 0.5rem 0.7rem;
+  text-align: left;
+  vertical-align: top;
+}
+.prosa :global(th) {
+  background: var(--legal-fondo-suave);
+  font-weight: 650;
+}
+
+/* --- Pie --- */
+
+.pie {
+  max-width: 68ch;
+  margin-top: 3rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--legal-borde);
+  font-size: 0.85rem;
+  line-height: 1.6;
+  color: var(--legal-ink-suave);
+}
+.pie a {
+  color: var(--legal-acento);
+}
+
+/* --- Indice de /legal --- */
+
+.indice {
+  max-width: 68ch;
+  padding-top: 1.5rem;
+}
+.indiceLista {
+  list-style: none;
+  margin: 1.5rem 0 0;
+  padding: 0;
+  display: grid;
+  gap: 0.75rem;
+}
+.indiceItem a {
+  display: block;
+  padding: 1rem 1.1rem;
+  border: 1px solid var(--legal-borde);
+  border-radius: 10px;
+  text-decoration: none;
+  color: inherit;
+}
+.indiceItem a:hover {
+  border-color: var(--legal-acento);
+  background: var(--legal-fondo-suave);
+}
+.indiceNombre {
+  display: block;
+  font-weight: 650;
+  font-size: 1rem;
+  margin-bottom: 0.2rem;
+  color: var(--legal-acento);
+}
+.indiceResumen {
+  display: block;
+  font-size: 0.88rem;
+  line-height: 1.5;
+  color: var(--legal-ink-suave);
+}
