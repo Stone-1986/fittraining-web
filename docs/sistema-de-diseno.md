@@ -428,21 +428,30 @@ fijadas por `definicion-web.md § 3`.
   usan `buttonStyles()`: si se queda, el control será operable con teclado y
   estará muerto con el ratón, que es peor que lo de ahora.
 
-- **La portada invita a registrarse y los documentos publicados dicen que
-  todavía no se puede.** Los Términos y Condiciones § 12 afirman que
-  fittraining «opera hoy en fase de prueba, con acceso limitado», y
-  `definicion-web.md § 3` dice «sin registro público» y que la web no lleva
-  botón de «Crear cuenta». La portada, desde la revisión 2 de W-10, dibuja
-  «Registrarme», «Iniciar sesión» y «Crear mi cuenta», porque el producto
-  cambió: el atleta se registrará desde la web y el entrenador iniciará
-  sesión.
+- **`definicion-web.md § 3` está desactualizado respecto al producto — pero
+  los Términos NO.** Conviene separar las dos cosas, porque el asistente las
+  confundió al planificar W-10 y llegó a afirmar que la portada contradecía un
+  documento legal publicado. No lo hace.
 
-  **No es un defecto del código, es un pendiente de producto.** Hoy las tres
-  piezas son inertes —se dibujan y no navegan— así que nada promete una
-  pantalla que no exista. Lo que hay que hacer antes de producción es
-  actualizar los dos documentos: los Términos, con su versión y su fecha,
-  porque son texto publicado y una versión no se borra; y
-  `definicion-web.md § 3`, que fija lo que la web hace.
+  - **Los Términos son compatibles.** Su § 5 dice, para el rol Atleta:
+    «Registro directo en la aplicación, **sin aprobación previa**». Lo que el
+    § 12 limita es el acceso durante la fase de prueba, no la puerta de
+    registro. Registrarse es libre; lo que exige aprobación del entrenador es
+    **inscribirse a un plan**, y eso lo describe el § 6.
+  - **`definicion-web.md § 3` sí hay que actualizarlo.** Dice «sin registro
+    público», que «el atleta se registra en la app» y que la web no lleva
+    botón de «Crear cuenta». El humano decidió lo contrario el 2026-09-08.
+    Vive en `fitmess-api/docs/web/`, así que es trabajo en el otro repo.
+
+  **De esa confusión salió un defecto real que la portada llegó a tener:** los
+  tres pasos de «Cómo funciona» ponían los consentimientos en el registro y
+  omitían la aprobación, con lo que insinuaban que registrarse basta para
+  entrenar. Corregido el 2026-09-09 contra Términos § 6 y los endpoints de
+  `/subscriptions`.
+
+  **Esa copy no se reescribe sin contrastarla con el documento.** El orden es
+  Pendiente → Aprobada → consentimientos → Activa, los consentimientos son
+  **por plan y no por cuenta**, y el de datos de salud va en casilla propia.
 
 - **La landing (W-10) está construida, pero no publicada.** Vive en
   `src/app/page.tsx` con sus piezas en `src/components/landing/` y
