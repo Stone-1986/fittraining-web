@@ -97,6 +97,14 @@
   --meta-foreground: #768486; /* 5.02:1 — canvas #6D7A7C daba 4.38:1 */
   --disabled-foreground: #5b6668; /* 3.29:1 — exento (WCAG 1.4.3) */
 
+  /* --- Decorativo --------------------------------------------------------
+   * SOLO DECORATIVO. Mide 1.32:1 sobre el fondo, muy por debajo de cualquier
+   * minimo: NUNCA para texto que informe de algo. Existe para el numero
+   * fantasma de los pasos, que va `aria-hidden` dentro de un <ol> y cuyo
+   * orden ya comunica la lista. Si alguna vez se usa en algo legible, esta
+   * mal usado. */
+  --decorative: #1f2a2c;
+
   /* --- Marca -------------------------------------------------------------
    * `primary` es EL cian, y es LA ACCION: el boton principal, el enlace, el
    * dato del plan. Si todo es cian, nada lo es — como mucho un boton
@@ -199,6 +207,8 @@
   --color-meta-foreground: var(--meta-foreground);
   --color-disabled-foreground: var(--disabled-foreground);
 
+  --color-decorative: var(--decorative);
+
   --color-primary: var(--primary);
   --color-primary-hover: var(--primary-hover);
   --color-primary-pressed: var(--primary-pressed);
@@ -284,6 +294,29 @@
   --text-action--line-height: 1.2;
   --text-action-lg: 0.875rem; /* 14px — boton grande, heroe y cierre */
   --text-action-lg--line-height: 1.2;
+
+  /* EL LOGOTIPO, que no es un escalon de la escala sino una MARCA.
+   *
+   * Un logotipo tiene proporciones fijas por definicion: no se elige su
+   * tamano segun la jerarquia de la pagina, se dibuja como esta dibujado. Por
+   * eso tiene tokens propios en vez de tomar prestado `text-h4`, que es lo
+   * que hacia antes y por lo que salia a 22px en la cabecera cuando el canvas
+   * la pinta a 26.
+   *
+   * `brand-mark` es la palabra FITTRAINING en la cabecera; en el PIE el
+   * canvas la dibuja mas pequena y ahi si coincide con `text-h4` (22px), asi
+   * que el pie no usa estos tokens.
+   *
+   * OJO CON `brand-tag`: 9px es el tamano que fija el canvas para la bajada
+   * «PLANES DE ENTRENAMIENTO», y es MUY pequeno. Se sostiene porque es parte
+   * del logotipo —una linea de marca en versalitas muy espaciadas, no texto
+   * que alguien tenga que leer para usar la pagina— y porque su color cumple
+   * 5.02:1. Si alguna vez hay que comunicar algo ahi, no es este token. */
+  --text-brand-mark: 1.625rem; /* 26px — FITTRAINING en la cabecera */
+  --text-brand-mark--line-height: 1;
+  --text-brand-mark--letter-spacing: 0.02em;
+  --text-brand-tag: 0.5625rem; /* 9px — la bajada del logotipo */
+  --text-brand-tag--line-height: 1;
 
   /* EL TRACKING, tambien por rol. Son cinco valores fijos del canvas y
    * ninguno cae en la escala de fabrica de Tailwind (`tracking-widest` es

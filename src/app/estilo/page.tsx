@@ -87,6 +87,16 @@ const SURFACES = [
     token: 'input',
     use: 'Límite de lo que se opera. 3.11:1 (WCAG 1.4.11).',
   },
+  {
+    cls: 'bg-decorative',
+    token: 'decorative',
+    // Es el unico token del sistema cuya ficha lleva una advertencia, y esta
+    // aqui justamente para eso: un token que solo vive en el CSS es un token
+    // que alguien reutilizara mal. Mide 1.32:1 — no es un descuido, es lo que
+    // produce el efecto de numero fantasma de «Cómo funciona», y por eso ese
+    // numero va aria-hidden dentro de un <ol> que ya comunica el orden.
+    use: 'SOLO DECORATIVO. 1.32:1: nunca para texto que informe de algo.',
+  },
 ] as const;
 
 const BRAND = [
@@ -215,7 +225,17 @@ const TYPE_SCALE = [
     name: 'text-body',
     spec: 'Barlow 300 · 17 / 1.55',
     sample:
-      'Cuatro tipos, con duración, nivel y sesiones por semana a la vista.',
+      // El especimen decia «Cuatro tipos, con duracion, nivel y sesiones por
+      // semana a la vista». Se cambia por decision del Lider Tecnico, y el
+      // criterio importa mas que el texto: un especimen ensena tambien un
+      // MODELO DE REDACCION, esta en caja listo para copiarse, y /estilo es
+      // la pagina que el equipo abre para decidir como se escribe. Esa frase
+      // sobrevivio a la seccion de planes en tres sitios distintos siguiendo
+      // esa misma ruta. El canvas manda en la FORMA, nunca en los hechos —
+      // mismo criterio con el que se retiraron el «+9» y la insignia
+      // «POPULAR»—, y de un especimen lo que hay que conservar es la
+      // longitud (69 caracteres frente a 67), no el contenido.
+      'Ves la duración, el nivel y las sesiones por semana antes de decidir.',
   },
   {
     cls: 'text-ui font-sans font-medium',
@@ -228,6 +248,25 @@ const TYPE_SCALE = [
     name: 'text-label',
     spec: 'Barlow 600 · 12 / .32em',
     sample: 'Cómo funciona',
+  },
+  // LOS DOS DE MARCA NO SON ESCALONES DE LECTURA, y por eso van al final y
+  // separados: la escala de arriba ordena la jerarquia del documento, y un
+  // logotipo no participa de ella — tiene proporciones fijas por definicion.
+  // Estan aqui por la misma razon que `decorative` esta en la tabla de
+  // superficies: un token que solo vive en el CSS es un token que alguien
+  // reutilizara mal, y `brand-tag` (9px) es el mas apetecible del sistema
+  // para quien busque «algo pequenito».
+  {
+    cls: 'font-heading text-brand-mark font-black',
+    name: 'text-brand-mark',
+    spec: 'MARCA · Archivo 900 · 26 / 1 / .02em',
+    sample: 'FITTRAINING',
+  },
+  {
+    cls: 'text-brand-tag font-sans font-medium uppercase tracking-brand text-meta-foreground',
+    name: 'text-brand-tag',
+    spec: 'MARCA · Barlow 500 · 9 / .42em — SOLO el logotipo',
+    sample: 'Planes de entrenamiento',
   },
 ] as const;
 

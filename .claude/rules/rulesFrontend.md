@@ -51,7 +51,14 @@ están todas justificadas en el comentario del token. Ver § Accesibilidad.
   (`8`), que es la parada real y una diferencia imperceptible
 - Tipografía: se usa la escala del sistema (`text-display`, `text-h2`,
   `text-h3`, `text-h4`, `text-lead`, `text-body`, `text-ui`, `text-action`,
-  `text-label`). NUNCA un `text-[21px]` suelto
+  `text-label`). NUNCA un `text-[21px]` suelto. **Esa enumeración es la escala
+  de LECTURA, y no es toda la tipografía del sistema:** hay familias que viven
+  fuera de ella porque no participan de la jerarquía del documento —`action`
+  (el texto de un botón) y `brand` (el logotipo, que tiene proporciones fijas
+  por definición)—. Añadir una familia nueva exige dos cosas: que lo que se
+  añade **no sea un escalón de lectura** —si lo es, se usa el escalón existente
+  más cercano, como decidió D-4— y que quede **visible en `/estilo`**, porque un
+  token que solo vive en el CSS es un token que alguien reutilizará mal
 - Tracking: `tracking-brand`, `tracking-eyebrow`, `tracking-label`,
   `tracking-meta`, `tracking-nav`. Ninguno cae en la escala de fábrica, así
   que sin token acabarían como valores sueltos
@@ -122,6 +129,17 @@ Y el tono, que es lo que más se olvida:
 - Mayúsculas completas **solo** en botones, etiquetas y metadatos. Nunca en un
   titular ni en un párrafo
 - Cifras concretas: «12 semanas», «4 sesiones». Nunca «muchas»
+- **La copy no afirma lo que la pantalla no enseña.** Un recuento («cuatro
+  tipos»), un dato concreto de algo inexistente («las ocho semanas») o un «a
+  la vista» describen lo que hay en la página **hoy**, no lo que habrá. Cuando
+  se borra una sección, la copy que la contaba se borra con ella — y eso
+  incluye la que no se ve dentro de la página: **`metadata` (`title`,
+  `description`, Open Graph) es texto de producto**, y es justamente el que
+  publica el buscador y el que se lee **antes** de entrar. Si un dato solo será
+  cierto cuando exista otra pantalla, se escribe la frase sin el dato. Y las
+  muestras de `/estilo` se eligen **entre la copy viva del producto**: un
+  espécimen mide forma —familia, peso, medida de línea—, nunca afirma un hecho,
+  y cuando la copy cambia el espécimen la sigue
 - Sin emoji, sin signos de exclamación, sin jerga de gimnasio
 - Los textos legales se nombran igual que en el documento oficial
 
@@ -213,6 +231,11 @@ volviendo al valor del canvas:
   deliberada que acompaña al código que la justifica — NUNCA se reduce para
   que un gate pase
 - Un test que solo comprueba que React renderiza no es cobertura, es ruido
+- Un test de copy sobre el DOM renderizado **no ve `metadata`**: es un `export`
+  del módulo, no un nodo del documento. La copy de `metadata` se prueba
+  importando el export. Un guardián de texto que solo mira
+  `container.textContent` cubre menos de lo que aparenta, y esa apariencia es
+  peor que no tenerlo
 - Los tests de aceptación con Playwright llegan con el panel. Todavía no existen
 
 ## Gates y verificación

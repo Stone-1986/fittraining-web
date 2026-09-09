@@ -412,11 +412,57 @@ fijadas por `definicion-web.md § 3`.
 
 ## 8. Lo que falta
 
-- **La landing (W-10).** El canvas ya la tiene diseñada
-  (`docs/sistema_diseño/fittraining Landing.dc.html`): héroe con foto, «cómo
-  funciona» en tres pasos, bloque de entrenadores, preguntas frecuentes,
-  cierre y pie. El sistema ya soporta todas sus piezas; falta construirla, y
-  eso pasa por `/planificar W-10`.
+- **Los controles de autenticación de la portada están inertes, y se acepta
+  el riesgo.** «Iniciar sesión», «Registrarme» y los dos «Crear mi cuenta»
+  son `<span>`, no enlaces: se ven exactamente igual que un control vivo y no
+  hacen nada. El QA lo levantó (revisión 2 de W-10) con un criterio que
+  conviene no perder: el árbol de accesibilidad es hoy **más honesto que la
+  capa visual** —un lector de pantalla anuncia el rol y distingue, un usuario
+  de ratón no—, y el estado «todavía no funciona» se comunica **por
+  ausencia**, que es hermano del «solo con color» que la regla § Accesibilidad
+  prohíbe. El humano decidió **dejarlo así por ser temporal** (2026-09-08).
+
+  **Qué hay que hacer cuando existan las páginas de auth:**
+  `grep -rn '\[sin-destino\]' src/` localiza los cinco sitios. Cada `<span>`
+  pasa a `<Link>` y **hay que quitar `pointer-events-none`** de los tres que
+  usan `buttonStyles()`: si se queda, el control será operable con teclado y
+  estará muerto con el ratón, que es peor que lo de ahora.
+
+- **La portada invita a registrarse y los documentos publicados dicen que
+  todavía no se puede.** Los Términos y Condiciones § 12 afirman que
+  fittraining «opera hoy en fase de prueba, con acceso limitado», y
+  `definicion-web.md § 3` dice «sin registro público» y que la web no lleva
+  botón de «Crear cuenta». La portada, desde la revisión 2 de W-10, dibuja
+  «Registrarme», «Iniciar sesión» y «Crear mi cuenta», porque el producto
+  cambió: el atleta se registrará desde la web y el entrenador iniciará
+  sesión.
+
+  **No es un defecto del código, es un pendiente de producto.** Hoy las tres
+  piezas son inertes —se dibujan y no navegan— así que nada promete una
+  pantalla que no exista. Lo que hay que hacer antes de producción es
+  actualizar los dos documentos: los Términos, con su versión y su fecha,
+  porque son texto publicado y una versión no se borra; y
+  `definicion-web.md § 3`, que fija lo que la web hace.
+
+- **La landing (W-10) está construida, pero no publicada.** Vive en
+  `src/app/page.tsx` con sus piezas en `src/components/landing/` y
+  `src/components/site/`, sigue el canvas
+  (`docs/sistema_diseño/fittraining Landing.dc.html`) y manda cero JavaScript
+  de cliente. Lo que le falta para llegar a `main` son las fotos — el punto de
+  abajo.
+
+  Tres piezas del canvas **no se dibujan a propósito**, y las tres por el
+  mismo motivo: no tienen destino. El carrusel del héroe (sería el único JS de
+  cliente de la web pública, y no hay fotos que rotar), «VER TODOS →» del
+  bloque de entrenadores y el avatar «+9», que afirmaría que hay doce
+  entrenadores dados de alta.
+
+  Y no hay sección de planes: la revisión 2 la quitó junto con el contenido
+  provisional que la llenaba. «Planes» sigue en la barra, inerte, hasta que
+  exista la página. Las tres piezas sin destino —«Planes», «Iniciar sesión» y
+  «Registrarme»/«Crear mi cuenta»— están marcadas con `[sin-destino]` en el
+  código: `grep -rn '\[sin-destino\]' src/` las encuentra todas.
+
 - **Las fotos.** No hay ninguna. Todo lo que las espera usa `.photo-slot` con
   la etiqueta monoespaciada de lo que falta y el tamaño previsto. Los tres
   formatos están fijados: héroe 2400×1400, tarjeta 1200×1400, retrato 400×400.
