@@ -9,3 +9,14 @@ pnpm-lock.yaml
 # archivo cuyo contenido literal es la evidencia. Ademas los desincronizaria
 # de la copia historica del repo de la API.
 src/content/legal/
+outputs/
+coverage/
+*.tsbuildinfo
+
+# El canvas del sistema de diseño. NO es codigo del repo: son los archivos que
+# exporta Claude Design, y el editor los vuelve a leer tal cual. Prettier los
+# resangra —de 52 KB a 128 KB, sin cambiar un solo pixel— y a partir de ahi el
+# gate `format:check` los reclamaria en cada corrida por un archivo que nadie
+# edita a mano. Misma razon que src/content/legal/: el contenido es el
+# artefacto, no el formato.
+docs/sistema_diseño/

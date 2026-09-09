@@ -1,0 +1,4306 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="./support.js"></script>
+  </head>
+  <body>
+    <x-dc>
+      <helmet data-dc-atomics
+        ><link rel="preconnect" href="https://fonts.googleapis.com" /><link
+          rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossorigin
+        /><link
+          href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;700;800;900&family=Barlow:wght@300;400;500;600&display=swap"
+          rel="stylesheet"
+        /><style>
+          body {
+            margin: 0;
+            background: #0b0d0e;
+            font-family: Barlow, system-ui, sans-serif;
+            color: #e8ecec;
+          }
+          a {
+            color: #28e0c8;
+            text-decoration: none;
+          }
+          a:hover {
+            color: #7cf1e2;
+          }
+        </style></helmet
+      >
+
+      <div style="width: 100%; background: #0b0d0e">
+        <div style="padding: 72px 56px 56px; border-bottom: 1px solid #1c2224">
+          <div
+            style="
+              display: flex;
+              justify-content: space-between;
+              align-items: flex-end;
+              gap: 34px;
+              flex-wrap: wrap;
+            "
+          >
+            <div>
+              <div
+                style="
+                  font:
+                    900 26px/1 Archivo,
+                    sans-serif;
+                  color: #fff;
+                "
+              >
+                FIT<span style="color: #28e0c8">TRAINING</span>
+              </div>
+              <div
+                style="
+                  font:
+                    500 9px/1 Barlow,
+                    sans-serif;
+                  letter-spacing: 0.42em;
+                  color: #6d7a7c;
+                  margin-top: 4px;
+                "
+              >
+                PLANES DE ENTRENAMIENTO
+              </div>
+              <h1
+                style="
+                  margin: 34px 0 0;
+                  font:
+                    900 76px/0.95 Archivo,
+                    sans-serif;
+                  letter-spacing: -0.02em;
+                  color: #fff;
+                "
+              >
+                Sistema de diseño
+              </h1>
+              <p
+                style="
+                  margin: 20px 0 0;
+                  font:
+                    300 20px/1.55 Barlow,
+                    sans-serif;
+                  color: #a9b3b4;
+                  max-width: 620px;
+                "
+              >
+                Las reglas visuales de fittraining: color, tipografía,
+                espaciado, componentes y estados. Todo lo que se construya de
+                aquí en adelante sale de aquí.
+              </p>
+            </div>
+            <div
+              style="
+                font:
+                  400 12px ui-monospace,
+                  Menlo,
+                  monospace;
+                color: #6d7a7c;
+                letter-spacing: 0.08em;
+                text-align: right;
+              "
+            >
+              VERSIÓN 1.0<br />SEPTIEMBRE 2026<br />WEB PÚBLICA + PANEL
+            </div>
+          </div>
+          <div
+            style="
+              display: flex;
+              gap: 10px;
+              flex-wrap: wrap;
+              margin-top: 44px;
+              font:
+                500 13px Barlow,
+                sans-serif;
+            "
+          >
+            <span
+              style="
+                border: 1px solid #2a3234;
+                color: #c8d0d0;
+                padding: 8px 16px;
+                border-radius: 20px;
+              "
+              >01 Fundamentos</span
+            >
+            <span
+              style="
+                border: 1px solid #2a3234;
+                color: #c8d0d0;
+                padding: 8px 16px;
+                border-radius: 20px;
+              "
+              >02 Color</span
+            >
+            <span
+              style="
+                border: 1px solid #2a3234;
+                color: #c8d0d0;
+                padding: 8px 16px;
+                border-radius: 20px;
+              "
+              >03 Tipografía</span
+            >
+            <span
+              style="
+                border: 1px solid #2a3234;
+                color: #c8d0d0;
+                padding: 8px 16px;
+                border-radius: 20px;
+              "
+              >04 Espaciado y rejilla</span
+            >
+            <span
+              style="
+                border: 1px solid #2a3234;
+                color: #c8d0d0;
+                padding: 8px 16px;
+                border-radius: 20px;
+              "
+              >05 Botones</span
+            >
+            <span
+              style="
+                border: 1px solid #2a3234;
+                color: #c8d0d0;
+                padding: 8px 16px;
+                border-radius: 20px;
+              "
+              >06 Formularios</span
+            >
+            <span
+              style="
+                border: 1px solid #2a3234;
+                color: #c8d0d0;
+                padding: 8px 16px;
+                border-radius: 20px;
+              "
+              >07 Componentes</span
+            >
+            <span
+              style="
+                border: 1px solid #2a3234;
+                color: #c8d0d0;
+                padding: 8px 16px;
+                border-radius: 20px;
+              "
+              >08 Imagen</span
+            >
+            <span
+              style="
+                border: 1px solid #2a3234;
+                color: #c8d0d0;
+                padding: 8px 16px;
+                border-radius: 20px;
+              "
+              >09 Movimiento</span
+            >
+            <span
+              style="
+                border: 1px solid #2a3234;
+                color: #c8d0d0;
+                padding: 8px 16px;
+                border-radius: 20px;
+              "
+              >10 Accesibilidad</span
+            >
+            <span
+              style="
+                border: 1px solid #2a3234;
+                color: #c8d0d0;
+                padding: 8px 16px;
+                border-radius: 20px;
+              "
+              >11 Tono y contenido</span
+            >
+          </div>
+        </div>
+
+        <section style="padding: 88px 56px; border-bottom: 1px solid #1c2224">
+          <div
+            style="
+              font:
+                600 12px Barlow,
+                sans-serif;
+              letter-spacing: 0.32em;
+              color: #28e0c8;
+            "
+          >
+            01 · FUNDAMENTOS
+          </div>
+          <h2
+            style="
+              margin: 16px 0 0;
+              font:
+                800 46px/1.05 Archivo,
+                sans-serif;
+              color: #fff;
+            "
+          >
+            Cuatro decisiones que no se negocian
+          </h2>
+          <div
+            style="
+              display: grid;
+              grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+              gap: 28px;
+              margin-top: 44px;
+            "
+          >
+            <div style="border-top: 2px solid #28e0c8; padding-top: 20px">
+              <div
+                style="
+                  font:
+                    700 21px Archivo,
+                    sans-serif;
+                  color: #fff;
+                "
+              >
+                Fondo oscuro siempre
+              </div>
+              <p
+                style="
+                  margin: 10px 0 0;
+                  font:
+                    300 16px/1.55 Barlow,
+                    sans-serif;
+                  color: #a9b3b4;
+                "
+              >
+                La interfaz vive sobre negro carbón. No hay modo claro. La foto
+                es la que aporta luz.
+              </p>
+            </div>
+            <div style="border-top: 2px solid #1c2224; padding-top: 20px">
+              <div
+                style="
+                  font:
+                    700 21px Archivo,
+                    sans-serif;
+                  color: #fff;
+                "
+              >
+                Un solo acento
+              </div>
+              <p
+                style="
+                  margin: 10px 0 0;
+                  font:
+                    300 16px/1.55 Barlow,
+                    sans-serif;
+                  color: #a9b3b4;
+                "
+              >
+                El cian marca lo accionable y el dato clave. Si todo es cian,
+                nada lo es.
+              </p>
+            </div>
+            <div style="border-top: 2px solid #1c2224; padding-top: 20px">
+              <div
+                style="
+                  font:
+                    700 21px Archivo,
+                    sans-serif;
+                  color: #fff;
+                "
+              >
+                Titulares pesados
+              </div>
+              <p
+                style="
+                  margin: 10px 0 0;
+                  font:
+                    300 16px/1.55 Barlow,
+                    sans-serif;
+                  color: #a9b3b4;
+                "
+              >
+                Archivo 800/900 en tamaños grandes. El contraste de peso hace la
+                jerarquía, no el color.
+              </p>
+            </div>
+            <div style="border-top: 2px solid #1c2224; padding-top: 20px">
+              <div
+                style="
+                  font:
+                    700 21px Archivo,
+                    sans-serif;
+                  color: #fff;
+                "
+              >
+                Bloques a sangre
+              </div>
+              <p
+                style="
+                  margin: 10px 0 0;
+                  font:
+                    300 16px/1.55 Barlow,
+                    sans-serif;
+                  color: #a9b3b4;
+                "
+              >
+                Las secciones se separan con una línea de 1px, no con tarjetas
+                flotantes ni sombras.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section style="padding: 88px 56px; border-bottom: 1px solid #1c2224">
+          <div
+            style="
+              font:
+                600 12px Barlow,
+                sans-serif;
+              letter-spacing: 0.32em;
+              color: #28e0c8;
+            "
+          >
+            02 · COLOR
+          </div>
+          <h2
+            style="
+              margin: 16px 0 0;
+              font:
+                800 46px/1.05 Archivo,
+                sans-serif;
+              color: #fff;
+            "
+          >
+            Paleta
+          </h2>
+
+          <div
+            style="
+              font:
+                500 13px Barlow,
+                sans-serif;
+              letter-spacing: 0.2em;
+              color: #8e9a9b;
+              margin: 44px 0 16px;
+            "
+          >
+            SUPERFICIES
+          </div>
+          <div
+            style="
+              display: grid;
+              grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+              gap: 16px;
+            "
+          >
+            <div style="border: 1px solid #1c2224">
+              <div style="height: 96px; background: #0b0d0e"></div>
+              <div style="padding: 14px; border-top: 1px solid #1c2224">
+                <div
+                  style="
+                    font:
+                      600 15px Barlow,
+                      sans-serif;
+                    color: #fff;
+                  "
+                >
+                  Fondo base
+                </div>
+                <div
+                  style="
+                    font:
+                      400 12px ui-monospace,
+                      Menlo,
+                      monospace;
+                    color: #6d7a7c;
+                    margin-top: 6px;
+                  "
+                >
+                  --bg-base · #0B0D0E
+                </div>
+              </div>
+            </div>
+            <div style="border: 1px solid #1c2224">
+              <div style="height: 96px; background: #0f1213"></div>
+              <div style="padding: 14px; border-top: 1px solid #1c2224">
+                <div
+                  style="
+                    font:
+                      600 15px Barlow,
+                      sans-serif;
+                    color: #fff;
+                  "
+                >
+                  Superficie
+                </div>
+                <div
+                  style="
+                    font:
+                      400 12px ui-monospace,
+                      Menlo,
+                      monospace;
+                    color: #6d7a7c;
+                    margin-top: 6px;
+                  "
+                >
+                  --surface-1 · #0F1213
+                </div>
+              </div>
+            </div>
+            <div style="border: 1px solid #1c2224">
+              <div style="height: 96px; background: #141a1b"></div>
+              <div style="padding: 14px; border-top: 1px solid #1c2224">
+                <div
+                  style="
+                    font:
+                      600 15px Barlow,
+                      sans-serif;
+                    color: #fff;
+                  "
+                >
+                  Superficie alta
+                </div>
+                <div
+                  style="
+                    font:
+                      400 12px ui-monospace,
+                      Menlo,
+                      monospace;
+                    color: #6d7a7c;
+                    margin-top: 6px;
+                  "
+                >
+                  --surface-2 · #141A1B
+                </div>
+              </div>
+            </div>
+            <div style="border: 1px solid #1c2224">
+              <div style="height: 96px; background: #1c2224"></div>
+              <div style="padding: 14px; border-top: 1px solid #1c2224">
+                <div
+                  style="
+                    font:
+                      600 15px Barlow,
+                      sans-serif;
+                    color: #fff;
+                  "
+                >
+                  Borde
+                </div>
+                <div
+                  style="
+                    font:
+                      400 12px ui-monospace,
+                      Menlo,
+                      monospace;
+                    color: #6d7a7c;
+                    margin-top: 6px;
+                  "
+                >
+                  --border-1 · #1C2224
+                </div>
+              </div>
+            </div>
+            <div style="border: 1px solid #1c2224">
+              <div style="height: 96px; background: #2a3234"></div>
+              <div style="padding: 14px; border-top: 1px solid #1c2224">
+                <div
+                  style="
+                    font:
+                      600 15px Barlow,
+                      sans-serif;
+                    color: #fff;
+                  "
+                >
+                  Borde fuerte
+                </div>
+                <div
+                  style="
+                    font:
+                      400 12px ui-monospace,
+                      Menlo,
+                      monospace;
+                    color: #6d7a7c;
+                    margin-top: 6px;
+                  "
+                >
+                  --border-2 · #2A3234
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div
+            style="
+              font:
+                500 13px Barlow,
+                sans-serif;
+              letter-spacing: 0.2em;
+              color: #8e9a9b;
+              margin: 44px 0 16px;
+            "
+          >
+            ACENTO
+          </div>
+          <div
+            style="
+              display: grid;
+              grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+              gap: 16px;
+            "
+          >
+            <div style="border: 1px solid #1c2224">
+              <div style="height: 96px; background: #28e0c8"></div>
+              <div style="padding: 14px; border-top: 1px solid #1c2224">
+                <div
+                  style="
+                    font:
+                      600 15px Barlow,
+                      sans-serif;
+                    color: #fff;
+                  "
+                >
+                  Cian
+                </div>
+                <div
+                  style="
+                    font:
+                      400 12px ui-monospace,
+                      Menlo,
+                      monospace;
+                    color: #6d7a7c;
+                    margin-top: 6px;
+                  "
+                >
+                  --accent · #28E0C8
+                </div>
+              </div>
+            </div>
+            <div style="border: 1px solid #1c2224">
+              <div style="height: 96px; background: #7cf1e2"></div>
+              <div style="padding: 14px; border-top: 1px solid #1c2224">
+                <div
+                  style="
+                    font:
+                      600 15px Barlow,
+                      sans-serif;
+                    color: #fff;
+                  "
+                >
+                  Cian hover
+                </div>
+                <div
+                  style="
+                    font:
+                      400 12px ui-monospace,
+                      Menlo,
+                      monospace;
+                    color: #6d7a7c;
+                    margin-top: 6px;
+                  "
+                >
+                  --accent-hover · #7CF1E2
+                </div>
+              </div>
+            </div>
+            <div style="border: 1px solid #1c2224">
+              <div style="height: 96px; background: #17b9a4"></div>
+              <div style="padding: 14px; border-top: 1px solid #1c2224">
+                <div
+                  style="
+                    font:
+                      600 15px Barlow,
+                      sans-serif;
+                    color: #fff;
+                  "
+                >
+                  Cian presionado
+                </div>
+                <div
+                  style="
+                    font:
+                      400 12px ui-monospace,
+                      Menlo,
+                      monospace;
+                    color: #6d7a7c;
+                    margin-top: 6px;
+                  "
+                >
+                  --accent-pressed · #17B9A4
+                </div>
+              </div>
+            </div>
+            <div style="border: 1px solid #1c2224">
+              <div style="height: 96px; background: #0e2b28"></div>
+              <div style="padding: 14px; border-top: 1px solid #1c2224">
+                <div
+                  style="
+                    font:
+                      600 15px Barlow,
+                      sans-serif;
+                    color: #fff;
+                  "
+                >
+                  Cian de fondo
+                </div>
+                <div
+                  style="
+                    font:
+                      400 12px ui-monospace,
+                      Menlo,
+                      monospace;
+                    color: #6d7a7c;
+                    margin-top: 6px;
+                  "
+                >
+                  --accent-soft · #0E2B28
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div
+            style="
+              font:
+                500 13px Barlow,
+                sans-serif;
+              letter-spacing: 0.2em;
+              color: #8e9a9b;
+              margin: 44px 0 16px;
+            "
+          >
+            TEXTO
+          </div>
+          <div
+            style="
+              display: grid;
+              grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+              gap: 16px;
+            "
+          >
+            <div
+              style="
+                border: 1px solid #1c2224;
+                padding: 18px;
+                background: #0f1213;
+              "
+            >
+              <div
+                style="
+                  font:
+                    800 26px Archivo,
+                    sans-serif;
+                  color: #ffffff;
+                "
+              >
+                Titular
+              </div>
+              <div
+                style="
+                  font:
+                    400 12px ui-monospace,
+                    Menlo,
+                    monospace;
+                  color: #6d7a7c;
+                  margin-top: 10px;
+                "
+              >
+                --text-title · #FFFFFF
+              </div>
+            </div>
+            <div
+              style="
+                border: 1px solid #1c2224;
+                padding: 18px;
+                background: #0f1213;
+              "
+            >
+              <div
+                style="
+                  font:
+                    400 20px Barlow,
+                    sans-serif;
+                  color: #e8ecec;
+                "
+              >
+                Cuerpo fuerte
+              </div>
+              <div
+                style="
+                  font:
+                    400 12px ui-monospace,
+                    Menlo,
+                    monospace;
+                  color: #6d7a7c;
+                  margin-top: 10px;
+                "
+              >
+                --text-1 · #E8ECEC
+              </div>
+            </div>
+            <div
+              style="
+                border: 1px solid #1c2224;
+                padding: 18px;
+                background: #0f1213;
+              "
+            >
+              <div
+                style="
+                  font:
+                    300 20px Barlow,
+                    sans-serif;
+                  color: #a9b3b4;
+                "
+              >
+                Cuerpo secundario
+              </div>
+              <div
+                style="
+                  font:
+                    400 12px ui-monospace,
+                    Menlo,
+                    monospace;
+                  color: #6d7a7c;
+                  margin-top: 10px;
+                "
+              >
+                --text-2 · #A9B3B4
+              </div>
+            </div>
+            <div
+              style="
+                border: 1px solid #1c2224;
+                padding: 18px;
+                background: #0f1213;
+              "
+            >
+              <div
+                style="
+                  font:
+                    400 20px Barlow,
+                    sans-serif;
+                  color: #8e9a9b;
+                "
+              >
+                Terciario
+              </div>
+              <div
+                style="
+                  font:
+                    400 12px ui-monospace,
+                    Menlo,
+                    monospace;
+                  color: #6d7a7c;
+                  margin-top: 10px;
+                "
+              >
+                --text-3 · #8E9A9B
+              </div>
+            </div>
+            <div
+              style="
+                border: 1px solid #1c2224;
+                padding: 18px;
+                background: #0f1213;
+              "
+            >
+              <div
+                style="
+                  font:
+                    400 20px Barlow,
+                    sans-serif;
+                  color: #6d7a7c;
+                "
+              >
+                Apagado / metadato
+              </div>
+              <div
+                style="
+                  font:
+                    400 12px ui-monospace,
+                    Menlo,
+                    monospace;
+                  color: #6d7a7c;
+                  margin-top: 10px;
+                "
+              >
+                --text-4 · #6D7A7C
+              </div>
+            </div>
+          </div>
+
+          <div
+            style="
+              font:
+                500 13px Barlow,
+                sans-serif;
+              letter-spacing: 0.2em;
+              color: #8e9a9b;
+              margin: 44px 0 16px;
+            "
+          >
+            SEMÁNTICOS · SOLO PARA ESTADO, NUNCA DECORATIVOS
+          </div>
+          <div
+            style="
+              display: grid;
+              grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+              gap: 16px;
+            "
+          >
+            <div style="border: 1px solid #1c2224">
+              <div style="height: 64px; background: #4ad991"></div>
+              <div style="padding: 14px; border-top: 1px solid #1c2224">
+                <div
+                  style="
+                    font:
+                      600 15px Barlow,
+                      sans-serif;
+                    color: #fff;
+                  "
+                >
+                  Éxito
+                </div>
+                <div
+                  style="
+                    font:
+                      400 12px ui-monospace,
+                      Menlo,
+                      monospace;
+                    color: #6d7a7c;
+                    margin-top: 6px;
+                  "
+                >
+                  #4AD991 · sesión registrada
+                </div>
+              </div>
+            </div>
+            <div style="border: 1px solid #1c2224">
+              <div style="height: 64px; background: #f2c14e"></div>
+              <div style="padding: 14px; border-top: 1px solid #1c2224">
+                <div
+                  style="
+                    font:
+                      600 15px Barlow,
+                      sans-serif;
+                    color: #fff;
+                  "
+                >
+                  Aviso
+                </div>
+                <div
+                  style="
+                    font:
+                      400 12px ui-monospace,
+                      Menlo,
+                      monospace;
+                    color: #6d7a7c;
+                    margin-top: 6px;
+                  "
+                >
+                  #F2C14E · plan por vencer
+                </div>
+              </div>
+            </div>
+            <div style="border: 1px solid #1c2224">
+              <div style="height: 64px; background: #f2685c"></div>
+              <div style="padding: 14px; border-top: 1px solid #1c2224">
+                <div
+                  style="
+                    font:
+                      600 15px Barlow,
+                      sans-serif;
+                    color: #fff;
+                  "
+                >
+                  Error
+                </div>
+                <div
+                  style="
+                    font:
+                      400 12px ui-monospace,
+                      Menlo,
+                      monospace;
+                    color: #6d7a7c;
+                    margin-top: 6px;
+                  "
+                >
+                  #F2685C · dato inválido
+                </div>
+              </div>
+            </div>
+            <div style="border: 1px solid #1c2224">
+              <div style="height: 64px; background: #58b6e8"></div>
+              <div style="padding: 14px; border-top: 1px solid #1c2224">
+                <div
+                  style="
+                    font:
+                      600 15px Barlow,
+                      sans-serif;
+                    color: #fff;
+                  "
+                >
+                  Información
+                </div>
+                <div
+                  style="
+                    font:
+                      400 12px ui-monospace,
+                      Menlo,
+                      monospace;
+                    color: #6d7a7c;
+                    margin-top: 6px;
+                  "
+                >
+                  #58B6E8 · nota del entrenador
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div
+            style="
+              display: grid;
+              grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+              gap: 24px;
+              margin-top: 44px;
+            "
+          >
+            <div
+              style="
+                border: 1px solid #1c2224;
+                padding: 24px;
+                background: #0f1213;
+              "
+            >
+              <div
+                style="
+                  font:
+                    600 13px Barlow,
+                    sans-serif;
+                  letter-spacing: 0.14em;
+                  color: #4ad991;
+                "
+              >
+                SÍ
+              </div>
+              <ul
+                style="
+                  margin: 14px 0 0;
+                  padding-left: 20px;
+                  font:
+                    300 16px/1.7 Barlow,
+                    sans-serif;
+                  color: #a9b3b4;
+                "
+              >
+                <li>
+                  Cian para el botón principal, el enlace y el dato del plan.
+                </li>
+                <li>Texto blanco puro solo en titulares y botón sobre cian.</li>
+                <li>Semánticos en insignias y mensajes de validación.</li>
+              </ul>
+            </div>
+            <div
+              style="
+                border: 1px solid #1c2224;
+                padding: 24px;
+                background: #0f1213;
+              "
+            >
+              <div
+                style="
+                  font:
+                    600 13px Barlow,
+                    sans-serif;
+                  letter-spacing: 0.14em;
+                  color: #f2685c;
+                "
+              >
+                NO
+              </div>
+              <ul
+                style="
+                  margin: 14px 0 0;
+                  padding-left: 20px;
+                  font:
+                    300 16px/1.7 Barlow,
+                    sans-serif;
+                  color: #a9b3b4;
+                "
+              >
+                <li>Degradados de dos tintes de marca ni cian sobre cian.</li>
+                <li>
+                  Texto cian sobre superficie clara o sobre foto sin scrim.
+                </li>
+                <li>Colores nuevos fuera de esta tabla.</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <section style="padding: 88px 56px; border-bottom: 1px solid #1c2224">
+          <div
+            style="
+              font:
+                600 12px Barlow,
+                sans-serif;
+              letter-spacing: 0.32em;
+              color: #28e0c8;
+            "
+          >
+            03 · TIPOGRAFÍA
+          </div>
+          <h2
+            style="
+              margin: 16px 0 0;
+              font:
+                800 46px/1.05 Archivo,
+                sans-serif;
+              color: #fff;
+            "
+          >
+            Dos familias, un monoespaciado
+          </h2>
+          <div
+            style="
+              display: grid;
+              grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+              gap: 24px;
+              margin-top: 36px;
+            "
+          >
+            <div
+              style="
+                border: 1px solid #1c2224;
+                padding: 26px;
+                background: #0f1213;
+              "
+            >
+              <div
+                style="
+                  font:
+                    900 40px Archivo,
+                    sans-serif;
+                  color: #fff;
+                "
+              >
+                Archivo
+              </div>
+              <div
+                style="
+                  font:
+                    400 12px ui-monospace,
+                    Menlo,
+                    monospace;
+                  color: #6d7a7c;
+                  margin-top: 12px;
+                "
+              >
+                DISPLAY · 700 / 800 / 900 · Google Fonts
+              </div>
+              <p
+                style="
+                  margin: 12px 0 0;
+                  font:
+                    300 16px/1.55 Barlow,
+                    sans-serif;
+                  color: #a9b3b4;
+                "
+              >
+                Titulares, números grandes y etiquetas de plan. Nunca por debajo
+                de 20px.
+              </p>
+            </div>
+            <div
+              style="
+                border: 1px solid #1c2224;
+                padding: 26px;
+                background: #0f1213;
+              "
+            >
+              <div
+                style="
+                  font:
+                    400 40px Barlow,
+                    sans-serif;
+                  color: #fff;
+                "
+              >
+                Barlow
+              </div>
+              <div
+                style="
+                  font:
+                    400 12px ui-monospace,
+                    Menlo,
+                    monospace;
+                  color: #6d7a7c;
+                  margin-top: 12px;
+                "
+              >
+                TEXTO E INTERFAZ · 300 / 400 / 500 / 600
+              </div>
+              <p
+                style="
+                  margin: 12px 0 0;
+                  font:
+                    300 16px/1.55 Barlow,
+                    sans-serif;
+                  color: #a9b3b4;
+                "
+              >
+                Párrafos en 300, interfaz en 500, botones y etiquetas en 600.
+              </p>
+            </div>
+            <div
+              style="
+                border: 1px solid #1c2224;
+                padding: 26px;
+                background: #0f1213;
+              "
+            >
+              <div
+                style="
+                  font:
+                    400 34px ui-monospace,
+                    Menlo,
+                    monospace;
+                  color: #fff;
+                "
+              >
+                ui-monospace
+              </div>
+              <div
+                style="
+                  font:
+                    400 12px ui-monospace,
+                    Menlo,
+                    monospace;
+                  color: #6d7a7c;
+                  margin-top: 12px;
+                "
+              >
+                METADATOS · 11–13px · tracking .08em
+              </div>
+              <p
+                style="
+                  margin: 12px 0 0;
+                  font:
+                    300 16px/1.55 Barlow,
+                    sans-serif;
+                  color: #a9b3b4;
+                "
+              >
+                Semanas, sesiones, versiones, valores técnicos. Siempre en gris
+                apagado.
+              </p>
+            </div>
+          </div>
+
+          <div style="margin-top: 44px; border: 1px solid #1c2224">
+            <div
+              style="
+                display: grid;
+                grid-template-columns: 200px 1fr;
+                gap: 0;
+                border-bottom: 1px solid #1c2224;
+                align-items: center;
+              "
+            >
+              <div
+                style="
+                  padding: 22px;
+                  font:
+                    400 12px ui-monospace,
+                    Menlo,
+                    monospace;
+                  color: #6d7a7c;
+                  border-right: 1px solid #1c2224;
+                "
+              >
+                H1 · Archivo 900<br />96 / 0.95 / -.02em
+              </div>
+              <div
+                style="
+                  padding: 22px;
+                  font:
+                    900 76px/0.95 Archivo,
+                    sans-serif;
+                  color: #fff;
+                  letter-spacing: -0.02em;
+                "
+              >
+                Entrena con un plan real
+              </div>
+            </div>
+            <div
+              style="
+                display: grid;
+                grid-template-columns: 200px 1fr;
+                gap: 0;
+                border-bottom: 1px solid #1c2224;
+                align-items: center;
+              "
+            >
+              <div
+                style="
+                  padding: 22px;
+                  font:
+                    400 12px ui-monospace,
+                    Menlo,
+                    monospace;
+                  color: #6d7a7c;
+                  border-right: 1px solid #1c2224;
+                "
+              >
+                H2 · Archivo 800<br />52 / 1.05
+              </div>
+              <div
+                style="
+                  padding: 22px;
+                  font:
+                    800 46px/1.05 Archivo,
+                    sans-serif;
+                  color: #fff;
+                "
+              >
+                Tres pasos y estás entrenando
+              </div>
+            </div>
+            <div
+              style="
+                display: grid;
+                grid-template-columns: 200px 1fr;
+                gap: 0;
+                border-bottom: 1px solid #1c2224;
+                align-items: center;
+              "
+            >
+              <div
+                style="
+                  padding: 22px;
+                  font:
+                    400 12px ui-monospace,
+                    Menlo,
+                    monospace;
+                  color: #6d7a7c;
+                  border-right: 1px solid #1c2224;
+                "
+              >
+                H3 · Archivo 900<br />34 / 1.0
+              </div>
+              <div
+                style="
+                  padding: 22px;
+                  font:
+                    900 34px/1 Archivo,
+                    sans-serif;
+                  color: #fff;
+                "
+              >
+                RUNNING
+              </div>
+            </div>
+            <div
+              style="
+                display: grid;
+                grid-template-columns: 200px 1fr;
+                gap: 0;
+                border-bottom: 1px solid #1c2224;
+                align-items: center;
+              "
+            >
+              <div
+                style="
+                  padding: 22px;
+                  font:
+                    400 12px ui-monospace,
+                    Menlo,
+                    monospace;
+                  color: #6d7a7c;
+                  border-right: 1px solid #1c2224;
+                "
+              >
+                H4 · Archivo 700<br />22 / 1.2
+              </div>
+              <div
+                style="
+                  padding: 22px;
+                  font:
+                    700 22px Archivo,
+                    sans-serif;
+                  color: #fff;
+                "
+              >
+                Elige tu plan
+              </div>
+            </div>
+            <div
+              style="
+                display: grid;
+                grid-template-columns: 200px 1fr;
+                gap: 0;
+                border-bottom: 1px solid #1c2224;
+                align-items: center;
+              "
+            >
+              <div
+                style="
+                  padding: 22px;
+                  font:
+                    400 12px ui-monospace,
+                    Menlo,
+                    monospace;
+                  color: #6d7a7c;
+                  border-right: 1px solid #1c2224;
+                "
+              >
+                Entrada · Barlow 300<br />21 / 1.5
+              </div>
+              <div
+                style="
+                  padding: 22px;
+                  font:
+                    300 21px/1.5 Barlow,
+                    sans-serif;
+                  color: #c2cbcb;
+                "
+              >
+                Planes creados por entrenadores certificados, con seguimiento
+                semana a semana.
+              </div>
+            </div>
+            <div
+              style="
+                display: grid;
+                grid-template-columns: 200px 1fr;
+                gap: 0;
+                border-bottom: 1px solid #1c2224;
+                align-items: center;
+              "
+            >
+              <div
+                style="
+                  padding: 22px;
+                  font:
+                    400 12px ui-monospace,
+                    Menlo,
+                    monospace;
+                  color: #6d7a7c;
+                  border-right: 1px solid #1c2224;
+                "
+              >
+                Cuerpo · Barlow 300<br />17 / 1.55
+              </div>
+              <div
+                style="
+                  padding: 22px;
+                  font:
+                    300 17px/1.55 Barlow,
+                    sans-serif;
+                  color: #a9b3b4;
+                "
+              >
+                Cuatro tipos, con duración, nivel y sesiones por semana a la
+                vista.
+              </div>
+            </div>
+            <div
+              style="
+                display: grid;
+                grid-template-columns: 200px 1fr;
+                gap: 0;
+                border-bottom: 1px solid #1c2224;
+                align-items: center;
+              "
+            >
+              <div
+                style="
+                  padding: 22px;
+                  font:
+                    400 12px ui-monospace,
+                    Menlo,
+                    monospace;
+                  color: #6d7a7c;
+                  border-right: 1px solid #1c2224;
+                "
+              >
+                Interfaz · Barlow 500<br />15 / 1.2
+              </div>
+              <div
+                style="
+                  padding: 22px;
+                  font:
+                    500 15px Barlow,
+                    sans-serif;
+                  color: #c8d0d0;
+                "
+              >
+                Planes · Entrenadores · Precios · Preguntas
+              </div>
+            </div>
+            <div
+              style="
+                display: grid;
+                grid-template-columns: 200px 1fr;
+                gap: 0;
+                border-bottom: 1px solid #1c2224;
+                align-items: center;
+              "
+            >
+              <div
+                style="
+                  padding: 22px;
+                  font:
+                    400 12px ui-monospace,
+                    Menlo,
+                    monospace;
+                  color: #6d7a7c;
+                  border-right: 1px solid #1c2224;
+                "
+              >
+                Etiqueta · Barlow 600<br />12 / .32em
+              </div>
+              <div
+                style="
+                  padding: 22px;
+                  font:
+                    600 12px Barlow,
+                    sans-serif;
+                  letter-spacing: 0.32em;
+                  color: #28e0c8;
+                "
+              >
+                CÓMO FUNCIONA
+              </div>
+            </div>
+            <div
+              style="
+                display: grid;
+                grid-template-columns: 200px 1fr;
+                gap: 0;
+                align-items: center;
+              "
+            >
+              <div
+                style="
+                  padding: 22px;
+                  font:
+                    400 12px ui-monospace,
+                    Menlo,
+                    monospace;
+                  color: #6d7a7c;
+                  border-right: 1px solid #1c2224;
+                "
+              >
+                Metadato · mono<br />12 / .08em
+              </div>
+              <div
+                style="
+                  padding: 22px;
+                  font:
+                    400 12px ui-monospace,
+                    Menlo,
+                    monospace;
+                  color: #6d7a7c;
+                  letter-spacing: 0.08em;
+                "
+              >
+                12 SEMANAS · 4 SES/SEM · NIVEL PRINCIPIANTE
+              </div>
+            </div>
+          </div>
+          <p
+            style="
+              margin: 20px 0 0;
+              font:
+                300 16px/1.6 Barlow,
+                sans-serif;
+              color: #8e9a9b;
+              max-width: 760px;
+            "
+          >
+            Regla de ancho de línea: los párrafos no pasan de 620px. Los
+            titulares llevan
+            <span style="color: #c8d0d0">text-wrap: balance</span>; los párrafos
+            largos, <span style="color: #c8d0d0">text-wrap: pretty</span>.
+          </p>
+        </section>
+
+        <section style="padding: 88px 56px; border-bottom: 1px solid #1c2224">
+          <div
+            style="
+              font:
+                600 12px Barlow,
+                sans-serif;
+              letter-spacing: 0.32em;
+              color: #28e0c8;
+            "
+          >
+            04 · ESPACIADO Y REJILLA
+          </div>
+          <h2
+            style="
+              margin: 16px 0 0;
+              font:
+                800 46px/1.05 Archivo,
+                sans-serif;
+              color: #fff;
+            "
+          >
+            Escala de 4
+          </h2>
+          <div
+            style="
+              display: flex;
+              flex-direction: column;
+              gap: 12px;
+              margin-top: 36px;
+            "
+          >
+            <div style="display: flex; align-items: center; gap: 18px">
+              <div
+                style="
+                  width: 120px;
+                  font:
+                    400 12px ui-monospace,
+                    Menlo,
+                    monospace;
+                  color: #6d7a7c;
+                "
+              >
+                4 · xs
+              </div>
+              <div style="height: 16px; width: 4px; background: #28e0c8"></div>
+              <div
+                style="
+                  font:
+                    300 15px Barlow,
+                    sans-serif;
+                  color: #8e9a9b;
+                "
+              >
+                separación dentro de una etiqueta
+              </div>
+            </div>
+            <div style="display: flex; align-items: center; gap: 18px">
+              <div
+                style="
+                  width: 120px;
+                  font:
+                    400 12px ui-monospace,
+                    Menlo,
+                    monospace;
+                  color: #6d7a7c;
+                "
+              >
+                8 · sm
+              </div>
+              <div style="height: 16px; width: 8px; background: #28e0c8"></div>
+              <div
+                style="
+                  font:
+                    300 15px Barlow,
+                    sans-serif;
+                  color: #8e9a9b;
+                "
+              >
+                chips y puntos de paginación
+              </div>
+            </div>
+            <div style="display: flex; align-items: center; gap: 18px">
+              <div
+                style="
+                  width: 120px;
+                  font:
+                    400 12px ui-monospace,
+                    Menlo,
+                    monospace;
+                  color: #6d7a7c;
+                "
+              >
+                16 · md
+              </div>
+              <div style="height: 16px; width: 16px; background: #28e0c8"></div>
+              <div
+                style="
+                  font:
+                    300 15px Barlow,
+                    sans-serif;
+                  color: #8e9a9b;
+                "
+              >
+                botones entre sí, rejillas de tarjeta
+              </div>
+            </div>
+            <div style="display: flex; align-items: center; gap: 18px">
+              <div
+                style="
+                  width: 120px;
+                  font:
+                    400 12px ui-monospace,
+                    Menlo,
+                    monospace;
+                  color: #6d7a7c;
+                "
+              >
+                24 · lg
+              </div>
+              <div style="height: 16px; width: 24px; background: #28e0c8"></div>
+              <div
+                style="
+                  font:
+                    300 15px Barlow,
+                    sans-serif;
+                  color: #8e9a9b;
+                "
+              >
+                interior de tarjeta compacta
+              </div>
+            </div>
+            <div style="display: flex; align-items: center; gap: 18px">
+              <div
+                style="
+                  width: 120px;
+                  font:
+                    400 12px ui-monospace,
+                    Menlo,
+                    monospace;
+                  color: #6d7a7c;
+                "
+              >
+                34 · xl
+              </div>
+              <div style="height: 16px; width: 34px; background: #28e0c8"></div>
+              <div
+                style="
+                  font:
+                    300 15px Barlow,
+                    sans-serif;
+                  color: #8e9a9b;
+                "
+              >
+                columnas de una rejilla de contenido
+              </div>
+            </div>
+            <div style="display: flex; align-items: center; gap: 18px">
+              <div
+                style="
+                  width: 120px;
+                  font:
+                    400 12px ui-monospace,
+                    Menlo,
+                    monospace;
+                  color: #6d7a7c;
+                "
+              >
+                56 · 2xl
+              </div>
+              <div style="height: 16px; width: 56px; background: #28e0c8"></div>
+              <div
+                style="
+                  font:
+                    300 15px Barlow,
+                    sans-serif;
+                  color: #8e9a9b;
+                "
+              >
+                margen lateral de página
+              </div>
+            </div>
+            <div style="display: flex; align-items: center; gap: 18px">
+              <div
+                style="
+                  width: 120px;
+                  font:
+                    400 12px ui-monospace,
+                    Menlo,
+                    monospace;
+                  color: #6d7a7c;
+                "
+              >
+                96 · 3xl
+              </div>
+              <div style="height: 16px; width: 96px; background: #28e0c8"></div>
+              <div
+                style="
+                  font:
+                    300 15px Barlow,
+                    sans-serif;
+                  color: #8e9a9b;
+                "
+              >
+                aire vertical entre secciones
+              </div>
+            </div>
+          </div>
+          <div
+            style="
+              display: grid;
+              grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+              gap: 24px;
+              margin-top: 44px;
+            "
+          >
+            <div
+              style="
+                border: 1px solid #1c2224;
+                padding: 24px;
+                background: #0f1213;
+              "
+            >
+              <div
+                style="
+                  font:
+                    700 20px Archivo,
+                    sans-serif;
+                  color: #fff;
+                "
+              >
+                Rejilla
+              </div>
+              <p
+                style="
+                  margin: 10px 0 0;
+                  font:
+                    300 16px/1.6 Barlow,
+                    sans-serif;
+                  color: #a9b3b4;
+                "
+              >
+                12 columnas, canal de 24px, margen lateral 56px (32px por debajo
+                de 720px). Los bloques de imagen y las franjas de plan van a
+                sangre completa, sin margen.
+              </p>
+            </div>
+            <div
+              style="
+                border: 1px solid #1c2224;
+                padding: 24px;
+                background: #0f1213;
+              "
+            >
+              <div
+                style="
+                  font:
+                    700 20px Archivo,
+                    sans-serif;
+                  color: #fff;
+                "
+              >
+                Puntos de quiebre
+              </div>
+              <p
+                style="
+                  margin: 10px 0 0;
+                  font:
+                    300 16px/1.6 Barlow,
+                    sans-serif;
+                  color: #a9b3b4;
+                "
+              >
+                Las rejillas se declaran con
+                <span style="color: #c8d0d0"
+                  >repeat(auto-fit, minmax(320px,1fr))</span
+                >: 4 columnas en escritorio, 2 en tablet, 1 en móvil, sin huecos
+                huérfanos.
+              </p>
+            </div>
+            <div
+              style="
+                border: 1px solid #1c2224;
+                padding: 24px;
+                background: #0f1213;
+              "
+            >
+              <div
+                style="
+                  font:
+                    700 20px Archivo,
+                    sans-serif;
+                  color: #fff;
+                "
+              >
+                Radios
+              </div>
+              <p
+                style="
+                  margin: 10px 0 0;
+                  font:
+                    300 16px/1.6 Barlow,
+                    sans-serif;
+                  color: #a9b3b4;
+                "
+              >
+                0 en bloques y tarjetas · 2px en botón rectangular · 20–26px en
+                pastilla · 50% en avatar. Sin sombras: la profundidad la da el
+                borde y el degradado.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section style="padding: 88px 56px; border-bottom: 1px solid #1c2224">
+          <div
+            style="
+              font:
+                600 12px Barlow,
+                sans-serif;
+              letter-spacing: 0.32em;
+              color: #28e0c8;
+            "
+          >
+            05 · BOTONES
+          </div>
+          <h2
+            style="
+              margin: 16px 0 0;
+              font:
+                800 46px/1.05 Archivo,
+                sans-serif;
+              color: #fff;
+            "
+          >
+            Jerarquía y estados
+          </h2>
+          <p
+            style="
+              margin: 18px 0 0;
+              font:
+                300 17px/1.6 Barlow,
+                sans-serif;
+              color: #a9b3b4;
+              max-width: 620px;
+            "
+          >
+            Un solo botón primario por vista. Texto en mayúsculas, Barlow 600,
+            tracking .14em, alto mínimo 44px.
+          </p>
+
+          <div
+            style="
+              margin-top: 40px;
+              border: 1px solid #1c2224;
+              overflow-x: auto;
+            "
+          >
+            <div
+              style="
+                display: grid;
+                grid-template-columns: 180px repeat(5, minmax(150px, 1fr));
+                border-bottom: 1px solid #1c2224;
+                background: #0f1213;
+                font:
+                  400 12px ui-monospace,
+                  Menlo,
+                  monospace;
+                color: #6d7a7c;
+                letter-spacing: 0.08em;
+              "
+            >
+              <div style="padding: 14px 18px; border-right: 1px solid #1c2224">
+                VARIANTE
+              </div>
+              <div style="padding: 14px 18px; border-right: 1px solid #1c2224">
+                NORMAL
+              </div>
+              <div style="padding: 14px 18px; border-right: 1px solid #1c2224">
+                HOVER
+              </div>
+              <div style="padding: 14px 18px; border-right: 1px solid #1c2224">
+                PRESIONADO
+              </div>
+              <div style="padding: 14px 18px; border-right: 1px solid #1c2224">
+                FOCO
+              </div>
+              <div style="padding: 14px 18px">DESHABILITADO</div>
+            </div>
+            <div
+              style="
+                display: grid;
+                grid-template-columns: 180px repeat(5, minmax(150px, 1fr));
+                border-bottom: 1px solid #1c2224;
+                align-items: center;
+              "
+            >
+              <div
+                style="
+                  padding: 22px 18px;
+                  border-right: 1px solid #1c2224;
+                  font:
+                    600 15px Barlow,
+                    sans-serif;
+                  color: #fff;
+                "
+              >
+                Primario
+                <div
+                  style="
+                    font:
+                      400 12px ui-monospace,
+                      Menlo,
+                      monospace;
+                    color: #6d7a7c;
+                    margin-top: 4px;
+                  "
+                >
+                  relleno cian
+                </div>
+              </div>
+              <div style="padding: 22px 18px; border-right: 1px solid #1c2224">
+                <span
+                  style="
+                    display: inline-block;
+                    background: #28e0c8;
+                    color: #0b0d0e;
+                    border-radius: 26px;
+                    padding: 13px 26px;
+                    font:
+                      600 13px Barlow,
+                      sans-serif;
+                    letter-spacing: 0.14em;
+                  "
+                  >CREAR CUENTA</span
+                >
+              </div>
+              <div style="padding: 22px 18px; border-right: 1px solid #1c2224">
+                <span
+                  style="
+                    display: inline-block;
+                    background: #7cf1e2;
+                    color: #0b0d0e;
+                    border-radius: 26px;
+                    padding: 13px 26px;
+                    font:
+                      600 13px Barlow,
+                      sans-serif;
+                    letter-spacing: 0.14em;
+                  "
+                  >CREAR CUENTA</span
+                >
+              </div>
+              <div style="padding: 22px 18px; border-right: 1px solid #1c2224">
+                <span
+                  style="
+                    display: inline-block;
+                    background: #17b9a4;
+                    color: #0b0d0e;
+                    border-radius: 26px;
+                    padding: 13px 26px;
+                    font:
+                      600 13px Barlow,
+                      sans-serif;
+                    letter-spacing: 0.14em;
+                  "
+                  >CREAR CUENTA</span
+                >
+              </div>
+              <div style="padding: 22px 18px; border-right: 1px solid #1c2224">
+                <span
+                  style="
+                    display: inline-block;
+                    background: #28e0c8;
+                    color: #0b0d0e;
+                    border-radius: 26px;
+                    padding: 13px 26px;
+                    font:
+                      600 13px Barlow,
+                      sans-serif;
+                    letter-spacing: 0.14em;
+                    outline: 2px solid #7cf1e2;
+                    outline-offset: 3px;
+                  "
+                  >CREAR CUENTA</span
+                >
+              </div>
+              <div style="padding: 22px 18px">
+                <span
+                  style="
+                    display: inline-block;
+                    background: #1c2224;
+                    color: #5b6668;
+                    border-radius: 26px;
+                    padding: 13px 26px;
+                    font:
+                      600 13px Barlow,
+                      sans-serif;
+                    letter-spacing: 0.14em;
+                  "
+                  >CREAR CUENTA</span
+                >
+              </div>
+            </div>
+            <div
+              style="
+                display: grid;
+                grid-template-columns: 180px repeat(5, minmax(150px, 1fr));
+                border-bottom: 1px solid #1c2224;
+                align-items: center;
+              "
+            >
+              <div
+                style="
+                  padding: 22px 18px;
+                  border-right: 1px solid #1c2224;
+                  font:
+                    600 15px Barlow,
+                    sans-serif;
+                  color: #fff;
+                "
+              >
+                Secundario
+                <div
+                  style="
+                    font:
+                      400 12px ui-monospace,
+                      Menlo,
+                      monospace;
+                    color: #6d7a7c;
+                    margin-top: 4px;
+                  "
+                >
+                  borde cian
+                </div>
+              </div>
+              <div style="padding: 22px 18px; border-right: 1px solid #1c2224">
+                <span
+                  style="
+                    display: inline-block;
+                    border: 1.5px solid #28e0c8;
+                    color: #28e0c8;
+                    border-radius: 26px;
+                    padding: 12px 25px;
+                    font:
+                      600 13px Barlow,
+                      sans-serif;
+                    letter-spacing: 0.14em;
+                  "
+                  >VER PLANES</span
+                >
+              </div>
+              <div style="padding: 22px 18px; border-right: 1px solid #1c2224">
+                <span
+                  style="
+                    display: inline-block;
+                    border: 1.5px solid #7cf1e2;
+                    color: #0b0d0e;
+                    background: #7cf1e2;
+                    border-radius: 26px;
+                    padding: 12px 25px;
+                    font:
+                      600 13px Barlow,
+                      sans-serif;
+                    letter-spacing: 0.14em;
+                  "
+                  >VER PLANES</span
+                >
+              </div>
+              <div style="padding: 22px 18px; border-right: 1px solid #1c2224">
+                <span
+                  style="
+                    display: inline-block;
+                    border: 1.5px solid #17b9a4;
+                    color: #0b0d0e;
+                    background: #17b9a4;
+                    border-radius: 26px;
+                    padding: 12px 25px;
+                    font:
+                      600 13px Barlow,
+                      sans-serif;
+                    letter-spacing: 0.14em;
+                  "
+                  >VER PLANES</span
+                >
+              </div>
+              <div style="padding: 22px 18px; border-right: 1px solid #1c2224">
+                <span
+                  style="
+                    display: inline-block;
+                    border: 1.5px solid #28e0c8;
+                    color: #28e0c8;
+                    border-radius: 26px;
+                    padding: 12px 25px;
+                    font:
+                      600 13px Barlow,
+                      sans-serif;
+                    letter-spacing: 0.14em;
+                    outline: 2px solid #7cf1e2;
+                    outline-offset: 3px;
+                  "
+                  >VER PLANES</span
+                >
+              </div>
+              <div style="padding: 22px 18px">
+                <span
+                  style="
+                    display: inline-block;
+                    border: 1.5px solid #232a2c;
+                    color: #5b6668;
+                    border-radius: 26px;
+                    padding: 12px 25px;
+                    font:
+                      600 13px Barlow,
+                      sans-serif;
+                    letter-spacing: 0.14em;
+                  "
+                  >VER PLANES</span
+                >
+              </div>
+            </div>
+            <div
+              style="
+                display: grid;
+                grid-template-columns: 180px repeat(5, minmax(150px, 1fr));
+                border-bottom: 1px solid #1c2224;
+                align-items: center;
+              "
+            >
+              <div
+                style="
+                  padding: 22px 18px;
+                  border-right: 1px solid #1c2224;
+                  font:
+                    600 15px Barlow,
+                    sans-serif;
+                  color: #fff;
+                "
+              >
+                Neutro
+                <div
+                  style="
+                    font:
+                      400 12px ui-monospace,
+                      Menlo,
+                      monospace;
+                    color: #6d7a7c;
+                    margin-top: 4px;
+                  "
+                >
+                  borde gris
+                </div>
+              </div>
+              <div style="padding: 22px 18px; border-right: 1px solid #1c2224">
+                <span
+                  style="
+                    display: inline-block;
+                    border: 1.5px solid #3a4547;
+                    color: #e8ecec;
+                    border-radius: 26px;
+                    padding: 12px 25px;
+                    font:
+                      600 13px Barlow,
+                      sans-serif;
+                    letter-spacing: 0.14em;
+                  "
+                  >SOY ENTRENADOR</span
+                >
+              </div>
+              <div style="padding: 22px 18px; border-right: 1px solid #1c2224">
+                <span
+                  style="
+                    display: inline-block;
+                    border: 1.5px solid #6d7a7c;
+                    color: #fff;
+                    border-radius: 26px;
+                    padding: 12px 25px;
+                    font:
+                      600 13px Barlow,
+                      sans-serif;
+                    letter-spacing: 0.14em;
+                  "
+                  >SOY ENTRENADOR</span
+                >
+              </div>
+              <div style="padding: 22px 18px; border-right: 1px solid #1c2224">
+                <span
+                  style="
+                    display: inline-block;
+                    border: 1.5px solid #6d7a7c;
+                    background: #1c2224;
+                    color: #fff;
+                    border-radius: 26px;
+                    padding: 12px 25px;
+                    font:
+                      600 13px Barlow,
+                      sans-serif;
+                    letter-spacing: 0.14em;
+                  "
+                  >SOY ENTRENADOR</span
+                >
+              </div>
+              <div style="padding: 22px 18px; border-right: 1px solid #1c2224">
+                <span
+                  style="
+                    display: inline-block;
+                    border: 1.5px solid #3a4547;
+                    color: #e8ecec;
+                    border-radius: 26px;
+                    padding: 12px 25px;
+                    font:
+                      600 13px Barlow,
+                      sans-serif;
+                    letter-spacing: 0.14em;
+                    outline: 2px solid #7cf1e2;
+                    outline-offset: 3px;
+                  "
+                  >SOY ENTRENADOR</span
+                >
+              </div>
+              <div style="padding: 22px 18px">
+                <span
+                  style="
+                    display: inline-block;
+                    border: 1.5px solid #232a2c;
+                    color: #5b6668;
+                    border-radius: 26px;
+                    padding: 12px 25px;
+                    font:
+                      600 13px Barlow,
+                      sans-serif;
+                    letter-spacing: 0.14em;
+                  "
+                  >SOY ENTRENADOR</span
+                >
+              </div>
+            </div>
+            <div
+              style="
+                display: grid;
+                grid-template-columns: 180px repeat(5, minmax(150px, 1fr));
+                align-items: center;
+              "
+            >
+              <div
+                style="
+                  padding: 22px 18px;
+                  border-right: 1px solid #1c2224;
+                  font:
+                    600 15px Barlow,
+                    sans-serif;
+                  color: #fff;
+                "
+              >
+                Enlace de acción
+                <div
+                  style="
+                    font:
+                      400 12px ui-monospace,
+                      Menlo,
+                      monospace;
+                    color: #6d7a7c;
+                    margin-top: 4px;
+                  "
+                >
+                  texto + flecha
+                </div>
+              </div>
+              <div style="padding: 22px 18px; border-right: 1px solid #1c2224">
+                <span
+                  style="
+                    font:
+                      600 13px Barlow,
+                      sans-serif;
+                    letter-spacing: 0.14em;
+                    color: #28e0c8;
+                  "
+                  >VER PLAN →</span
+                >
+              </div>
+              <div style="padding: 22px 18px; border-right: 1px solid #1c2224">
+                <span
+                  style="
+                    font:
+                      600 13px Barlow,
+                      sans-serif;
+                    letter-spacing: 0.14em;
+                    color: #7cf1e2;
+                    border-bottom: 1px solid #7cf1e2;
+                    padding-bottom: 2px;
+                  "
+                  >VER PLAN →</span
+                >
+              </div>
+              <div style="padding: 22px 18px; border-right: 1px solid #1c2224">
+                <span
+                  style="
+                    font:
+                      600 13px Barlow,
+                      sans-serif;
+                    letter-spacing: 0.14em;
+                    color: #17b9a4;
+                  "
+                  >VER PLAN →</span
+                >
+              </div>
+              <div style="padding: 22px 18px; border-right: 1px solid #1c2224">
+                <span
+                  style="
+                    font:
+                      600 13px Barlow,
+                      sans-serif;
+                    letter-spacing: 0.14em;
+                    color: #28e0c8;
+                    outline: 2px solid #7cf1e2;
+                    outline-offset: 4px;
+                  "
+                  >VER PLAN →</span
+                >
+              </div>
+              <div style="padding: 22px 18px">
+                <span
+                  style="
+                    font:
+                      600 13px Barlow,
+                      sans-serif;
+                    letter-spacing: 0.14em;
+                    color: #5b6668;
+                  "
+                  >VER PLAN →</span
+                >
+              </div>
+            </div>
+          </div>
+          <div
+            style="
+              display: grid;
+              grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+              gap: 24px;
+              margin-top: 32px;
+            "
+          >
+            <div
+              style="
+                border: 1px solid #1c2224;
+                padding: 22px;
+                background: #0f1213;
+              "
+            >
+              <div
+                style="
+                  font:
+                    600 13px Barlow,
+                    sans-serif;
+                  letter-spacing: 0.14em;
+                  color: #28e0c8;
+                "
+              >
+                TAMAÑOS
+              </div>
+              <div
+                style="
+                  display: flex;
+                  gap: 12px;
+                  align-items: center;
+                  flex-wrap: wrap;
+                  margin-top: 16px;
+                "
+              >
+                <span
+                  style="
+                    background: #28e0c8;
+                    color: #0b0d0e;
+                    border-radius: 26px;
+                    padding: 16px 38px;
+                    font:
+                      600 14px Barlow,
+                      sans-serif;
+                    letter-spacing: 0.14em;
+                  "
+                  >GRANDE</span
+                ><span
+                  style="
+                    background: #28e0c8;
+                    color: #0b0d0e;
+                    border-radius: 26px;
+                    padding: 13px 26px;
+                    font:
+                      600 13px Barlow,
+                      sans-serif;
+                    letter-spacing: 0.14em;
+                  "
+                  >MEDIO</span
+                ><span
+                  style="
+                    background: #28e0c8;
+                    color: #0b0d0e;
+                    border-radius: 20px;
+                    padding: 10px 18px;
+                    font:
+                      600 12px Barlow,
+                      sans-serif;
+                    letter-spacing: 0.14em;
+                  "
+                  >CHICO</span
+                >
+              </div>
+              <p
+                style="
+                  margin: 14px 0 0;
+                  font:
+                    300 15px/1.6 Barlow,
+                    sans-serif;
+                  color: #8e9a9b;
+                "
+              >
+                Grande solo en héroe y cierre. Chico solo dentro de tablas y
+                paneles.
+              </p>
+            </div>
+            <div
+              style="
+                border: 1px solid #1c2224;
+                padding: 22px;
+                background: #0f1213;
+              "
+            >
+              <div
+                style="
+                  font:
+                    600 13px Barlow,
+                    sans-serif;
+                  letter-spacing: 0.14em;
+                  color: #28e0c8;
+                "
+              >
+                BOTÓN RECTANGULAR
+              </div>
+              <div
+                style="
+                  display: flex;
+                  gap: 12px;
+                  align-items: center;
+                  margin-top: 16px;
+                "
+              >
+                <span
+                  style="
+                    border: 1.5px solid #28e0c8;
+                    color: #28e0c8;
+                    border-radius: 2px;
+                    padding: 9px 20px;
+                    font:
+                      600 13px Barlow,
+                      sans-serif;
+                    letter-spacing: 0.06em;
+                  "
+                  >REGISTRARME</span
+                >
+              </div>
+              <p
+                style="
+                  margin: 14px 0 0;
+                  font:
+                    300 15px/1.6 Barlow,
+                    sans-serif;
+                  color: #8e9a9b;
+                "
+              >
+                Reservado a la barra de navegación, donde la pastilla compite
+                con el logotipo.
+              </p>
+            </div>
+            <div
+              style="
+                border: 1px solid #1c2224;
+                padding: 22px;
+                background: #0f1213;
+              "
+            >
+              <div
+                style="
+                  font:
+                    600 13px Barlow,
+                    sans-serif;
+                  letter-spacing: 0.14em;
+                  color: #28e0c8;
+                "
+              >
+                CARGANDO
+              </div>
+              <div
+                style="
+                  display: flex;
+                  gap: 12px;
+                  align-items: center;
+                  margin-top: 16px;
+                "
+              >
+                <span
+                  style="
+                    background: #1c2224;
+                    color: #8e9a9b;
+                    border-radius: 26px;
+                    padding: 13px 26px;
+                    font:
+                      600 13px Barlow,
+                      sans-serif;
+                    letter-spacing: 0.14em;
+                  "
+                  >GUARDANDO…</span
+                >
+              </div>
+              <p
+                style="
+                  margin: 14px 0 0;
+                  font:
+                    300 15px/1.6 Barlow,
+                    sans-serif;
+                  color: #8e9a9b;
+                "
+              >
+                El botón conserva su ancho, cambia el texto y queda no
+                interactivo.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section style="padding: 88px 56px; border-bottom: 1px solid #1c2224">
+          <div
+            style="
+              font:
+                600 12px Barlow,
+                sans-serif;
+              letter-spacing: 0.32em;
+              color: #28e0c8;
+            "
+          >
+            06 · FORMULARIOS
+          </div>
+          <h2
+            style="
+              margin: 16px 0 0;
+              font:
+                800 46px/1.05 Archivo,
+                sans-serif;
+              color: #fff;
+            "
+          >
+            Campos y validación
+          </h2>
+          <div
+            style="
+              display: grid;
+              grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+              gap: 24px;
+              margin-top: 40px;
+            "
+          >
+            <div>
+              <div
+                style="
+                  font:
+                    500 13px Barlow,
+                    sans-serif;
+                  letter-spacing: 0.14em;
+                  color: #8e9a9b;
+                "
+              >
+                NORMAL
+              </div>
+              <div
+                style="
+                  margin-top: 10px;
+                  border: 1px solid #2a3234;
+                  background: #0f1213;
+                  padding: 15px 16px;
+                  font:
+                    400 16px Barlow,
+                    sans-serif;
+                  color: #e8ecec;
+                "
+              >
+                correo@ejemplo.com
+              </div>
+              <div
+                style="
+                  font:
+                    300 14px Barlow,
+                    sans-serif;
+                  color: #6d7a7c;
+                  margin-top: 8px;
+                "
+              >
+                Usamos tu correo para el acceso.
+              </div>
+            </div>
+            <div>
+              <div
+                style="
+                  font:
+                    500 13px Barlow,
+                    sans-serif;
+                  letter-spacing: 0.14em;
+                  color: #8e9a9b;
+                "
+              >
+                VACÍO
+              </div>
+              <div
+                style="
+                  margin-top: 10px;
+                  border: 1px solid #2a3234;
+                  background: #0f1213;
+                  padding: 15px 16px;
+                  font:
+                    400 16px Barlow,
+                    sans-serif;
+                  color: #5b6668;
+                "
+              >
+                Tu correo
+              </div>
+              <div
+                style="
+                  font:
+                    300 14px Barlow,
+                    sans-serif;
+                  color: #6d7a7c;
+                  margin-top: 8px;
+                "
+              >
+                La etiqueta va siempre fuera del campo.
+              </div>
+            </div>
+            <div>
+              <div
+                style="
+                  font:
+                    500 13px Barlow,
+                    sans-serif;
+                  letter-spacing: 0.14em;
+                  color: #28e0c8;
+                "
+              >
+                FOCO
+              </div>
+              <div
+                style="
+                  margin-top: 10px;
+                  border: 1px solid #28e0c8;
+                  background: #0f1213;
+                  padding: 15px 16px;
+                  font:
+                    400 16px Barlow,
+                    sans-serif;
+                  color: #e8ecec;
+                  outline: 2px solid rgba(40, 224, 200, 0.25);
+                  outline-offset: 1px;
+                "
+              >
+                correo@ejemplo.com
+              </div>
+              <div
+                style="
+                  font:
+                    300 14px Barlow,
+                    sans-serif;
+                  color: #6d7a7c;
+                  margin-top: 8px;
+                "
+              >
+                Borde cian y halo del 25%.
+              </div>
+            </div>
+            <div>
+              <div
+                style="
+                  font:
+                    500 13px Barlow,
+                    sans-serif;
+                  letter-spacing: 0.14em;
+                  color: #f2685c;
+                "
+              >
+                ERROR
+              </div>
+              <div
+                style="
+                  margin-top: 10px;
+                  border: 1px solid #f2685c;
+                  background: #0f1213;
+                  padding: 15px 16px;
+                  font:
+                    400 16px Barlow,
+                    sans-serif;
+                  color: #e8ecec;
+                "
+              >
+                correo@ejemplo
+              </div>
+              <div
+                style="
+                  font:
+                    400 14px Barlow,
+                    sans-serif;
+                  color: #f2685c;
+                  margin-top: 8px;
+                "
+              >
+                Falta el dominio del correo.
+              </div>
+            </div>
+            <div>
+              <div
+                style="
+                  font:
+                    500 13px Barlow,
+                    sans-serif;
+                  letter-spacing: 0.14em;
+                  color: #4ad991;
+                "
+              >
+                VÁLIDO
+              </div>
+              <div
+                style="
+                  margin-top: 10px;
+                  border: 1px solid #4ad991;
+                  background: #0f1213;
+                  padding: 15px 16px;
+                  font:
+                    400 16px Barlow,
+                    sans-serif;
+                  color: #e8ecec;
+                "
+              >
+                correo@ejemplo.com
+              </div>
+              <div
+                style="
+                  font:
+                    300 14px Barlow,
+                    sans-serif;
+                  color: #6d7a7c;
+                  margin-top: 8px;
+                "
+              >
+                Se confirma solo cuando el dato es crítico.
+              </div>
+            </div>
+            <div>
+              <div
+                style="
+                  font:
+                    500 13px Barlow,
+                    sans-serif;
+                  letter-spacing: 0.14em;
+                  color: #5b6668;
+                "
+              >
+                DESHABILITADO
+              </div>
+              <div
+                style="
+                  margin-top: 10px;
+                  border: 1px solid #1c2224;
+                  background: #0d1011;
+                  padding: 15px 16px;
+                  font:
+                    400 16px Barlow,
+                    sans-serif;
+                  color: #5b6668;
+                "
+              >
+                correo@ejemplo.com
+              </div>
+              <div
+                style="
+                  font:
+                    300 14px Barlow,
+                    sans-serif;
+                  color: #5b6668;
+                  margin-top: 8px;
+                "
+              >
+                No editable en esta etapa.
+              </div>
+            </div>
+          </div>
+          <div
+            style="
+              display: grid;
+              grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+              gap: 24px;
+              margin-top: 36px;
+            "
+          >
+            <div
+              style="
+                border: 1px solid #1c2224;
+                padding: 22px;
+                background: #0f1213;
+              "
+            >
+              <div
+                style="
+                  font:
+                    500 13px Barlow,
+                    sans-serif;
+                  letter-spacing: 0.14em;
+                  color: #8e9a9b;
+                "
+              >
+                SELECTOR
+              </div>
+              <div
+                style="
+                  margin-top: 12px;
+                  border: 1px solid #2a3234;
+                  padding: 15px 16px;
+                  display: flex;
+                  justify-content: space-between;
+                  font:
+                    400 16px Barlow,
+                    sans-serif;
+                  color: #e8ecec;
+                "
+              >
+                <span>Nivel: principiante</span
+                ><span style="color: #28e0c8">▾</span>
+              </div>
+            </div>
+            <div
+              style="
+                border: 1px solid #1c2224;
+                padding: 22px;
+                background: #0f1213;
+              "
+            >
+              <div
+                style="
+                  font:
+                    500 13px Barlow,
+                    sans-serif;
+                  letter-spacing: 0.14em;
+                  color: #8e9a9b;
+                "
+              >
+                CASILLA
+              </div>
+              <div
+                style="
+                  margin-top: 12px;
+                  display: flex;
+                  flex-direction: column;
+                  gap: 12px;
+                  font:
+                    400 16px Barlow,
+                    sans-serif;
+                  color: #e8ecec;
+                "
+              >
+                <div style="display: flex; gap: 12px; align-items: center">
+                  <div
+                    style="
+                      width: 20px;
+                      height: 20px;
+                      border: 1.5px solid #28e0c8;
+                      background: #28e0c8;
+                      color: #0b0d0e;
+                      display: flex;
+                      align-items: center;
+                      justify-content: center;
+                      font:
+                        700 13px Barlow,
+                        sans-serif;
+                    "
+                  >
+                    ✓
+                  </div>
+                  <span>Acepto los términos</span>
+                </div>
+                <div style="display: flex; gap: 12px; align-items: center">
+                  <div
+                    style="
+                      width: 20px;
+                      height: 20px;
+                      border: 1.5px solid #2a3234;
+                    "
+                  ></div>
+                  <span style="color: #a9b3b4">Quiero recibir avisos</span>
+                </div>
+              </div>
+            </div>
+            <div
+              style="
+                border: 1px solid #1c2224;
+                padding: 22px;
+                background: #0f1213;
+              "
+            >
+              <div
+                style="
+                  font:
+                    500 13px Barlow,
+                    sans-serif;
+                  letter-spacing: 0.14em;
+                  color: #8e9a9b;
+                "
+              >
+                INTERRUPTOR
+              </div>
+              <div
+                style="
+                  margin-top: 12px;
+                  display: flex;
+                  gap: 14px;
+                  align-items: center;
+                "
+              >
+                <div
+                  style="
+                    width: 46px;
+                    height: 26px;
+                    border-radius: 13px;
+                    background: #28e0c8;
+                    display: flex;
+                    align-items: center;
+                    justify-content: flex-end;
+                    padding: 3px;
+                  "
+                >
+                  <div
+                    style="
+                      width: 20px;
+                      height: 20px;
+                      border-radius: 50%;
+                      background: #0b0d0e;
+                    "
+                  ></div>
+                </div>
+                <div
+                  style="
+                    width: 46px;
+                    height: 26px;
+                    border-radius: 13px;
+                    background: #1c2224;
+                    display: flex;
+                    align-items: center;
+                    padding: 3px;
+                  "
+                >
+                  <div
+                    style="
+                      width: 20px;
+                      height: 20px;
+                      border-radius: 50%;
+                      background: #6d7a7c;
+                    "
+                  ></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <p
+            style="
+              margin: 26px 0 0;
+              font:
+                300 16px/1.6 Barlow,
+                sans-serif;
+              color: #8e9a9b;
+              max-width: 700px;
+            "
+          >
+            Los consentimientos legales (deportivo y de datos de salud) se piden
+            como casillas separadas y explícitas, nunca preseleccionadas ni
+            agrupadas en una sola.
+          </p>
+        </section>
+
+        <section style="padding: 88px 56px; border-bottom: 1px solid #1c2224">
+          <div
+            style="
+              font:
+                600 12px Barlow,
+                sans-serif;
+              letter-spacing: 0.32em;
+              color: #28e0c8;
+            "
+          >
+            07 · COMPONENTES
+          </div>
+          <h2
+            style="
+              margin: 16px 0 0;
+              font:
+                800 46px/1.05 Archivo,
+                sans-serif;
+              color: #fff;
+            "
+          >
+            Piezas del producto
+          </h2>
+
+          <div
+            style="
+              display: grid;
+              grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+              gap: 24px;
+              margin-top: 40px;
+            "
+          >
+            <div style="border: 1px solid #1c2224; background: #0f1213">
+              <div
+                style="
+                  padding: 16px 20px;
+                  border-bottom: 1px solid #1c2224;
+                  font:
+                    400 12px ui-monospace,
+                    Menlo,
+                    monospace;
+                  color: #6d7a7c;
+                  letter-spacing: 0.08em;
+                "
+              >
+                TARJETA DE PLAN
+              </div>
+              <div
+                style="
+                  position: relative;
+                  min-height: 300px;
+                  display: flex;
+                  flex-direction: column;
+                  justify-content: flex-end;
+                  padding: 26px;
+                  background: repeating-linear-gradient(
+                    115deg,
+                    #141a1b,
+                    #141a1b 10px,
+                    #0f1415 10px,
+                    #0f1415 20px
+                  );
+                "
+              >
+                <div
+                  style="
+                    position: absolute;
+                    inset: 0;
+                    background: linear-gradient(
+                      to top,
+                      rgba(8, 10, 11, 0.94),
+                      rgba(8, 10, 11, 0.35)
+                    );
+                  "
+                ></div>
+                <div style="position: relative">
+                  <div
+                    style="
+                      font:
+                        900 32px/1 Archivo,
+                        sans-serif;
+                      color: #fff;
+                    "
+                  >
+                    RUNNING
+                  </div>
+                  <div
+                    style="
+                      font:
+                        500 12px Barlow,
+                        sans-serif;
+                      letter-spacing: 0.2em;
+                      color: #28e0c8;
+                      margin-top: 10px;
+                    "
+                  >
+                    12 SEMANAS · 4 SES/SEM
+                  </div>
+                  <p
+                    style="
+                      margin: 12px 0 0;
+                      font:
+                        300 16px/1.5 Barlow,
+                        sans-serif;
+                      color: #a9b3b4;
+                    "
+                  >
+                    De cero a diez kilómetros con carga progresiva.
+                  </p>
+                  <div
+                    style="
+                      margin-top: 18px;
+                      font:
+                        600 13px Barlow,
+                        sans-serif;
+                      letter-spacing: 0.14em;
+                      color: #28e0c8;
+                    "
+                  >
+                    VER PLAN →
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div style="border: 1px solid #1c2224; background: #0f1213">
+              <div
+                style="
+                  padding: 16px 20px;
+                  border-bottom: 1px solid #1c2224;
+                  font:
+                    400 12px ui-monospace,
+                    Menlo,
+                    monospace;
+                  color: #6d7a7c;
+                  letter-spacing: 0.08em;
+                "
+              >
+                NAVEGACIÓN
+              </div>
+              <div
+                style="
+                  padding: 22px;
+                  display: flex;
+                  flex-direction: column;
+                  gap: 22px;
+                "
+              >
+                <div
+                  style="
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    gap: 20px;
+                    flex-wrap: wrap;
+                  "
+                >
+                  <div>
+                    <div
+                      style="
+                        font:
+                          900 20px/1 Archivo,
+                          sans-serif;
+                        color: #fff;
+                      "
+                    >
+                      FIT<span style="color: #28e0c8">TRAINING</span>
+                    </div>
+                    <div
+                      style="
+                        font:
+                          500 8px/1 Barlow,
+                          sans-serif;
+                        letter-spacing: 0.42em;
+                        color: #6d7a7c;
+                        margin-top: 3px;
+                      "
+                    >
+                      PLANES DE ENTRENAMIENTO
+                    </div>
+                  </div>
+                  <div
+                    style="
+                      display: flex;
+                      gap: 18px;
+                      align-items: center;
+                      font:
+                        500 14px Barlow,
+                        sans-serif;
+                    "
+                  >
+                    <span style="color: #28e0c8">Inicio</span
+                    ><span style="color: #c8d0d0">Planes</span
+                    ><span style="color: #c8d0d0">Preguntas</span
+                    ><span
+                      style="
+                        border: 1.5px solid #28e0c8;
+                        color: #28e0c8;
+                        border-radius: 2px;
+                        padding: 8px 16px;
+                        font-weight: 600;
+                        letter-spacing: 0.06em;
+                        font-size: 12px;
+                      "
+                      >REGISTRARME</span
+                    >
+                  </div>
+                </div>
+                <p
+                  style="
+                    margin: 0;
+                    font:
+                      300 15px/1.6 Barlow,
+                      sans-serif;
+                    color: #8e9a9b;
+                  "
+                >
+                  La sección activa va en cian, el resto en gris claro. La barra
+                  no lleva fondo propio: se apoya sobre la foto del héroe con el
+                  degradado de protección.
+                </p>
+              </div>
+            </div>
+
+            <div style="border: 1px solid #1c2224; background: #0f1213">
+              <div
+                style="
+                  padding: 16px 20px;
+                  border-bottom: 1px solid #1c2224;
+                  font:
+                    400 12px ui-monospace,
+                    Menlo,
+                    monospace;
+                  color: #6d7a7c;
+                  letter-spacing: 0.08em;
+                "
+              >
+                INSIGNIAS Y ETIQUETAS
+              </div>
+              <div
+                style="
+                  padding: 22px;
+                  display: flex;
+                  gap: 12px;
+                  flex-wrap: wrap;
+                  align-items: center;
+                "
+              >
+                <span
+                  style="
+                    background: #28e0c8;
+                    color: #0b0d0e;
+                    font:
+                      600 10px Barlow,
+                      sans-serif;
+                    letter-spacing: 0.2em;
+                    padding: 5px 10px;
+                  "
+                  >POPULAR</span
+                >
+                <span
+                  style="
+                    background: #0e2b28;
+                    color: #28e0c8;
+                    font:
+                      600 11px Barlow,
+                      sans-serif;
+                    letter-spacing: 0.14em;
+                    padding: 6px 12px;
+                  "
+                  >INSCRITO</span
+                >
+                <span
+                  style="
+                    border: 1px solid #2a3234;
+                    color: #c8d0d0;
+                    font:
+                      400 13px Barlow,
+                      sans-serif;
+                    padding: 6px 14px;
+                    border-radius: 16px;
+                  "
+                  >principiante</span
+                >
+                <span
+                  style="
+                    border: 1px solid #2a3234;
+                    color: #c8d0d0;
+                    font:
+                      400 13px Barlow,
+                      sans-serif;
+                    padding: 6px 14px;
+                    border-radius: 16px;
+                  "
+                  >4 ses/sem</span
+                >
+                <span
+                  style="
+                    color: #4ad991;
+                    font:
+                      500 13px Barlow,
+                      sans-serif;
+                  "
+                  >● sesión registrada</span
+                >
+                <span
+                  style="
+                    color: #f2c14e;
+                    font:
+                      500 13px Barlow,
+                      sans-serif;
+                  "
+                  >● plan por vencer</span
+                >
+              </div>
+            </div>
+
+            <div style="border: 1px solid #1c2224; background: #0f1213">
+              <div
+                style="
+                  padding: 16px 20px;
+                  border-bottom: 1px solid #1c2224;
+                  font:
+                    400 12px ui-monospace,
+                    Menlo,
+                    monospace;
+                  color: #6d7a7c;
+                  letter-spacing: 0.08em;
+                "
+              >
+                ACORDEÓN
+              </div>
+              <div style="padding: 22px">
+                <div
+                  style="
+                    display: flex;
+                    justify-content: space-between;
+                    gap: 16px;
+                    padding: 18px 0;
+                    border-top: 1px solid #1c2224;
+                    font:
+                      400 18px Barlow,
+                      sans-serif;
+                    color: #e8ecec;
+                  "
+                >
+                  <span>¿Necesito equipo en casa?</span
+                  ><span style="color: #28e0c8; font-size: 22px">−</span>
+                </div>
+                <p
+                  style="
+                    margin: 0 0 18px;
+                    font:
+                      300 16px/1.6 Barlow,
+                      sans-serif;
+                    color: #a9b3b4;
+                  "
+                >
+                  No. Las ocho semanas están diseñadas con peso corporal.
+                </p>
+                <div
+                  style="
+                    display: flex;
+                    justify-content: space-between;
+                    gap: 16px;
+                    padding: 18px 0;
+                    border-top: 1px solid #1c2224;
+                    border-bottom: 1px solid #1c2224;
+                    font:
+                      400 18px Barlow,
+                      sans-serif;
+                    color: #e8ecec;
+                  "
+                >
+                  <span>¿Puedo cambiar de plan?</span
+                  ><span style="color: #28e0c8; font-size: 22px">+</span>
+                </div>
+              </div>
+            </div>
+
+            <div style="border: 1px solid #1c2224; background: #0f1213">
+              <div
+                style="
+                  padding: 16px 20px;
+                  border-bottom: 1px solid #1c2224;
+                  font:
+                    400 12px ui-monospace,
+                    Menlo,
+                    monospace;
+                  color: #6d7a7c;
+                  letter-spacing: 0.08em;
+                "
+              >
+                PROGRESO Y DATOS
+              </div>
+              <div
+                style="
+                  padding: 22px;
+                  display: flex;
+                  flex-direction: column;
+                  gap: 18px;
+                "
+              >
+                <div>
+                  <div
+                    style="
+                      display: flex;
+                      justify-content: space-between;
+                      font:
+                        400 13px ui-monospace,
+                        Menlo,
+                        monospace;
+                      color: #6d7a7c;
+                    "
+                  >
+                    <span>SEMANA 7 DE 12</span><span>58%</span>
+                  </div>
+                  <div
+                    style="height: 6px; background: #1c2224; margin-top: 10px"
+                  >
+                    <div
+                      style="width: 58%; height: 6px; background: #28e0c8"
+                    ></div>
+                  </div>
+                </div>
+                <div
+                  style="
+                    display: grid;
+                    grid-template-columns: repeat(12, 1fr);
+                    gap: 4px;
+                    align-items: end;
+                    height: 70px;
+                  "
+                >
+                  <div style="height: 30%; background: #1c2224"></div>
+                  <div style="height: 45%; background: #1c2224"></div>
+                  <div style="height: 38%; background: #1c2224"></div>
+                  <div style="height: 60%; background: #28e0c8"></div>
+                  <div style="height: 52%; background: #1c2224"></div>
+                  <div style="height: 70%; background: #1c2224"></div>
+                  <div style="height: 48%; background: #1c2224"></div>
+                  <div style="height: 80%; background: #28e0c8"></div>
+                  <div style="height: 62%; background: #1c2224"></div>
+                  <div style="height: 55%; background: #1c2224"></div>
+                  <div style="height: 74%; background: #1c2224"></div>
+                  <div style="height: 90%; background: #1c2224"></div>
+                </div>
+                <div
+                  style="
+                    font:
+                      400 12px ui-monospace,
+                      Menlo,
+                      monospace;
+                    color: #6d7a7c;
+                    letter-spacing: 0.08em;
+                  "
+                >
+                  ADHERENCIA POR SEMANA · CIAN = SESIÓN CLAVE
+                </div>
+              </div>
+            </div>
+
+            <div style="border: 1px solid #1c2224; background: #0f1213">
+              <div
+                style="
+                  padding: 16px 20px;
+                  border-bottom: 1px solid #1c2224;
+                  font:
+                    400 12px ui-monospace,
+                    Menlo,
+                    monospace;
+                  color: #6d7a7c;
+                  letter-spacing: 0.08em;
+                "
+              >
+                PAGINACIÓN Y TABLA
+              </div>
+              <div
+                style="
+                  padding: 22px;
+                  display: flex;
+                  flex-direction: column;
+                  gap: 20px;
+                "
+              >
+                <div style="display: flex; gap: 10px">
+                  <div
+                    style="
+                      width: 10px;
+                      height: 10px;
+                      border-radius: 50%;
+                      background: #28e0c8;
+                    "
+                  ></div>
+                  <div
+                    style="
+                      width: 10px;
+                      height: 10px;
+                      border-radius: 50%;
+                      border: 1.5px solid #4a5658;
+                    "
+                  ></div>
+                  <div
+                    style="
+                      width: 10px;
+                      height: 10px;
+                      border-radius: 50%;
+                      border: 1.5px solid #4a5658;
+                    "
+                  ></div>
+                  <div
+                    style="
+                      width: 10px;
+                      height: 10px;
+                      border-radius: 50%;
+                      border: 1.5px solid #4a5658;
+                    "
+                  ></div>
+                </div>
+                <div style="border: 1px solid #1c2224">
+                  <div
+                    style="
+                      display: grid;
+                      grid-template-columns: 1.3fr 1fr 1fr;
+                      background: #141a1b;
+                      font:
+                        600 12px Barlow,
+                        sans-serif;
+                      letter-spacing: 0.14em;
+                      color: #8e9a9b;
+                    "
+                  >
+                    <div style="padding: 12px 14px">PLAN</div>
+                    <div
+                      style="padding: 12px 14px; border-left: 1px solid #1c2224"
+                    >
+                      SEMANAS
+                    </div>
+                    <div
+                      style="padding: 12px 14px; border-left: 1px solid #1c2224"
+                    >
+                      SES/SEM
+                    </div>
+                  </div>
+                  <div
+                    style="
+                      display: grid;
+                      grid-template-columns: 1.3fr 1fr 1fr;
+                      border-top: 1px solid #1c2224;
+                      font:
+                        400 15px Barlow,
+                        sans-serif;
+                      color: #c8d0d0;
+                    "
+                  >
+                    <div style="padding: 12px 14px">Running</div>
+                    <div
+                      style="padding: 12px 14px; border-left: 1px solid #1c2224"
+                    >
+                      12
+                    </div>
+                    <div
+                      style="padding: 12px 14px; border-left: 1px solid #1c2224"
+                    >
+                      4
+                    </div>
+                  </div>
+                  <div
+                    style="
+                      display: grid;
+                      grid-template-columns: 1.3fr 1fr 1fr;
+                      border-top: 1px solid #1c2224;
+                      font:
+                        400 15px Barlow,
+                        sans-serif;
+                      color: #c8d0d0;
+                    "
+                  >
+                    <div style="padding: 12px 14px">Híbrido</div>
+                    <div
+                      style="padding: 12px 14px; border-left: 1px solid #1c2224"
+                    >
+                      16
+                    </div>
+                    <div
+                      style="padding: 12px 14px; border-left: 1px solid #1c2224"
+                    >
+                      5
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section style="padding: 88px 56px; border-bottom: 1px solid #1c2224">
+          <div
+            style="
+              font:
+                600 12px Barlow,
+                sans-serif;
+              letter-spacing: 0.32em;
+              color: #28e0c8;
+            "
+          >
+            08 · IMAGEN
+          </div>
+          <h2
+            style="
+              margin: 16px 0 0;
+              font:
+                800 46px/1.05 Archivo,
+                sans-serif;
+              color: #fff;
+            "
+          >
+            La foto es la única textura
+          </h2>
+          <div
+            style="
+              display: grid;
+              grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+              gap: 24px;
+              margin-top: 40px;
+            "
+          >
+            <div
+              style="
+                position: relative;
+                min-height: 260px;
+                background: repeating-linear-gradient(
+                  115deg,
+                  #141a1b,
+                  #141a1b 12px,
+                  #0f1415 12px,
+                  #0f1415 24px
+                );
+                border: 1px solid #1c2224;
+              "
+            >
+              <div
+                style="
+                  position: absolute;
+                  inset: 0;
+                  background: linear-gradient(
+                    100deg,
+                    rgba(8, 10, 11, 0.95),
+                    rgba(8, 10, 11, 0.3)
+                  );
+                "
+              ></div>
+              <div
+                style="
+                  position: absolute;
+                  left: 22px;
+                  bottom: 22px;
+                  font:
+                    400 11px ui-monospace,
+                    Menlo,
+                    monospace;
+                  color: #8e9a9b;
+                  letter-spacing: 0.08em;
+                "
+              >
+                DEGRADADO LATERAL · HÉROE
+              </div>
+            </div>
+            <div
+              style="
+                position: relative;
+                min-height: 260px;
+                background: repeating-linear-gradient(
+                  115deg,
+                  #141a1b,
+                  #141a1b 12px,
+                  #0f1415 12px,
+                  #0f1415 24px
+                );
+                border: 1px solid #1c2224;
+              "
+            >
+              <div
+                style="
+                  position: absolute;
+                  inset: 0;
+                  background: linear-gradient(
+                    to top,
+                    rgba(8, 10, 11, 0.94),
+                    rgba(8, 10, 11, 0.35)
+                  );
+                "
+              ></div>
+              <div
+                style="
+                  position: absolute;
+                  left: 22px;
+                  bottom: 22px;
+                  font:
+                    400 11px ui-monospace,
+                    Menlo,
+                    monospace;
+                  color: #8e9a9b;
+                  letter-spacing: 0.08em;
+                "
+              >
+                DEGRADADO INFERIOR · TARJETA
+              </div>
+            </div>
+            <div
+              style="
+                border: 1px solid #1c2224;
+                padding: 24px;
+                background: #0f1213;
+              "
+            >
+              <div
+                style="
+                  font:
+                    700 20px Archivo,
+                    sans-serif;
+                  color: #fff;
+                "
+              >
+                Reglas de foto
+              </div>
+              <ul
+                style="
+                  margin: 12px 0 0;
+                  padding-left: 20px;
+                  font:
+                    300 16px/1.7 Barlow,
+                    sans-serif;
+                  color: #a9b3b4;
+                "
+              >
+                <li>Escenas reales de entrenamiento, luz dura, tono frío.</li>
+                <li>Siempre un degradado de protección antes del texto.</li>
+                <li>Héroe 2400×1400, tarjeta 1200×1400, retrato 400×400.</li>
+                <li>Sin filtros de color de marca sobre la piel.</li>
+                <li>Nunca texto sobre la zona más clara de la imagen.</li>
+              </ul>
+              <p
+                style="
+                  margin: 14px 0 0;
+                  font:
+                    400 13px ui-monospace,
+                    Menlo,
+                    monospace;
+                  color: #6d7a7c;
+                  letter-spacing: 0.06em;
+                "
+              >
+                Mientras no haya fotos, va el patrón de rayas con la etiqueta de
+                lo que falta.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section style="padding: 88px 56px; border-bottom: 1px solid #1c2224">
+          <div
+            style="
+              font:
+                600 12px Barlow,
+                sans-serif;
+              letter-spacing: 0.32em;
+              color: #28e0c8;
+            "
+          >
+            09 · MOVIMIENTO
+          </div>
+          <h2
+            style="
+              margin: 16px 0 0;
+              font:
+                800 46px/1.05 Archivo,
+                sans-serif;
+              color: #fff;
+            "
+          >
+            Discreto y corto
+          </h2>
+          <div
+            style="
+              display: grid;
+              grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+              gap: 24px;
+              margin-top: 36px;
+            "
+          >
+            <div
+              style="
+                border: 1px solid #1c2224;
+                padding: 24px;
+                background: #0f1213;
+              "
+            >
+              <div
+                style="
+                  font:
+                    400 12px ui-monospace,
+                    Menlo,
+                    monospace;
+                  color: #6d7a7c;
+                "
+              >
+                DURACIÓN
+              </div>
+              <div
+                style="
+                  font:
+                    800 34px Archivo,
+                    sans-serif;
+                  color: #fff;
+                  margin-top: 10px;
+                "
+              >
+                160 ms
+              </div>
+              <p
+                style="
+                  margin: 10px 0 0;
+                  font:
+                    300 16px/1.6 Barlow,
+                    sans-serif;
+                  color: #a9b3b4;
+                "
+              >
+                Color y borde en hover. Curva
+                <span style="color: #c8d0d0">ease-out</span>.
+              </p>
+            </div>
+            <div
+              style="
+                border: 1px solid #1c2224;
+                padding: 24px;
+                background: #0f1213;
+              "
+            >
+              <div
+                style="
+                  font:
+                    400 12px ui-monospace,
+                    Menlo,
+                    monospace;
+                  color: #6d7a7c;
+                "
+              >
+                ENTRADA
+              </div>
+              <div
+                style="
+                  font:
+                    800 34px Archivo,
+                    sans-serif;
+                  color: #fff;
+                  margin-top: 10px;
+                "
+              >
+                240 ms
+              </div>
+              <p
+                style="
+                  margin: 10px 0 0;
+                  font:
+                    300 16px/1.6 Barlow,
+                    sans-serif;
+                  color: #a9b3b4;
+                "
+              >
+                Aparición de paneles y acordeones, solo opacidad y 8px de
+                desplazamiento.
+              </p>
+            </div>
+            <div
+              style="
+                border: 1px solid #1c2224;
+                padding: 24px;
+                background: #0f1213;
+              "
+            >
+              <div
+                style="
+                  font:
+                    400 12px ui-monospace,
+                    Menlo,
+                    monospace;
+                  color: #6d7a7c;
+                "
+              >
+                CARRUSEL
+              </div>
+              <div
+                style="
+                  font:
+                    800 34px Archivo,
+                    sans-serif;
+                  color: #fff;
+                  margin-top: 10px;
+                "
+              >
+                6 s
+              </div>
+              <p
+                style="
+                  margin: 10px 0 0;
+                  font:
+                    300 16px/1.6 Barlow,
+                    sans-serif;
+                  color: #a9b3b4;
+                "
+              >
+                Cambio automático con fundido. Se detiene al pasar el cursor.
+              </p>
+            </div>
+            <div
+              style="
+                border: 1px solid #1c2224;
+                padding: 24px;
+                background: #0f1213;
+              "
+            >
+              <div
+                style="
+                  font:
+                    400 12px ui-monospace,
+                    Menlo,
+                    monospace;
+                  color: #6d7a7c;
+                "
+              >
+                PROHIBIDO
+              </div>
+              <div
+                style="
+                  font:
+                    800 34px Archivo,
+                    sans-serif;
+                  color: #fff;
+                  margin-top: 10px;
+                "
+              >
+                Rebotes
+              </div>
+              <p
+                style="
+                  margin: 10px 0 0;
+                  font:
+                    300 16px/1.6 Barlow,
+                    sans-serif;
+                  color: #a9b3b4;
+                "
+              >
+                Sin escalados en hover, sin parallax, sin animaciones de más de
+                400 ms.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section style="padding: 88px 56px; border-bottom: 1px solid #1c2224">
+          <div
+            style="
+              font:
+                600 12px Barlow,
+                sans-serif;
+              letter-spacing: 0.32em;
+              color: #28e0c8;
+            "
+          >
+            10 · ACCESIBILIDAD
+          </div>
+          <h2
+            style="
+              margin: 16px 0 0;
+              font:
+                800 46px/1.05 Archivo,
+                sans-serif;
+              color: #fff;
+            "
+          >
+            Mínimos obligatorios
+          </h2>
+          <div
+            style="
+              display: grid;
+              grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+              gap: 24px;
+              margin-top: 36px;
+            "
+          >
+            <div style="border-top: 2px solid #28e0c8; padding-top: 20px">
+              <div
+                style="
+                  font:
+                    700 20px Archivo,
+                    sans-serif;
+                  color: #fff;
+                "
+              >
+                Contraste 4.5:1
+              </div>
+              <p
+                style="
+                  margin: 10px 0 0;
+                  font:
+                    300 16px/1.6 Barlow,
+                    sans-serif;
+                  color: #a9b3b4;
+                "
+              >
+                Texto normal sobre su fondo real, incluida la foto ya
+                oscurecida. Titulares grandes, 3:1.
+              </p>
+            </div>
+            <div style="border-top: 2px solid #1c2224; padding-top: 20px">
+              <div
+                style="
+                  font:
+                    700 20px Archivo,
+                    sans-serif;
+                  color: #fff;
+                "
+              >
+                Foco visible
+              </div>
+              <p
+                style="
+                  margin: 10px 0 0;
+                  font:
+                    300 16px/1.6 Barlow,
+                    sans-serif;
+                  color: #a9b3b4;
+                "
+              >
+                Contorno de 2px en cian claro con 3px de separación. No se
+                elimina nunca.
+              </p>
+            </div>
+            <div style="border-top: 2px solid #1c2224; padding-top: 20px">
+              <div
+                style="
+                  font:
+                    700 20px Archivo,
+                    sans-serif;
+                  color: #fff;
+                "
+              >
+                Área de toque 44px
+              </div>
+              <p
+                style="
+                  margin: 10px 0 0;
+                  font:
+                    300 16px/1.6 Barlow,
+                    sans-serif;
+                  color: #a9b3b4;
+                "
+              >
+                Alto mínimo de botones, filas de menú y puntos de carrusel.
+              </p>
+            </div>
+            <div style="border-top: 2px solid #1c2224; padding-top: 20px">
+              <div
+                style="
+                  font:
+                    700 20px Archivo,
+                    sans-serif;
+                  color: #fff;
+                "
+              >
+                Nunca solo color
+              </div>
+              <p
+                style="
+                  margin: 10px 0 0;
+                  font:
+                    300 16px/1.6 Barlow,
+                    sans-serif;
+                  color: #a9b3b4;
+                "
+              >
+                Los estados llevan texto o icono además del color: "sesión
+                registrada", no solo el punto verde.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section style="padding: 88px 56px">
+          <div
+            style="
+              font:
+                600 12px Barlow,
+                sans-serif;
+              letter-spacing: 0.32em;
+              color: #28e0c8;
+            "
+          >
+            11 · TONO Y CONTENIDO
+          </div>
+          <h2
+            style="
+              margin: 16px 0 0;
+              font:
+                800 46px/1.05 Archivo,
+                sans-serif;
+              color: #fff;
+            "
+          >
+            Cómo escribimos
+          </h2>
+          <div
+            style="
+              display: grid;
+              grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+              gap: 24px;
+              margin-top: 40px;
+            "
+          >
+            <div
+              style="
+                border: 1px solid #1c2224;
+                padding: 24px;
+                background: #0f1213;
+              "
+            >
+              <div
+                style="
+                  font:
+                    700 20px Archivo,
+                    sans-serif;
+                  color: #fff;
+                "
+              >
+                Reglas
+              </div>
+              <ul
+                style="
+                  margin: 12px 0 0;
+                  padding-left: 20px;
+                  font:
+                    300 16px/1.7 Barlow,
+                    sans-serif;
+                  color: #a9b3b4;
+                "
+              >
+                <li>Español, tuteo, frases cortas y en presente.</li>
+                <li>
+                  Mayúsculas completas solo en botones, etiquetas y metadatos.
+                </li>
+                <li>
+                  Cifras concretas: "12 semanas", "4 sesiones", no "muchas".
+                </li>
+                <li>
+                  Sin emoji, sin signos de exclamación, sin jerga de gimnasio.
+                </li>
+                <li>
+                  Los textos legales se nombran igual que en el documento
+                  oficial.
+                </li>
+              </ul>
+            </div>
+            <div
+              style="
+                border: 1px solid #1c2224;
+                padding: 24px;
+                background: #0f1213;
+              "
+            >
+              <div
+                style="
+                  font:
+                    600 13px Barlow,
+                    sans-serif;
+                  letter-spacing: 0.14em;
+                  color: #4ad991;
+                "
+              >
+                ASÍ SÍ
+              </div>
+              <div
+                style="
+                  margin-top: 14px;
+                  display: flex;
+                  flex-direction: column;
+                  gap: 12px;
+                  font:
+                    300 17px/1.5 Barlow,
+                    sans-serif;
+                  color: #e8ecec;
+                "
+              >
+                <span>"De cero a diez kilómetros en 12 semanas."</span
+                ><span
+                  >"Tu entrenador ve tu progreso y ajusta lo que haga
+                  falta."</span
+                ><span>"Elige un plan y crea tu cuenta."</span>
+              </div>
+            </div>
+            <div
+              style="
+                border: 1px solid #1c2224;
+                padding: 24px;
+                background: #0f1213;
+              "
+            >
+              <div
+                style="
+                  font:
+                    600 13px Barlow,
+                    sans-serif;
+                  letter-spacing: 0.14em;
+                  color: #f2685c;
+                "
+              >
+                ASÍ NO
+              </div>
+              <div
+                style="
+                  margin-top: 14px;
+                  display: flex;
+                  flex-direction: column;
+                  gap: 12px;
+                  font:
+                    300 17px/1.5 Barlow,
+                    sans-serif;
+                  color: #8e9a9b;
+                "
+              >
+                <span>"¡Transforma tu vida hoy mismo!"</span
+                ><span>"La plataforma líder en soluciones fitness."</span
+                ><span>"Da el primer paso hacia la mejor versión de ti."</span>
+              </div>
+            </div>
+          </div>
+          <div
+            style="
+              margin-top: 44px;
+              border-top: 1px solid #1c2224;
+              padding-top: 26px;
+              display: flex;
+              justify-content: space-between;
+              gap: 24px;
+              flex-wrap: wrap;
+              align-items: flex-end;
+            "
+          >
+            <div>
+              <div
+                style="
+                  font:
+                    900 22px/1 Archivo,
+                    sans-serif;
+                  color: #fff;
+                "
+              >
+                FIT<span style="color: #28e0c8">TRAINING</span>
+              </div>
+              <div
+                style="
+                  font:
+                    300 15px Barlow,
+                    sans-serif;
+                  color: #6d7a7c;
+                  margin-top: 8px;
+                "
+              >
+                Sistema de diseño · versión 1.0
+              </div>
+            </div>
+            <div
+              style="
+                font:
+                  400 12px ui-monospace,
+                  Menlo,
+                  monospace;
+                color: #6d7a7c;
+                letter-spacing: 0.08em;
+                max-width: 420px;
+                text-align: right;
+              "
+            >
+              FUENTES: Archivo y Barlow (Google Fonts) · Repositorio:
+              fittraining-web (develop) · Documentos legales: catálogo de
+              src/lib/legal.ts
+            </div>
+          </div>
+        </section>
+      </div>
+    </x-dc>
+  </body>
+</html>

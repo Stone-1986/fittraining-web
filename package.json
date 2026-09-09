@@ -14,7 +14,11 @@
     "lint": "eslint",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
-    "gates": "pnpm run typecheck && pnpm run lint && pnpm run format:check && pnpm run build"
+    "gates": "node scripts/gates.mjs",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:cov": "vitest run --coverage",
+    "gates:check": "node scripts/gates.mjs --check"
   },
   "dependencies": {
     "marked": "^18.0.12",
@@ -25,14 +29,20 @@
   "devDependencies": {
     "@eslint/eslintrc": "^3",
     "@tailwindcss/postcss": "^4",
+    "@testing-library/jest-dom": "^7.0.1",
+    "@testing-library/react": "^16.3.3",
+    "@testing-library/user-event": "^14.6.7",
     "@types/node": "^22",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "@vitest/coverage-v8": "^5.0.0",
     "eslint": "^9",
     "eslint-config-next": "15.5.25",
     "eslint-config-prettier": "^10",
+    "jsdom": "^30.0.1",
     "prettier": "^3",
     "tailwindcss": "^4",
-    "typescript": "^5"
+    "typescript": "^5",
+    "vitest": "^5.0.0"
   }
 }

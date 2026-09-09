@@ -1,32 +1,468 @@
 @import 'tailwindcss';
 
-/*
- * Paleta minima. La direccion visual todavia no esta decidida (W-D3): esto es
- * lo suficiente para que el hola mundo se vea y no prejuzga el diseño.
- */
+/* ==========================================================================
+ * SISTEMA DE DISENO DE fittraining — la unica fuente de verdad.
+ *
+ * Traduce a tokens el canvas `docs/sistema_diseno/Sistema de Diseno
+ * fittraining.dc.html` (version 1.0). Si el canvas y este archivo se
+ * contradicen, se corrige el que este mal — pero el codigo solo lee de aqui.
+ *
+ * NINGUN OTRO ARCHIVO DEL REPO ESCRIBE UN COLOR. Ni un hex, ni un `rgb()`,
+ * ni un `text-neutral-500` de la paleta que Tailwind trae de fabrica.
+ *
+ * LAS CUATRO DECISIONES DEL SISTEMA, que explican casi todo lo de abajo:
+ *   1. FONDO OSCURO SIEMPRE. No hay modo claro. La foto es la que da luz.
+ *   2. UN SOLO ACENTO. El cian marca lo accionable y el dato clave.
+ *   3. TITULARES PESADOS. La jerarquia la hace el peso, no el color.
+ *   4. BLOQUES A SANGRE. Las secciones se separan con una linea de 1px, no
+ *      con tarjetas flotantes. Por eso no hay ni un token de sombra.
+ *
+ * POR QUE NO HAY BLOQUE DE MODO CLARO Y ANTES SI LO HABIA: el sistema
+ * anterior tenia dos paletas y `@media (prefers-color-scheme)`. El canvas
+ * 1.0 decide que la interfaz vive sobre negro carbon y punto. Mantener una
+ * paleta clara que nadie usa es codigo muerto que hay que seguir midiendo.
+ * `color-scheme: dark` en `:root` le dice al navegador que pinte oscuros
+ * tambien los controles nativos (barra de scroll, selector de fecha).
+ *
+ * COMO ESTA ORGANIZADO, y por que en dos bloques:
+ *   1. `:root` declara los VALORES (que cian, que gris).
+ *   2. `@theme inline` declara los ROLES (`--color-primary`), que es lo que
+ *      convierte cada token en una clase de Tailwind (`bg-primary`).
+ *
+ * LOS NOMBRES NO SON LIBRES: son los que espera shadcn/ui (`--background`,
+ * `--primary`, `--muted`, `--ring`...). El panel del entrenador lo va a
+ * querer (dialogos, tablas, selectores de fecha) y respetar la convencion
+ * hoy cuesta cero.
+ *
+ * DE AHI UNA TRADUCCION QUE HAY QUE TENER PRESENTE: el canvas llama
+ * `--accent` al cian de marca. AQUI ESE ROL ES `--primary`. `--accent`
+ * se queda reservado para lo que shadcn entiende por acento —el fondo tenue
+ * de un `hover`— porque si le robamos el nombre, el dia que se instale
+ * shadcn los menus saldrian cian fosforito. Cuando el canvas dice «acento»,
+ * el codigo escribe `bg-primary`.
+ * ========================================================================== */
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  color-scheme: dark;
+
+  /* --- Superficies -------------------------------------------------------
+   * Tres niveles y dos bordes. `background` es el lienzo, `card` es la
+   * superficie que se apoya encima, `muted` la superficie alta (cabecera de
+   * tabla, fondo de un hover).
+   *
+   * DOS TOKENS DE BORDE Y UNO DE LIMITE, y la diferencia es de
+   * accesibilidad, no estetica:
+   *   `border`        separa cosas. Es decorativo; la norma no le exige
+   *                   contraste y por eso puede ser tan sutil (1.21:1).
+   *   `border-strong` separa con mas presencia (marco de tarjeta sobre
+   *                   superficie alta). Sigue siendo decorativo.
+   *   `input`         es el limite de algo que se OPERA: un campo, una
+   *                   casilla, un punto de carrusel. WCAG 1.4.11 le exige
+   *                   3:1 contra el fondo o la gente no ve donde escribir.
+   *
+   * OJO: el canvas dibuja los campos de formulario con `--border-2`
+   * (#2A3234), que mide 1.49:1 sobre el fondo — no llega a 3:1 y por tanto
+   * incumple 1.4.11. `--input` es ese mismo gris subido al minimo que
+   * cumple. Es una correccion deliberada al canvas, no una desviacion. */
+  --background: #0b0d0e;
+  --card: #0f1213;
+  --muted: #141a1b;
+  --border: #1c2224; /* decorativo — 1.21:1, sin requisito */
+  --border-strong: #2a3234; /* decorativo — 1.49:1, sin requisito */
+  --input: #546366; /* operable — 3.11:1 sobre background (WCAG 1.4.11) */
+
+  /* --- Texto -------------------------------------------------------------
+   * CINCO NIVELES, no dos. Con fondo oscuro y una sola familia de color, la
+   * jerarquia de un parrafo se hace con la luminosidad del gris; si solo
+   * hay `foreground` y `muted-foreground`, todo lo secundario acaba con el
+   * mismo peso y la pagina se lee plana.
+   *
+   *   title    blanco puro. SOLO titulares y texto sobre el boton cian.
+   *   fore...  cuerpo fuerte, el texto por defecto.
+   *   muted    cuerpo secundario, los parrafos de apoyo.
+   *   subtle   terciario, la navegacion inactiva.
+   *   meta     metadatos monoespaciados (semanas, sesiones, versiones).
+   *
+   * `meta` NO es el #6D7A7C del canvas: ese mide 4.38:1 sobre el fondo y
+   * 3.96:1 sobre la superficie alta, y como los metadatos van a 11-13px son
+   * texto normal, que exige 4.5:1. Subido al minimo que cumple en las tres
+   * superficies. Segunda correccion deliberada al canvas.
+   *
+   * `disabled` esta exento de contraste por WCAG 1.4.3, asi que su 3.29:1
+   * es correcto: lo que comunica es «esto no se puede operar». */
+  --title: #ffffff; /* 19.48:1 */
+  --foreground: #e8ecec; /* 16.36:1 */
+  --muted-foreground: #a9b3b4; /* 9.08:1 */
+  --subtle-foreground: #8e9a9b; /* 6.72:1 */
+  --meta-foreground: #768486; /* 5.02:1 — canvas #6D7A7C daba 4.38:1 */
+  --disabled-foreground: #5b6668; /* 3.29:1 — exento (WCAG 1.4.3) */
+
+  /* --- Decorativo --------------------------------------------------------
+   * SOLO DECORATIVO. Mide 1.32:1 sobre el fondo, muy por debajo de cualquier
+   * minimo: NUNCA para texto que informe de algo. Existe para el numero
+   * fantasma de los pasos, que va `aria-hidden` dentro de un <ol> y cuyo
+   * orden ya comunica la lista. Si alguna vez se usa en algo legible, esta
+   * mal usado. */
+  --decorative: #1f2a2c;
+
+  /* --- Marca -------------------------------------------------------------
+   * `primary` es EL cian, y es LA ACCION: el boton principal, el enlace, el
+   * dato del plan. Si todo es cian, nada lo es — como mucho un boton
+   * primario por vista.
+   *
+   * Los tres estados no son decoracion: el sistema exige que un control
+   * responda al hover y al clic, y tenerlos como token evita que cada
+   * pantalla invente su propio `primary/90`.
+   *
+   * `primary-soft` es el cian de fondo: sirve de relleno a una insignia
+   * («INSCRITO») con el cian de texto encima. Medido: 9.02:1.
+   *
+   * NO EXISTE `warm`. El sistema anterior tenia una terracota de
+   * contrapunto; el canvas 1.0 decide un solo acento y la elimina. */
+  --primary: #28e0c8; /* 11.67:1 sobre background */
+  --primary-hover: #7cf1e2; /* 14.41:1 */
+  --primary-pressed: #17b9a4; /* 7.90:1 */
+  --primary-soft: #0e2b28; /* fondo de insignia */
+  --primary-foreground: #0b0d0e; /* 11.67:1 sobre el cian */
+
+  /* --- Roles de shadcn que NO son la marca -------------------------------
+   * Reservados, con el valor que shadcn espera: superficies tenues para
+   * `hover` y para botones secundarios. Ver la nota de la cabecera. */
+  --secondary: #141a1b;
+  --secondary-foreground: #e8ecec;
+  --accent: #141a1b; /* fondo de hover — RESERVADO, no es el cian */
+  --accent-foreground: #e8ecec;
+
+  /* --- Semanticos --------------------------------------------------------
+   * SOLO PARA ESTADO, NUNCA DECORATIVOS. Y nunca solos: WCAG 1.4.1 prohibe
+   * comunicar algo unicamente con color, asi que van siempre con texto o
+   * icono al lado — «sesion registrada», no solo el punto verde.
+   *
+   * `destructive` es el rojo de error Y el de la accion que no se deshace.
+   * El canvas no dibuja un boton destructivo, pero el producto tiene uno de
+   * verdad —eliminar la cuenta, con su aviso legal— y presentarlo con el
+   * mismo cian que «Guardar» es como se cometen accidentes. */
+  --success: #4ad991; /* 10.78:1 — sesion registrada */
+  --warning: #f2c14e; /* 11.61:1 — plan por vencer */
+  --destructive: #f2685c; /* 6.41:1 — dato invalido / borrar */
+  --info: #58b6e8; /* 8.60:1 — nota del entrenador */
+  --success-foreground: #0b0d0e;
+  --warning-foreground: #0b0d0e;
+  --destructive-foreground: #0b0d0e;
+  --info-foreground: #0b0d0e;
+
+  /* --- Foco --------------------------------------------------------------
+   * Cian claro, 2px, separado 3px. El canvas lo fija asi (§ 10) y mide 9.68:1
+   * en la peor superficie, de sobra sobre el 3:1 que pide 1.4.11. La parte
+   * que importa no es el color: es que exista en TODO lo enfocable. */
+  --ring: #7cf1e2;
+
+  /* --- Tipografia --------------------------------------------------------
+   * DOS FAMILIAS Y UN MONOESPACIADO, que es lo que decide el canvas § 03.
+   * Las inyecta next/font desde layout.tsx (se auto-hospedan: ni una
+   * peticion a Google, ni salto de layout al cargar).
+   *
+   *   display  Archivo 700/800/900 — titulares y numeros grandes. Nunca por
+   *            debajo de 20px: a tamano pequeno un peso 900 se empasta.
+   *   body     Barlow 300/400/500/600 — parrafos en 300, interfaz en 500,
+   *            botones y etiquetas en 600.
+   *   mono     metadatos a 11-13px. No se auto-hospeda ni hace falta: usa la
+   *            monoespaciada del sistema, que ya esta instalada. */
+  --font-body: var(--font-barlow);
+  --font-display: var(--font-archivo);
+
+  /* --- Movimiento --------------------------------------------------------
+   * Discreto y corto (canvas § 09). Como token y no a ojo en cada
+   * componente, que es como aparecen los 300ms sueltos. */
+  --duration-hover: 160ms;
+  --duration-enter: 240ms;
+  --ease-out: cubic-bezier(0, 0, 0.2, 1);
 }
 
+/* --------------------------------------------------------------------------
+ * ROLES -> CLASES DE TAILWIND
+ *
+ * Cada linea de aqui es la que hace existir una clase. `--color-primary`
+ * habilita `bg-primary`, `text-primary`, `border-primary` y `ring-primary`
+ * de una sola vez.
+ *
+ * Va `inline` para que la clase compile a `var(--primary)` y no al valor
+ * congelado. Hoy no hay un segundo tema que lo aproveche, pero mantenerlo
+ * es lo que permite que `.module.css` y Tailwind lean el mismo token.
+ * ------------------------------------------------------------------------- */
 @theme inline {
   --color-background: var(--background);
+  --color-card: var(--card);
+  --color-muted: var(--muted);
+
+  --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --color-title: var(--title);
   --color-foreground: var(--foreground);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-subtle-foreground: var(--subtle-foreground);
+  --color-meta-foreground: var(--meta-foreground);
+  --color-disabled-foreground: var(--disabled-foreground);
+
+  --color-decorative: var(--decorative);
+
+  --color-primary: var(--primary);
+  --color-primary-hover: var(--primary-hover);
+  --color-primary-pressed: var(--primary-pressed);
+  --color-primary-soft: var(--primary-soft);
+  --color-primary-foreground: var(--primary-foreground);
+
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+
+  --color-success: var(--success);
+  --color-success-foreground: var(--success-foreground);
+  --color-warning: var(--warning);
+  --color-warning-foreground: var(--warning-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-info: var(--info);
+  --color-info-foreground: var(--info-foreground);
+
+  /* `card` y `muted` no llevan `-foreground` propio: sobre las tres
+   * superficies el texto es el mismo. Inventar `--card-foreground` para que
+   * valga lo mismo que `--foreground` es un token que hay que mantener y que
+   * nunca cambia. Si algun dia una superficie pide otro texto, se anade. */
+
+  /* Los roles de Tailwind (`--font-sans`) y los tokens de `:root`
+   * (`--font-body`) se llaman distinto A PROPOSITO: si compartieran nombre
+   * la declaracion se referenciaria a si misma y no resolveria a nada. */
+  --font-sans: var(--font-body);
+  --font-heading: var(--font-display);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* CUATRO RADIOS Y NO MAS, y el sistema los reparte por TIPO DE PIEZA, no por
+ * tamano (canvas § 04):
+ *
+ *   0        bloques, secciones y tarjetas. Es el valor por defecto del
+ *            sistema: `rounded-none` de Tailwind, y no hace falta token.
+ *   sm 2px   el boton rectangular de la barra de navegacion.
+ *   pill     el boton de accion. Es la forma por defecto de un boton.
+ *   full     avatares. `rounded-full` de Tailwind.
+ *
+ * ANTES ERAN sm/md/lg (4/8/12px) y se aplicaban a todo. Se cambia porque el
+ * sistema nuevo no tiene esquinas suaves: la tarjeta es un rectangulo con
+ * borde de 1px, y lo unico redondeado es la pastilla del boton. Un radio
+ * intermedio suelto por el CSS es exactamente lo que un sistema evita.
+ *
+ * Este bloque NO es `inline` porque sus valores son literales: asi Tailwind
+ * los publica ademas como variables en `:root` y las hojas `.module.css`
+ * pueden leerlos con `var(--radius-sm)` en vez de reinventar un numero. */
+@theme {
+  --radius-sm: 0.125rem; /* 2px */
+  --radius-pill: 1.625rem; /* 26px */
+
+  /* LA ESCALA TIPOGRAFICA (canvas § 03), con su interlineado pegado.
+   *
+   * Existe por la misma razon que los colores: sin ella cada pantalla elige
+   * un `text-[21px]` a ojo y a las tres paginas hay siete tamanos. La escala
+   * de fabrica de Tailwind no sirve tal cual —no tiene 17px ni 21px, que son
+   * los dos tamanos de lectura del sistema—, asi que se anaden los del canvas.
+   *
+   * LOS NOMBRES SON DE ROL, NO DE TAMANO, y eso importa: el nivel de un
+   * encabezado (`h1`...`h6`) describe la jerarquia del documento y el tamano
+   * se ajusta con la clase. Un `h2` que visualmente es pequeno lleva `h2` por
+   * semantica y `text-h4` por tamano; son dos decisiones distintas. */
+  --text-display: 6rem; /* 96px — H1 de heroe */
+  --text-display--line-height: 0.95;
+  --text-display--letter-spacing: -0.02em;
+  --text-h2: 3.25rem; /* 52px */
+  --text-h2--line-height: 1.05;
+  --text-h3: 2.125rem; /* 34px */
+  --text-h3--line-height: 1;
+  --text-h4: 1.375rem; /* 22px */
+  --text-h4--line-height: 1.2;
+  --text-lead: 1.3125rem; /* 21px — parrafo de entrada */
+  --text-lead--line-height: 1.5;
+  --text-body: 1.0625rem; /* 17px — parrafo */
+  --text-body--line-height: 1.55;
+  --text-ui: 0.9375rem; /* 15px — navegacion, interfaz */
+  --text-ui--line-height: 1.2;
+  --text-label: 0.75rem; /* 12px — etiqueta y metadato */
+  --text-label--line-height: 1.2;
+  --text-action: 0.8125rem; /* 13px — el texto de un boton */
+  --text-action--line-height: 1.2;
+  --text-action-lg: 0.875rem; /* 14px — boton grande, heroe y cierre */
+  --text-action-lg--line-height: 1.2;
+
+  /* EL LOGOTIPO, que no es un escalon de la escala sino una MARCA.
+   *
+   * Un logotipo tiene proporciones fijas por definicion: no se elige su
+   * tamano segun la jerarquia de la pagina, se dibuja como esta dibujado. Por
+   * eso tiene tokens propios en vez de tomar prestado `text-h4`, que es lo
+   * que hacia antes y por lo que salia a 22px en la cabecera cuando el canvas
+   * la pinta a 26.
+   *
+   * `brand-mark` es la palabra FITTRAINING en la cabecera; en el PIE el
+   * canvas la dibuja mas pequena y ahi si coincide con `text-h4` (22px), asi
+   * que el pie no usa estos tokens.
+   *
+   * OJO CON `brand-tag`: 9px es el tamano que fija el canvas para la bajada
+   * «PLANES DE ENTRENAMIENTO», y es MUY pequeno. Se sostiene porque es parte
+   * del logotipo —una linea de marca en versalitas muy espaciadas, no texto
+   * que alguien tenga que leer para usar la pagina— y porque su color cumple
+   * 5.02:1. Si alguna vez hay que comunicar algo ahi, no es este token. */
+  --text-brand-mark: 1.625rem; /* 26px — FITTRAINING en la cabecera */
+  --text-brand-mark--line-height: 1;
+  --text-brand-mark--letter-spacing: 0.02em;
+  --text-brand-tag: 0.5625rem; /* 9px — la bajada del logotipo */
+  --text-brand-tag--line-height: 1;
+
+  /* EL TRACKING, tambien por rol. Son cinco valores fijos del canvas y
+   * ninguno cae en la escala de fabrica de Tailwind (`tracking-widest` es
+   * .1em), asi que sin token acabarian como `tracking-[.14em]` sueltos. */
+  --tracking-brand: 0.42em; /* «PLANES DE ENTRENAMIENTO» bajo el logotipo */
+  --tracking-eyebrow: 0.32em; /* «COMO FUNCIONA», el rotulo de seccion */
+  --tracking-label: 0.14em; /* botones e insignias */
+  --tracking-meta: 0.08em; /* metadatos monoespaciados */
+  --tracking-nav: 0.06em; /* el boton rectangular de la barra */
+
+  /* EL MOVIMIENTO POR DEFECTO, en el sitio donde Tailwind lo lee.
+   *
+   * Al fijar el valor por defecto de la transicion, un `transition-colors`
+   * pelado ya sale a 160ms con la curva del sistema (§ 09) — sin que cada
+   * componente tenga que acordarse de anadir `duration-...`. Es la forma de
+   * que la regla se cumpla por omision en vez de por disciplina. */
+  --default-transition-duration: 160ms;
+  --default-transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
+
+  /* LOS DOS ANCHOS DE COLUMNA, que consume `Container` y nadie mas.
+   *
+   * `prose-doc` no se llama `prose` a secas porque Tailwind ya trae un
+   * `max-w-prose` de fabrica (65ch) y pisarlo dejaria dos anchos con el
+   * mismo nombre — exactamente el problema que el componente evita. */
+  --container-prose-doc: 620px; /* el limite de linea de un parrafo (§ 03) */
+  --container-wide: 1120px; /* rejillas de tarjeta y panel */
 }
 
+/* --------------------------------------------------------------------------
+ * BASE
+ * ------------------------------------------------------------------------- */
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family:
-    system-ui,
-    -apple-system,
-    'Segoe UI',
-    sans-serif;
+  font-family: var(--font-body), system-ui, sans-serif;
+  font-weight: 300;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Los titulares llevan Archivo por defecto. Va aqui y no en cada componente
+ * porque el sistema no admite un `h2` en la tipografia de cuerpo: si alguna
+ * vez hace falta, se pide explicitamente con `font-sans`. */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-display), system-ui, sans-serif;
+  color: var(--title);
+  text-wrap: balance;
+}
+
+p {
+  text-wrap: pretty;
+}
+
+/* El foco visible del teclado, una vez y para todo el sitio. `:focus-visible`
+ * y no `:focus` para que el anillo salga al tabular pero no al hacer clic.
+ * 3px de separacion, no 2: sobre fondo oscuro un anillo pegado al borde del
+ * control se confunde con el borde del propio control. */
+:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 3px;
+}
+
+/* Cifras de ancho fijo. Suena a detalle menor y no lo es en esta app: en una
+ * tabla de series, pesos y tiempos, las cifras proporcionales bailan de fila
+ * en fila y la columna se vuelve dificil de comparar de un vistazo. */
+.tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+/* --------------------------------------------------------------------------
+ * IMAGEN: LOS SCRIM Y EL HUECO DE FOTO
+ *
+ * Estan aqui, y no en un componente, por la misma razon que los colores: son
+ * degradados de color. Un `bg-[linear-gradient(...)]` en una pantalla seria
+ * exactamente el hex suelto que la regla 1 prohibe.
+ *
+ * El sistema (§ 08) dice que NUNCA va texto directamente sobre una foto:
+ * siempre un degradado de proteccion en medio. Dos formas, una por sitio:
+ * lateral para el heroe (el texto vive a la izquierda) e inferior para la
+ * tarjeta de plan (el texto se apoya abajo).
+ * ------------------------------------------------------------------------- */
+.scrim-side {
+  background: linear-gradient(
+    100deg,
+    color-mix(in srgb, var(--background) 95%, transparent) 0%,
+    color-mix(in srgb, var(--background) 85%, transparent) 38%,
+    color-mix(in srgb, var(--background) 35%, transparent) 72%,
+    color-mix(in srgb, var(--background) 55%, transparent) 100%
+  );
+}
+
+.scrim-bottom {
+  background: linear-gradient(
+    to top,
+    color-mix(in srgb, var(--background) 94%, transparent),
+    color-mix(in srgb, var(--background) 35%, transparent)
+  );
+}
+
+/* El hueco de foto mientras no hay fotos. El canvas lo define como parte del
+ * sistema, no como un apano: un bloque con el patron de rayas y la etiqueta
+ * de lo que falta. Tenerlo como clase evita que cada pantalla dibuje su
+ * propio placeholder gris y que el dia de las fotos haya que buscarlos. */
+/* --------------------------------------------------------------------------
+ * LA REJILLA DEL SISTEMA
+ *
+ * `repeat(auto-fit, minmax(320px, 1fr))` es la unica rejilla que el sistema
+ * usa (§ 04): cuatro columnas en escritorio, dos en tableta, una en movil,
+ * sin huecos huerfanos en la ultima fila y SIN ESCRIBIR UN SOLO PUNTO DE
+ * QUIEBRE.
+ *
+ * Es una clase global y no un componente porque no lleva estado ni variantes,
+ * y porque asi la puede usar tanto el JSX como `legal-shell.module.css`. El
+ * `minmax` con `min(320px, 100%)` en vez de `320px` a secas evita el
+ * desbordamiento horizontal cuando la pantalla es mas estrecha que la columna
+ * minima — el fallo clasico de este patron en un movil pequeno.
+ * ------------------------------------------------------------------------- */
+.grid-cards {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(min(20rem, 100%), 1fr));
+}
+
+.photo-slot {
+  background: repeating-linear-gradient(
+    115deg,
+    var(--muted),
+    var(--muted) 12px,
+    var(--card) 12px,
+    var(--card) 24px
+  );
+}
+
+/* Respeta a quien pidio menos movimiento en su sistema operativo. Va aqui,
+ * global, para no depender de que cada animacion futura se acuerde. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

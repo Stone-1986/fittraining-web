@@ -92,7 +92,17 @@ export function listVersions(slug: string): string[] {
     .sort(compareSemverDesc);
 }
 
-function compareSemverDesc(a: string, b: string): number {
+/**
+ * Ordena versiones semanticas de la mas nueva a la mas vieja.
+ *
+ * SE EXPORTA SOLO PARA PODER PROBARLA, y eso es deliberado: hoy ningun
+ * documento tiene mas de una version publicada, asi que `listVersions` nunca
+ * llega a llamar al comparador y el contenido real no puede ejercitarlo. La
+ * regla que protege —que `1.10.0` es MAS NUEVA que `1.9.0`, cosa que el orden
+ * alfabetico invierte— solo se romperia el dia que un documento llegue a la
+ * decena, es decir el dia en que nadie estaria mirando esto.
+ */
+export function compareSemverDesc(a: string, b: string): number {
   const pa = a.split('.').map(Number);
   const pb = b.split('.').map(Number);
   for (let i = 0; i < 3; i++) {
@@ -126,24 +136,24 @@ export function renderDocument(
   version: string,
 ): RenderedDocument {
   const raw = readFileSync(join(CONTENT_ROOT, slug, `${version}.md`), 'utf-8');
-  const sinComentarios = raw.replace(/<!--[\s\S]*?-->/g, '');
+  const withoutComments = raw.replace(/<!--[\s\S]*?-->/g, '');
 
   const toc: TocEntry[] = [];
-  const usados = new Set<string>();
+  const used = new Set<string>();
 
   const renderer = new marked.Renderer();
   renderer.heading = function ({ tokens, depth }) {
     const text = this.parser.parseInline(tokens);
-    const plano = text.replace(/<[^>]+>/g, '');
-    const id = uniqueSlug(plano, usados);
+    const plain = text.replace(/<[^>]+>/g, '');
+    const id = uniqueSlug(plain, used);
     // Solo los `##` van al menu: los `#` son el titulo del documento y los
     // `###` son subdivisiones de una seccion (4.1, 4.2...) que harian el
     // menu mas largo que util.
-    if (depth === 2) toc.push({ id, text: plano });
+    if (depth === 2) toc.push({ id, text: plain });
     return `<h${depth} id="${id}">${text}</h${depth}>\n`;
   };
 
-  const html = marked.parse(sinComentarios, {
+  const html = marked.parse(withoutComments, {
     renderer,
     gfm: true,
     async: false,
@@ -152,7 +162,7 @@ export function renderDocument(
   return { html, toc };
 }
 
-function uniqueSlug(text: string, usados: Set<string>): string {
+function uniqueSlug(text: string, used: Set<string>): string {
   const base =
     text
       .toLowerCase()
@@ -163,7 +173,7 @@ function uniqueSlug(text: string, usados: Set<string>): string {
 
   let slug = base;
   let n = 2;
-  while (usados.has(slug)) slug = `${base}-${n++}`;
-  usados.add(slug);
+  while (used.has(slug)) slug = `${base}-${n++}`;
+  used.add(slug);
   return slug;
 }
