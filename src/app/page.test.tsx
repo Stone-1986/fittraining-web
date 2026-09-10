@@ -162,21 +162,60 @@ describe('la portada', () => {
   it('las notas de produccion de los huecos de foto no se anuncian', () => {
     const { container } = render(<Home />);
 
-    // Mientras no hay fotos, cada hueco lleva escrito que falta y en que
-    // tamano. Es una nota para el equipo: el dia que llegue la imagen, su
-    // sitio lo ocupa un `alt`. Hasta entonces esta fuera del arbol de
-    // accesibilidad, y aqui se comprueba que sigue estandolo.
+    // Un hueco sin foto lleva escrito que falta y en que tamano. Es una nota
+    // para el equipo: el dia que llegue la imagen, su sitio lo ocupa un `alt`.
+    // Mientras tanto tiene que estar FUERA del arbol de accesibilidad.
+    //
+    // HOY LA PORTADA NO TIENE NINGUNA —llegaron las tres fotos— asi que el
+    // bucle no itera. El test se conserva igualmente: es la unica red que
+    // impide que la nota de la proxima pantalla se lea en voz alta como si
+    // fuera contenido. Lo que SI se retiro es el canario `notas.length > 0`,
+    // que exigia que hubiera huecos pendientes: un test que solo puede fallar
+    // porque el trabajo se termino no prueba nada, avisa de un exito.
     const notas = [...container.querySelectorAll('p')].filter((p) =>
       /^FOTO/.test(p.textContent ?? ''),
     );
 
-    expect(notas.length, 'la portada dibuja huecos de foto').toBeGreaterThan(0);
     for (const nota of notas) {
       expect(
         nota.closest('[aria-hidden="true"]'),
         `«${nota.textContent}» se anunciaria al lector de pantalla`,
       ).not.toBeNull();
     }
+  });
+
+  it('las fotos son decorativas, llevan `sizes` y solo una es prioritaria', () => {
+    const { container } = render(<Home />);
+    const fotos = [...container.querySelectorAll('img')];
+
+    expect(fotos.length, 'la portada ya no dibuja ninguna foto').toBe(3);
+
+    for (const foto of fotos) {
+      // `alt=""` y no «sin alt»: las tres ilustran lo que el texto de al lado
+      // ya dice. Sin el atributo, un lector de pantalla lee la URL del archivo.
+      expect(foto, foto.outerHTML).toHaveAttribute('alt', '');
+      // Sin `sizes`, `fill` asume 100vw y le sirve a un telefono el archivo de
+      // 2400px. Es el fallo mas caro de `next/image` y el mas silencioso,
+      // porque la pantalla se ve bien.
+      expect(foto.getAttribute('sizes'), foto.outerHTML).toBeTruthy();
+    }
+
+    // Solo el heroe es el LCP. Marcar mas de una imagen como prioritaria no
+    // adelanta ninguna: las pone a competir por el mismo ancho de banda.
+    //
+    // SE MIRA POR `loading`, no por `priority`: `priority` es una prop de
+    // React y no llega al DOM. Lo que llega es su efecto —la imagen deja de
+    // ser `loading="lazy"`— y es justo lo que hay que comprobar, porque es lo
+    // que ve el navegador.
+    const prioritarias = fotos.filter(
+      (f) => f.getAttribute('loading') !== 'lazy',
+    );
+    expect(
+      prioritarias.length,
+      prioritarias
+        .map((f) => f.getAttribute('srcset')?.slice(0, 60))
+        .join(' · '),
+    ).toBe(1);
   });
 
   it('todo lo que recibe el foco tiene nombre accesible', () => {

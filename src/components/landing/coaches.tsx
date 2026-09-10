@@ -21,10 +21,25 @@ import { SectionHeading } from '@/components/landing/section-heading';
 export function CoachesBlock() {
   return (
     <section className="grid border-t border-border md:grid-cols-2">
+      {/* LA FOTO DEL BLOQUE, 1200x1400 — la medida de «tarjeta» del sistema
+          (§ Imagen), que es vertical porque ocupa media franja y no una banda.
+
+          `alt=""`: es decoracion. Lo que el bloque afirma lo dice el titular
+          que tiene al lado, y describir la escena obligaria a un lector de
+          pantalla a oir un parrafo para llegar a la misma idea.
+
+          SIN `priority`: esta a media pagina y competiria con el heroe, que
+          es el LCP.
+
+          `sizes` SIGUE A LA REJILLA: la seccion es `md:grid-cols-2`, asi que
+          desde 768px la foto ocupa media ventana y por debajo la ocupa
+          entera. Sin esto Next asume `100vw` y le sirve a un telefono el
+          doble de pixeles de los que caben. */}
       <PhotoSlot
-        aria-hidden="true"
-        label="FOTO · ENTRENADOR CON ATLETA, 1200×1400"
-        className="min-h-120"
+        src="/fotos/entrenador.jpeg"
+        alt=""
+        sizes="(min-width: 768px) 50vw, 100vw"
+        className="relative min-h-120"
       />
 
       <div className="flex flex-col justify-center bg-card px-8 py-20 md:px-14">
@@ -43,7 +58,7 @@ export function CoachesBlock() {
             <PhotoSlot
               key={i}
               aria-hidden="true"
-              className="size-14 rounded-full border border-border-strong"
+              className="relative size-14 rounded-full border border-border-strong"
             />
           ))}
           <p className="font-mono text-label tracking-meta text-meta-foreground">

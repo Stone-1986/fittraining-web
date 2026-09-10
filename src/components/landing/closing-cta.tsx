@@ -29,9 +29,17 @@ import { PhotoSlot } from '@/components/ui/photo-slot';
 export function ClosingCta() {
   return (
     <section className="relative border-t border-border">
+      {/* Es la foto MAS CLARA de las tres candidatas —luminancia media 37 de
+          255 frente a 13 del heroe— y aqui eso es una ventaja, no un defecto:
+          el velo de abajo tapa el 80% y solo deja pasar el 20%. Una toma
+          oscura bajo ese velo no se veria.
+
+          Sin `priority`: esta al final de la pagina y competiria con el
+          heroe, que es el LCP. */}
       <PhotoSlot
-        aria-hidden="true"
-        label="FOTO · SESIÓN DE ENTRENAMIENTO, 2400×1400"
+        src="/fotos/cierre.jpg"
+        alt=""
+        sizes="100vw"
         className="absolute inset-0"
       />
       <div className="absolute inset-0 bg-background/80" aria-hidden="true" />
