@@ -188,11 +188,14 @@ describe('la portada', () => {
     const { container } = render(<Home />);
     const fotos = [...container.querySelectorAll('img')];
 
-    expect(fotos.length, 'la portada ya no dibuja ninguna foto').toBe(3);
+    // Heroe, entrenador, un retrato y cierre. El numero se fija a proposito:
+    // si aparece una quinta, alguien tiene que pasar por este test y decidir
+    // si es decorativa y si lleva `sizes` — que es de lo que va el resto.
+    expect(fotos.length, 'la portada dibuja otras fotos').toBe(4);
 
     for (const foto of fotos) {
-      // `alt=""` y no «sin alt»: las tres ilustran lo que el texto de al lado
-      // ya dice. Sin el atributo, un lector de pantalla lee la URL del archivo.
+      // `alt=""` y no «sin alt»: las cuatro ilustran lo que el texto de al
+      // lado ya dice. Sin el atributo, un lector lee la URL del archivo.
       expect(foto, foto.outerHTML).toHaveAttribute('alt', '');
       // Sin `sizes`, `fill` asume 100vw y le sirve a un telefono el archivo de
       // 2400px. Es el fallo mas caro de `next/image` y el mas silencioso,

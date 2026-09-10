@@ -15,8 +15,14 @@ import { SectionHeading } from '@/components/landing/section-heading';
  *     dado de alta, asi que seria una cifra falsa — el mismo problema que la
  *     insignia «POPULAR», y se resuelve igual: fuera hasta que sea cierta.
  *
- * Los tres retratos son huecos de foto (400×400) y son decorativos:
- * `aria-hidden`, con la etiqueta de lo que falta escrita al lado en texto.
+ * De los tres retratos (400×400) hoy hay UNO. Los otros dos se quedan como
+ * hueco rayado y ya no llevan la etiqueta de lo que falta: con un retrato
+ * real al lado, «RETRATOS DE ENTRENADORES · 400×400» describia media fila y
+ * contradecia la otra media.
+ *
+ * NINGUNO DICE CUANTOS ENTRENADORES HAY, y es deliberado —el mismo criterio
+ * que retiro el avatar «+9»—. Un retrato es una cara, no un recuento; el dia
+ * que los tres sean personas, la fila sigue sin afirmar una cifra.
  */
 export function CoachesBlock() {
   return (
@@ -53,17 +59,32 @@ export function CoachesBlock() {
           entrenador que sigue el progreso de sus atletas inscritos.
         </p>
 
+        {/* LOS TRES RETRATOS (400x400), y hoy solo uno es una persona. Los
+            otros dos siguen siendo el hueco rayado del sistema, sin nota al
+            lado: la nota se retiro cuando llego el primer retrato.
+
+            `overflow-hidden` SOLO EN EL QUE LLEVA FOTO, y hace falta: el
+            `rounded-full` recorta el fondo del hueco vacio —un fondo siempre
+            se recorta al radio— pero NO recorta un hijo posicionado, y la
+            imagen de `PhotoSlot` va `absolute` por `fill`. Sin esa clase el
+            retrato sale cuadrado dentro de un borde redondo.
+
+            `sizes="56px"` porque el hueco mide `size-14` y no cambia con la
+            ventana. Es lo que evita que Next sirva 384px para 56. */}
         <div className="mt-8 flex flex-wrap items-center gap-3.5">
-          {[0, 1, 2].map((i) => (
+          <PhotoSlot
+            src="/fotos/avatar-1.jpeg"
+            alt=""
+            sizes="56px"
+            className="relative size-14 overflow-hidden rounded-full border border-border-strong"
+          />
+          {[0, 1].map((i) => (
             <PhotoSlot
               key={i}
               aria-hidden="true"
               className="relative size-14 rounded-full border border-border-strong"
             />
           ))}
-          <p className="font-mono text-label tracking-meta text-meta-foreground">
-            RETRATOS DE ENTRENADORES · 400×400
-          </p>
         </div>
       </div>
     </section>
