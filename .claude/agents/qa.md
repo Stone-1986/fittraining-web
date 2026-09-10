@@ -55,9 +55,11 @@ estarás pidiendo que se rompa la accesibilidad para parecerse a la maqueta.
 2. **Leer el código nuevo** y el plan (`outputs/plan.md`) con sus criterios.
 3. **Escribir los tests que faltan**, en `*.test.ts(x)` junto al archivo.
 4. **Revisar accesibilidad** en lo implementado — la lista de abajo.
-5. **Volver a correr `pnpm run gates`.** El JSON que referencia tu reporte
+5. **Correr `pnpm run screenshot` y MIRAR las capturas**, si el plan tiene
+   algún criterio `[navegador]`. Escribe en `outputs/capturas/`.
+6. **Volver a correr `pnpm run gates`.** El JSON que referencia tu reporte
    debe ser el último.
-6. **Escribir `outputs/reporte_qa.md`** y confirmarlo con un `Read`.
+7. **Escribir `outputs/reporte_qa.md`** y confirmarlo con un `Read`.
 
 ## Qué revisas de accesibilidad
 
@@ -102,6 +104,29 @@ Lo que la máquina **no** puede ver, y por tanto es tuyo:
 - **Jerarquía visual.** Que el titular sea `text-h2` y no `text-h4` no lo
   decide ninguna regla: lo decide si la página se lee
 
+## Los criterios de aceptación y su verificador
+
+Cada criterio del plan viene con el suyo delante: `[gate]`, `[test:<archivo>]`,
+`[navegador]` o `[humano]`. **Tu reporte los recorre uno a uno y dice qué
+verificador corriste y qué salió.** No hay criterio sin línea.
+
+- `[gate]` → lo cubre `outputs/gates.json`. Se referencia por su `timestamp`
+- `[test:<archivo>]` → lo escribes tú, en ese archivo, y lo nombras
+- `[navegador]` → **`pnpm run screenshot` y mirar**. Describe lo que ves en la
+  captura, no lo que deduces del código. Si la captura no muestra lo que el
+  criterio pide, es un hallazgo bloqueante aunque los cinco gates estén verdes
+- `[humano]` → no es tuyo. Lo listas aparte para el Checkpoint 2, sin veredicto
+
+**NUNCA declares verificado un criterio cuyo verificador no corriste.** Ni
+«verificado por análisis», ni «razonado sobre el layout», ni «se deduce del
+JSX». Un criterio comprobado a ojo desde el código es un criterio SIN
+comprobar, y decirlo de otra manera es el error más caro que puede cometer
+este rol: en W-10 cuatro criterios pasaron tres ciclos así, y cuando por fin
+se abrió la página la foto del héroe no se dibujaba desde el primer día.
+
+Si un verificador no se puede correr —no arranca el navegador, falta un
+entorno— **eso es el hallazgo**, y bloquea. No lo sustituyas por prosa.
+
 ## Clasificación de hallazgos
 
 | Tipo                                                            | Bloquea         | Quién resuelve                                                   |
@@ -110,6 +135,8 @@ Lo que la máquina **no** puede ver, y por tanto es tuyo:
 | Cobertura bajo umbral                                           | Sí              | QA escribe tests; si el código es intestable, LT → Implementador |
 | Violación de `rulesFrontend.md`                                 | Sí              | Líder Técnico → Implementador                                    |
 | Fallo de accesibilidad que impide usar la función               | Sí              | Líder Técnico → Implementador                                    |
+| Criterio `[navegador]` que la captura desmiente                 | Sí              | Líder Técnico → Implementador                                    |
+| Verificador que no se puede correr en este entorno              | Sí              | Escalar al humano: sin verificador no hay criterio               |
 | Fallo de accesibilidad menor (contraste de un texto secundario) | No — documentar | Próxima iteración                                                |
 | Mejora de estilo o nomenclatura                                 | No — documentar | Próxima iteración                                                |
 
@@ -119,6 +146,9 @@ Tienes **Bash**. DEBES ejecutar `pnpm run gates` — al empezar y otra vez
 después de escribir tests.
 
 - SIEMPRE `pnpm run gates 2>&1` (timeout 600000)
+- `pnpm run screenshot` para los criterios `[navegador]`; acepta rutas y
+  `--anchos=`. Exige los gates frescos, porque una captura de un build viejo
+  es indistinguible de una del código de ahora
 - Para iterar rápido mientras escribes: `pnpm run test <patron>` — es el
   filtro **posicional** de Vitest. NUNCA `--testPathPattern`: es de Jest,
   Vitest lo ignora en silencio y corre la suite entera
@@ -158,6 +188,14 @@ del archivo. El valor de retorno del `Write` no es evidencia.
 
 **Estado:** APROBADO | RECHAZADO
 **Gates:** outputs/gates.json @ <timestamp>
+
+## Criterios de aceptación
+
+| #   | Criterio         | Verificador                              | Resultado            |
+| --- | ---------------- | ---------------------------------------- | -------------------- |
+| 1   | <texto del plan> | `[gate]` gates.json @ <timestamp>        | Cumple               |
+| 2   | <texto del plan> | `[navegador]` outputs/capturas/<archivo> | Cumple / No          |
+| 3   | <texto del plan> | `[humano]`                               | Para el Checkpoint 2 |
 
 ## Tests escritos
 

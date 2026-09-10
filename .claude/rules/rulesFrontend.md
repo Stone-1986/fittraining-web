@@ -254,6 +254,15 @@ volviendo al valor del canvas:
   el agente redactó, no prueba que el disco haya cambiado
 - **Un gate que no corre es indistinguible de uno que pasa.** Lo mismo un
   artefacto que no se escribió
+- **Y un criterio de aceptación sin verificador es indistinguible de uno que
+  se cumple.** Cada criterio del plan declara quién lo comprueba —`[gate]`,
+  `[test:<archivo>]`, `[navegador]` o `[humano]`—; uno cuyo verificador no se
+  puede correr hoy no pasa el Checkpoint 1
+- **Lo que exige navegador se mira en un navegador**: `pnpm run screenshot`
+  levanta el build y captura la ruta a 320, 390 y 1440. NUNCA se cierra un
+  criterio `[navegador]` «por análisis» — los cinco gates estuvieron en verde
+  desde que se construyó el héroe hasta que alguien abrió la página, y en todo
+  ese tiempo su foto no se dibujaba
 
 ### El sistema de diseño lo comprueba `lint`
 

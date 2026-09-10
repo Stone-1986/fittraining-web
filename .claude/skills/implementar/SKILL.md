@@ -126,8 +126,12 @@ Presentar al humano:
 - Qué se construyó, en dos frases
 - `git diff --stat`
 - Los gates: `outputs/gates.json` por su `timestamp`
+- **La tabla de criterios del reporte del QA**, y separada de ella la lista de
+  los `[humano]` —los que la cadena no puede cerrar—, uno por línea, como
+  casillas que el humano marca. Ninguno se da por bueno en su nombre
 - Hallazgos no bloqueantes que quedaron documentados
-- Cómo verlo: `pnpm run dev` y la ruta concreta
+- Cómo verlo: `pnpm run dev` y la ruta concreta. Y si hay criterios
+  `[navegador]`, las capturas que ya existen en `outputs/capturas/`
 
 **Parar aquí.** El commit lo decide el humano con `/commit`. Este skill nunca
 ejecuta git.
@@ -159,5 +163,7 @@ falta, no código que corregir.** Proponer al humano el texto para
 - NUNCA intentar un ciclo 4
 - NUNCA ejecutar comandos git — ni el orquestador ni los agentes
 - NUNCA cerrar el checkpoint con los gates en rojo o con `gates.json` viejo
+- NUNCA dar por cumplido un criterio `[navegador]` o `[humano]` sin que alguien
+  lo haya mirado. Se presentan abiertos; los cierra el humano
 - NUNCA aceptar el resumen de un agente como evidencia de que escribió algo
 - Si un agente pide instalar una dependencia → **escalar al humano**, siempre

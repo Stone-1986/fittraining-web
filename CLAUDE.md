@@ -57,6 +57,9 @@ pnpm install
 pnpm run dev            # servidor de desarrollo → localhost:3000
 pnpm run gates          # LOS CINCO GATES → outputs/gates.json (única fuente de números)
 pnpm run gates:check    # ¿gates.json está fresco y en verde? (no corre nada)
+pnpm run screenshot     # abre la web en Chromium y captura / a 320, 390 y 1440
+                        # → outputs/capturas/. Acepta rutas y --anchos=,--alto=
+                        # Es el verificador de los criterios `[navegador]`
 
 pnpm run typecheck      # tsc --noEmit — el ciclo corto mientras se trabaja
 pnpm run lint           # ESLint (sin --fix; es el gate). Incluye la regla
@@ -101,7 +104,9 @@ src/
   lib/
     legal.ts               ← catálogo y render de los documentos
     api/                   ← (futuro) la única puerta a fitmess-api
-scripts/gates.mjs          ← corre los gates y escribe outputs/gates.json
+scripts/
+  gates.mjs                ← corre los gates y escribe outputs/gates.json
+  screenshot.mjs           ← levanta el build y captura la pantalla de verdad
 eslint-rules/
   design-system.mjs        ← la regla que hace de `lint` el guardián del
                              sistema de diseño (colores, escalas, radios)

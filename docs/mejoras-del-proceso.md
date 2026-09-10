@@ -21,7 +21,7 @@ minutos y desbloquean lo demás; P2 espera al próximo ítem de trabajo.
 | 1   | Librerías del navegador                                  | P0        | Hecho     |
 | 2   | Cerrar la deriva del árbol (fotos)                       | P0        | Pendiente |
 | 3   | Reenunciar el hallazgo de `definicion-web.md`            | P0        | Hecho     |
-| 4   | Cada criterio de aceptación declara su verificador       | P1        | Pendiente |
+| 4   | Cada criterio de aceptación declara su verificador       | P1        | Hecho     |
 | 5   | Las excepciones se escriben junto al código              | P1        | Pendiente |
 | 6   | `definicion-web.md` a la lista de lectura + contraste QA | P1        | Pendiente |
 | 7   | La copy del cierre contra Términos § 12                  | P1        | Pendiente |
@@ -176,7 +176,8 @@ frase del cierre, no el botón.
 
 ### 4. Cada criterio de aceptación declara su verificador
 
-- [ ] **Hecho** el ****-**-** ·
+- [x] **Hecho** el 2026-09-10 · `pnpm run screenshot` + notación en cuatro
+      archivos de proceso
 
 **Qué se hace.** En la plantilla de `/planificar`, un sufijo por criterio:
 `[gate]`, `[test:<archivo>]`, `[lint]`, `[humano:navegador]`. Y una regla
@@ -192,6 +193,23 @@ este entorno no hay navegador»— y aun así el ítem avanzó.
 aquí». Es el principio que sostiene el repo, aplicado un nivel más arriba.
 
 **Coste.** Editar una plantilla. Cero herramientas nuevas.
+
+**Lo que se hizo, y por qué costó una herramienta más de lo previsto.** La
+notación son cuatro etiquetas —`[gate]`, `[test:<archivo>]`, `[navegador]`,
+`[humano]`— en la plantilla de `/planificar`, con la regla del Checkpoint 1 y
+una restricción que la hace exigible. Pero dejar `[navegador]` significando
+«que lo mire el humano cuando se acuerde» arreglaba la mitad del problema, así
+que se añadió **`pnpm run screenshot`** (`scripts/screenshot.mjs`): levanta el
+build, abre el Chromium que ya estaba en la caché y captura la ruta a 320, 390
+y 1440 en `outputs/capturas/`. Sin dependencias nuevas y con el mismo guardián
+de frescura que los gates —si `.next` no corresponde al código, se niega, porque
+una captura de un build viejo no se distingue de una buena—.
+
+Y el reparto de responsabilidades quedó escrito donde se aplica: `qa.md` recorre
+los criterios uno a uno con su verificador y **tiene prohibido declarar
+verificado lo que no corrió**; `/implementar` presenta los `[humano]` abiertos
+en el Checkpoint 2 en vez de darlos por buenos; y `rulesFrontend.md § Gates`
+recoge la regla, que es lo que la hace del repo y no del skill.
 
 ---
 
@@ -422,4 +440,5 @@ nuevo escrito debajo, no por inercia.
 | Fecha      | Qué                                                                                                                                                                                                              |
 | ---------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | 2026-09-09 | Auditoría de la cadena de W-10. Se abre esta lista con 12 ítems. Ítem 3 cerrado en el acto.                                                                                                                      |
+| 2026-09-10 | Ítem 4 cerrado: notación de verificadores + `pnpm run screenshot`.                                                                                                                                               |
 | 2026-09-09 | Ítem 1 cerrado. En su primer uso el navegador descubre que las dos fotos a sangre no se dibujaban (colisión `relative`/`absolute` en `PhotoSlot`). Corregido, con la foto del héroe a 2400×1400 y `focus="70%"`. |
