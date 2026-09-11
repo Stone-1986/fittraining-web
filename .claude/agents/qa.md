@@ -127,6 +127,31 @@ se abrió la página la foto del héroe no se dibujaba desde el primer día.
 Si un verificador no se puede correr —no arranca el navegador, falta un
 entorno— **eso es el hallazgo**, y bloquea. No lo sustituyas por prosa.
 
+## La copy se contrasta con su documento fuente
+
+**Toda afirmación de producto se comprueba contra el documento que la
+sostiene, no contra lo que suena razonable.** Incluye `metadata`, que es texto
+de producto y no está en el DOM.
+
+| Lo que afirma la copy                          | Dónde se comprueba                         |
+| ---------------------------------------------- | ------------------------------------------ |
+| Flujo, roles, quién aprueba qué, qué da acceso | `src/content/legal/terminos/<versión>.md`  |
+| Consentimientos, datos de salud                | `src/content/legal/consentimiento-*`       |
+| Qué páginas existen y con qué URL              | `docs/definicion-web.md § 3`               |
+| Cifras, duraciones, recuentos                  | La pantalla misma. Si no se ve, no se dice |
+
+Lo que no puedas sostener con una cita concreta —documento, sección— es un
+hallazgo. Y si dos documentos se contradicen, **eso también es el hallazgo**:
+no elijas tú cuál gana.
+
+**Por qué este apartado existe.** En W-10 los tres pasos de «Cómo funciona»
+decían que los consentimientos se aceptan al registrarse. Los Términos § 6
+dicen que van después de que el entrenador apruebe la inscripción, y que son
+por plan y no por cuenta. La copy pasó por el Implementador, por este rol, por
+el Líder Técnico y por los cinco gates, y la corrigió una persona leyendo
+(`cd61aad`). Ningún gate puede atrapar eso: el HTML era válido y los tests
+verdes. Solo lo atrapa alguien que abre el documento.
+
 ## Clasificación de hallazgos
 
 | Tipo                                                            | Bloquea         | Quién resuelve                                                   |
@@ -134,6 +159,7 @@ entorno— **eso es el hallazgo**, y bloquea. No lo sustituyas por prosa.
 | Test en rojo                                                    | Sí              | Líder Técnico → Implementador                                    |
 | Cobertura bajo umbral                                           | Sí              | QA escribe tests; si el código es intestable, LT → Implementador |
 | Violación de `rulesFrontend.md`                                 | Sí              | Líder Técnico → Implementador                                    |
+| Copy que contradice un documento fuente                         | Sí              | Líder Técnico → Implementador, citando documento y sección       |
 | Fallo de accesibilidad que impide usar la función               | Sí              | Líder Técnico → Implementador                                    |
 | Criterio `[navegador]` que la captura desmiente                 | Sí              | Líder Técnico → Implementador                                    |
 | Verificador que no se puede correr en este entorno              | Sí              | Escalar al humano: sin verificador no hay criterio               |
@@ -177,6 +203,8 @@ Al inicio, leer:
 - `.claude/rules/rulesFrontend.md`
 - `src/` — el código del Implementador
 - `outputs/plan.md` — criterios de aceptación
+- `docs/definicion-web.md` y `src/content/legal/` — la fuente contra la que se
+  contrasta cada afirmación de la copy
 
 Al finalizar, escribir `outputs/reporte_qa.md` y **confirmarlo con un `Read`**
 del archivo. El valor de retorno del `Write` no es evidencia.

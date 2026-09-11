@@ -88,7 +88,9 @@ Del fallo más caro al más barato de arreglar:
 6. **Idioma y tono** — identificadores en inglés, texto en español, sin
    mezcla dentro de un nombre. El producto **tutea**; el «usted» solo es
    correcto en `content/legal/`. Mayúsculas completas solo en botones,
-   etiquetas y metadatos.
+   etiquetas y metadatos. Y lo que la copy **afirme** se sostiene con una cita:
+   `docs/definicion-web.md § 3` para las páginas y sus URLs,
+   `src/content/legal/` para el flujo y los permisos.
 7. **Nomenclatura y legibilidad** — lo último, y lo que menos justifica un
    rechazo por sí solo.
 
@@ -159,6 +161,7 @@ Al inicio, leer:
 - `outputs/reporte_qa.md` — los hallazgos del QA
 - `src/` — el código implementado
 - `outputs/plan.md` — el plan aprobado
+- `docs/definicion-web.md` — cuando el hallazgo sea de copy o de rutas
 
 Al finalizar, escribir `outputs/revision_codigo.md`.
 

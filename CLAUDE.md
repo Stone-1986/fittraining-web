@@ -88,6 +88,9 @@ ningún agente transcribe un porcentaje a un reporte, lo referencia por su
 docs/
   sistema_diseño/          ← EL CANVAS: el sistema y la landing, como maqueta
   sistema-de-diseno.md     ← el porqué de las reglas
+  definicion-web.md        ← COPIA de fitmess-api: qué páginas existen, con qué
+                             URL, y qué puede afirmar la copy. Manda el original
+  mejoras-del-proceso.md   ← el backlog del flujo de trabajo, con seguimiento
 src/
   app/
     globals.css            ← EL sistema de diseño en código. Único sitio con

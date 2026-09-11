@@ -22,6 +22,9 @@ Leer, en este orden:
    lo que puedes escribir. Si un color, un tamaño o un radio no está ahí, no
    existe
 3. `docs/sistema-de-diseno.md` — el porqué de cada regla de diseño
+   3b. `docs/definicion-web.md` — **si vas a escribir copy visible**: qué páginas
+   existen, qué URL tienen y qué puede afirmarse. Y el documento legal que
+   sostenga lo que escribas, en `src/content/legal/`
 4. `docs/sistema_diseño/Sistema de Diseño fittraining.dc.html` — el canvas,
    cuando el plan toque una pieza que el canvas dibuja (botón, campo,
    insignia, tarjeta de plan, acordeón, tabla)
@@ -137,6 +140,7 @@ Al inicio, leer:
 - `.claude/rules/rulesFrontend.md`
 - `src/app/globals.css`
 - `docs/sistema-de-diseno.md`
+- `docs/definicion-web.md` — si el plan trae copy visible
 - `outputs/plan.md` — el plan aprobado
 - `outputs/revision_codigo.md` — instrucciones del LT (solo en ciclos 2+)
 

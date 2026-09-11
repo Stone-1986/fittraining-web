@@ -19,13 +19,13 @@ minutos y desbloquean lo demás; P2 espera al próximo ítem de trabajo.
 | #   | Ítem                                                     | Prioridad | Estado    |
 | --- | -------------------------------------------------------- | --------- | --------- |
 | 1   | Librerías del navegador                                  | P0        | Hecho     |
-| 2   | Cerrar la deriva del árbol (fotos)                       | P0        | Pendiente |
+| 2   | Cerrar la deriva del árbol (fotos)                       | P0        | Hecho     |
 | 3   | Reenunciar el hallazgo de `definicion-web.md`            | P0        | Hecho     |
 | 4   | Cada criterio de aceptación declara su verificador       | P1        | Hecho     |
-| 5   | Las excepciones se escriben junto al código              | P1        | Pendiente |
-| 6   | `definicion-web.md` a la lista de lectura + contraste QA | P1        | Pendiente |
-| 7   | La copy del cierre contra Términos § 12                  | P1        | Pendiente |
-| 8   | Ampliar `WATCHED` en `gates.mjs`                         | P1        | Pendiente |
+| 5   | Las excepciones se escriben junto al código              | P1        | Hecho     |
+| 6   | `definicion-web.md` a la lista de lectura + contraste QA | P1        | Hecho     |
+| 7   | La copy del cierre contra Términos § 12                  | P1        | Hecho     |
+| 8   | Ampliar `WATCHED` en `gates.mjs`                         | P1        | Hecho     |
 | 9   | El contrato pasa a `specs/W-XX.md` versionado            | P2        | Pendiente |
 | 10  | Dos patrones más en `design-system.mjs`                  | P2        | Pendiente |
 | 11  | Escribir cuándo NO se usa la cadena                      | P2        | Pendiente |
@@ -72,7 +72,7 @@ llevaban meses sin dibujar su foto. Ver el ítem 2.
 
 ### 2. Cerrar la deriva que hay en el árbol
 
-- [ ] **Hecho** el ****-**-** ·
+- [x] **Hecho** el 2026-09-09 · commits `22af0a1` y `693fe32`
 
 **Qué arregla.** El 2026-09-09 el árbol tenía cuatro archivos modificados y
 `public/` sin commitear —entre ellos +99 líneas en un primitivo compartido,
@@ -215,7 +215,8 @@ recoge la regla, que es lo que la hace del repo y no del skill.
 
 ### 5. Las excepciones se escriben junto al código que exceptúan
 
-- [ ] **Hecho** el ****-**-** ·
+- [x] **Hecho** el 2026-09-10 · `SubHeading` en `/estilo` + § «Dónde vive una
+      excepción» en las reglas
 
 **Qué se hace.** Toda excepción a una regla lleva comentario en la línea **y**
 entrada en la regla que la contempla. Se prohíbe explícitamente
@@ -240,7 +241,8 @@ cambio.
 
 ### 6. `definicion-web.md` a la lista de lectura, y contraste factual al QA
 
-- [ ] **Hecho** el ****-**-** ·
+- [x] **Hecho** el 2026-09-10 · copia en `docs/definicion-web.md` + mandato en
+      los tres agentes
 
 **Qué se hace.** Dos ediciones de texto:
 
@@ -264,11 +266,25 @@ causa fue exacto).
 
 **Coste.** Dos ediciones de texto.
 
+**Lo que se hizo, y un hallazgo por el camino.** El documento se copia a
+`docs/definicion-web.md` con su procedencia y el md5 del original en la
+cabecera, fuera de Prettier para que un refresco no produzca un diff falso.
+Entra en la lista de lectura de `/planificar`, del Implementador y del Líder
+Técnico, y el QA gana un apartado entero —«La copy se contrasta con su
+documento fuente»— con la tabla de qué se comprueba dónde y una fila nueva en
+la clasificación: copy que contradice un documento fuente **bloquea**.
+
+Y al abrirlo apareció que **`definicion-web.md § 3` ya estaba corregido**
+(2026-09-09): dice «Registro público SÍ, acceso NO» y separa las tres puertas.
+El pendiente que arrastraba `docs/sistema-de-diseno.md § 8` queda cerrado ahí
+mismo. Es exactamente lo que este ítem venía a hacer posible: comprobar en vez
+de recordar.
+
 ---
 
 ### 7. La frase del cierre contra Términos § 12
 
-- [ ] **Hecho** el ****-**-** ·
+- [x] **Hecho** el 2026-09-10 · los Términos NO se tocan; cambia la copy
 
 **Qué se decide.** `closing-cta.tsx:51` dice «Elige un plan, crea tu cuenta y
 **ten tu primera sesión hoy mismo**». Los Términos § 12 declaran fase de
@@ -288,11 +304,28 @@ se muestra) y lo descartó por ser texto literal del humano.
 **Coste.** Una decisión + anotarla en § 8 con su disparador: «revisar al
 encender el registro».
 
+**Cómo se resolvió, y el ítem estaba mal planteado.** Al leer los documentos
+—que es lo que el ítem 6 acababa de hacer posible— resultó que **los Términos
+no hay que tocarlos**: su § 5 ya concede al Atleta «registro directo, sin
+aprobación previa», y lo que § 12 limita es el acceso durante la fase de
+prueba, que sigue siendo cierto porque el acceso lo controla la aprobación del
+entrenador. Publicar una versión nueva de un documento legal que no necesita
+cambiar tiene coste —`1.1.0` no se borra nunca— y ningún beneficio.
+
+**Lo que sí era falso es la copy, y por otro motivo del que decía el ítem.** La
+frase prometía «ten tu primera sesión hoy mismo», y § 6 fija la cadena
+Pendiente → Aprobada → consentimientos → Activa: registrarte hoy te da una
+solicitud pendiente, no una sesión. De las tres puertas de
+`definicion-web.md § 3`, la frase prometía justamente la única cerrada. Ahora
+dice «…y empieza en cuanto tu entrenador apruebe tu inscripción», con el
+porqué escrito en el componente y en su test, que la fija carácter a carácter.
+
 ---
 
 ### 8. Ampliar `WATCHED` en `scripts/gates.mjs`
 
-- [ ] **Hecho** el ****-**-** ·
+- [x] **Hecho** el 2026-09-10 · comprobado que `public/`, `eslint-rules/` y
+      `tsconfig.json` invalidan el JSON
 
 **Qué se hace.** Añadir `eslint.config.mjs`, `eslint-rules`, `tsconfig.json` y
 `public` a la lista que invalida un `gates.json`.
@@ -306,6 +339,13 @@ semana.
 de tocar.
 
 **Coste.** Cuatro cadenas en un array.
+
+**Lo que se hizo.** `WATCHED` pasa de cinco entradas a once, cada una con el
+gate que la justifica escrito al lado. Comprobado a mano que tocar `public/`,
+`eslint-rules/` o `tsconfig.json` invalida ahora el JSON. Se deja fuera a
+propósito la prosa de `docs/` y `.claude/`, con el motivo escrito: la formatea
+el hook en cada escritura, y vigilarla obligaría a recorrer los cinco gates por
+corregir una frase.
 
 ---
 
@@ -440,5 +480,7 @@ nuevo escrito debajo, no por inercia.
 | Fecha      | Qué                                                                                                                                                                                                              |
 | ---------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | 2026-09-09 | Auditoría de la cadena de W-10. Se abre esta lista con 12 ítems. Ítem 3 cerrado en el acto.                                                                                                                      |
+| 2026-09-10 | Ítem 7 cerrado, y al revés de como estaba escrito: los Términos ya permitían el registro; lo falso era la copy del cierre.                                                                                       |
+| 2026-09-10 | Ítems 5, 6 y 8 cerrados. Al traer `definicion-web.md` se descubre que su § 3 ya estaba corregido: el pendiente de § 8 se cierra.                                                                                 |
 | 2026-09-10 | Ítem 4 cerrado: notación de verificadores + `pnpm run screenshot`.                                                                                                                                               |
 | 2026-09-09 | Ítem 1 cerrado. En su primer uso el navegador descubre que las dos fotos a sangre no se dibujaban (colisión `relative`/`absolute` en `PhotoSlot`). Corregido, con la foto del héroe a 2400×1400 y `focus="70%"`. |

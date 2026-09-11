@@ -438,10 +438,13 @@ fijadas por `definicion-web.md § 3`.
     § 12 limita es el acceso durante la fase de prueba, no la puerta de
     registro. Registrarse es libre; lo que exige aprobación del entrenador es
     **inscribirse a un plan**, y eso lo describe el § 6.
-  - **`definicion-web.md § 3` sí hay que actualizarlo.** Dice «sin registro
-    público», que «el atleta se registra en la app» y que la web no lleva
-    botón de «Crear cuenta». El humano decidió lo contrario el 2026-09-08.
-    Vive en `fitmess-api/docs/web/`, así que es trabajo en el otro repo.
+  - **`definicion-web.md § 3` ya está actualizado (2026-09-09).** Decía «sin
+    registro público»; hoy dice «Registro público SÍ, acceso NO» y separa las
+    tres puertas: crear la cuenta está abierta, inscribirse a un plan la cierra
+    el entrenador, y ejecutar sesiones exige los dos consentimientos por plan.
+    **Este pendiente queda cerrado.** Desde el 2026-09-10 hay copia del
+    documento en `docs/definicion-web.md`, que es la que leen los agentes; el
+    original sigue en `fitmess-api/docs/web/` y manda él.
 
   **De esa confusión salió un defecto real que la portada llegó a tener:** los
   tres pasos de «Cómo funciona» ponían los consentimientos en el registro y

@@ -38,13 +38,39 @@ const GATES = [
   { name: 'build', cmd: 'pnpm run build' },
 ];
 
-/** Lo que invalida un `gates.json`: si algo de aqui es mas nuevo, hay que recorrer. */
+/**
+ * Lo que invalida un `gates.json`: si algo de aqui es mas nuevo, hay que
+ * recorrer. La lista es lo que cambia el VEREDICTO de alguno de los cinco, y
+ * cada entrada esta por un gate concreto:
+ *
+ *   src, package.json                  los cinco
+ *   scripts                            el propio corredor
+ *   tsconfig.json                      typecheck
+ *   eslint.config.mjs, eslint-rules    lint — y `eslint-rules` ademas corre
+ *                                      en la suite, asi que tambien es test
+ *   .prettierrc, .prettierignore       format
+ *   vitest.config.ts                   test (umbrales, `include`)
+ *   next.config.ts, public             build — una foto nueva cambia la salida
+ *
+ * LO QUE NO SE VIGILA, A PROPOSITO: la prosa de `docs/` y `.claude/`. La
+ * comprueba `format:check`, que corre sobre el repo entero, asi que en teoria
+ * un markdown mal formateado deja `gates.json` mintiendo. En la practica el
+ * hook `PostToolUse` pasa Prettier a todo lo que se escribe, y meter `docs/`
+ * aqui obligaria a recorrer los cinco gates —45 segundos— por corregir una
+ * frase. Es un intercambio elegido, no un olvido.
+ */
 const WATCHED = [
   'src',
   'scripts',
+  'eslint-rules',
+  'public',
   'package.json',
+  'tsconfig.json',
+  'eslint.config.mjs',
   'vitest.config.ts',
   'next.config.ts',
+  '.prettierrc',
+  '.prettierignore',
 ];
 
 function newestMtime(path, newest = 0) {

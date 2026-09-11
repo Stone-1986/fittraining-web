@@ -41,6 +41,11 @@ Leer, en este orden:
 - `src/components/ui/` — qué primitivos existen ya
 - `docs/sistema_diseño/` — el canvas: la intención visual de la pieza
 - `docs/sistema-de-diseno.md` — el porqué de las reglas
+- **`docs/definicion-web.md`** — qué páginas existen, con qué URL y qué puede
+  afirmar la copy. Es copia del original de `fitmess-api`; si difieren, manda
+  el original
+- Los textos legales de `src/content/legal/` que toque la pantalla. Son la
+  fuente de todo lo que la copy afirme sobre el flujo, los roles o los permisos
 - El backlog o la definición del ítem, si existe
 
 **Abrir `/estilo` es parte de este paso.** Es el sistema funcionando, y la

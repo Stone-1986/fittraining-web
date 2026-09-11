@@ -23,6 +23,23 @@ token, y el componente pide el token.
 Donde el canvas y `globals.css` difieren, hay tres desviaciones deliberadas y
 están todas justificadas en el comentario del token. Ver § Accesibilidad.
 
+## Dónde vive una excepción
+
+Toda excepción a una regla se escribe **dos veces**: en la regla que la
+contempla y en un **comentario junto a la línea que la usa**. No es
+redundancia, es que las leen personas distintas — quien define y quien
+consume— y la segunda es la única que ve quien se encuentra el código.
+
+- Una excepción que solo vive en la regla es invisible desde el código, y quien
+  la lea sin contexto la «corregirá» con los papeles en regla
+- Una que solo vive en el comentario no es una excepción: es un caso suelto que
+  el próximo se saltará
+- **NUNCA justificar una excepción citando `outputs/`.** Ese directorio está
+  gitignored y se regenera, así que una referencia como `outputs/plan.md:281`
+  deja de resolver en cuanto alguien edita el plan. Ya pasó: la excepción del
+  `<h3>` en mayúsculas de `/estilo` se apoyaba en una línea de `plan.md` que
+  hoy habla de otra cosa
+
 ---
 
 ## 1. Tokens — ningún archivo escribe un color
