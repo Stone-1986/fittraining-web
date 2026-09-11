@@ -477,10 +477,11 @@ nuevo escrito debajo, no por inercia.
 
 ## Bitácora
 
-| Fecha      | Qué                                                                                                                                                                                                              |
-| ---------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| 2026-09-09 | Auditoría de la cadena de W-10. Se abre esta lista con 12 ítems. Ítem 3 cerrado en el acto.                                                                                                                      |
-| 2026-09-10 | Ítem 7 cerrado, y al revés de como estaba escrito: los Términos ya permitían el registro; lo falso era la copy del cierre.                                                                                       |
-| 2026-09-10 | Ítems 5, 6 y 8 cerrados. Al traer `definicion-web.md` se descubre que su § 3 ya estaba corregido: el pendiente de § 8 se cierra.                                                                                 |
-| 2026-09-10 | Ítem 4 cerrado: notación de verificadores + `pnpm run screenshot`.                                                                                                                                               |
-| 2026-09-09 | Ítem 1 cerrado. En su primer uso el navegador descubre que las dos fotos a sangre no se dibujaban (colisión `relative`/`absolute` en `PhotoSlot`). Corregido, con la foto del héroe a 2400×1400 y `focus="70%"`. |
+| Fecha      | Qué                                                                                                                                                                                                                     |
+| ---------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 2026-09-09 | Auditoría de la cadena de W-10. Se abre esta lista con 12 ítems. Ítem 3 cerrado en el acto.                                                                                                                             |
+| 2026-09-10 | Medido el «build inestable»: 10 builds seguidos con `next dev` vivo, 0 fallos (24 con los de la sesión). El pendiente no tenía definición ni evidencia y se cierra — `docs/evidencia/2026-09-10-build-estabilidad.txt`. |
+| 2026-09-10 | Ítem 7 cerrado, y al revés de como estaba escrito: los Términos ya permitían el registro; lo falso era la copy del cierre.                                                                                              |
+| 2026-09-10 | Ítems 5, 6 y 8 cerrados. Al traer `definicion-web.md` se descubre que su § 3 ya estaba corregido: el pendiente de § 8 se cierra.                                                                                        |
+| 2026-09-10 | Ítem 4 cerrado: notación de verificadores + `pnpm run screenshot`.                                                                                                                                                      |
+| 2026-09-09 | Ítem 1 cerrado. En su primer uso el navegador descubre que las dos fotos a sangre no se dibujaban (colisión `relative`/`absolute` en `PhotoSlot`). Corregido, con la foto del héroe a 2400×1400 y `focus="70%"`.        |
