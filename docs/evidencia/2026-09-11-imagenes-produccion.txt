@@ -1,0 +1,46 @@
+IMAGENES EN PRODUCCION — medicion y diagnostico
+Fecha: 2026-09-11 · https://fittraining.app/
+
+MOTIVO. Reporte: «las imagenes tienen un retraso en cargarse al recargar».
+
+LO QUE FUNCIONABA (y por eso el diagnostico no era el obvio):
+
+  /fotos/heroe.jpg           original      1.783.083 bytes
+  /_next/image?...&w=640     image/avif        8.244 bytes
+  /_next/image?...&w=2048    image/avif       36.260 bytes
+
+  `sharp` esta en la Lambda, AVIF se negocia por `Accept`, el <link
+  rel=preload as=image> del heroe se emite, y el HTML lo sirve CloudFront
+  desde BOG51 con `s-maxage=31536000` y `x-nextjs-cache: HIT`.
+
+LA CAUSA:
+
+  cache-control: max-age=60, stale-while-revalidate     <- en las IMAGENES
+
+  1a peticion (w=2048, fria):  2,526 s · x-cache: Miss from cloudfront
+  2a peticion (la misma):      0,188 s · x-cache: Hit from cloudfront
+
+  60 s es el valor por defecto de `images.minimumCacheTTL` en Next y nunca
+  se habia tocado. Pasado un minuto el navegador revalida; si CloudFront ya
+  descarto la variante, la Lambda vuelve a codificar el AVIF desde el JPEG
+  de 1,8 MB. Los 2,3 s de diferencia son esa codificacion.
+
+  No era peso. Era caducidad.
+
+EL ARREGLO: `minimumCacheTTL: 31536000` en next.config.ts (un año, el mismo
+`s-maxage` con el que se sirve el HTML). Cada variante se codifica una vez.
+
+LA CONTRAPARTIDA, y la regla que la cubre: la URL optimizada se construye con
+el nombre del archivo y ese nombre no cambia al desplegar. Reemplazar una foto
+conservando el nombre deja a quien la tenga cacheada viendo la vieja durante
+un año. `rulesFrontend.md § Imagen` exige renombrar al cambiar.
+
+COMO VOLVER A MEDIRLO tras el despliegue:
+
+  curl -s -o /dev/null -D - -H 'Accept: image/avif,image/webp,*/*' \
+    -w '%{content_type} %{size_download}B %{time_total}s\n' \
+    'https://fittraining.app/_next/image?url=%2Ffotos%2Fheroe.jpg&w=2048&q=75' \
+    | grep -iE 'cache-control|x-cache'
+
+  Debe decir `max-age=31536000`. Si sigue diciendo 60, el despliegue no
+  recogio el cambio de configuracion.

@@ -29,6 +29,25 @@ const nextConfig: NextConfig = {
      * instalar nada (docs/despliegue-amplify.md § 3).
      */
     formats: ['image/avif', 'image/webp'],
+
+    /**
+     * UN AÑO, y el defecto de Next son SESENTA SEGUNDOS. Medido en produccion
+     * el 2026-09-11: con el defecto, cada recarga pasado un minuto revalidaba
+     * y, si CloudFront ya habia descartado la variante, la Lambda volvia a
+     * codificar el AVIF desde el JPEG de 1,8 MB — 2,53 s contra 0,19 s de una
+     * variante caliente. No era peso: la variante de 640px pesa 8 KB. Era que
+     * caducaba cada minuto y recodificar es caro.
+     *
+     * Un año es lo que merece un archivo que solo cambia al desplegar, y es
+     * el mismo `s-maxage` con el que Amplify sirve el HTML.
+     *
+     * LA CONTRAPARTIDA, Y POR ESO HAY UNA REGLA: la URL optimizada se
+     * construye con el NOMBRE del archivo —`/_next/image?url=/fotos/heroe.jpg`—
+     * y ese nombre no cambia al desplegar. Reemplazar una foto conservando el
+     * nombre deja a quien la tenga cacheada viendo la vieja durante un año.
+     * Por eso `rulesFrontend.md § Imagen` exige renombrar al cambiar.
+     */
+    minimumCacheTTL: 31536000,
   },
 };
 
