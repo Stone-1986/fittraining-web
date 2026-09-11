@@ -1,0 +1,45 @@
+MEDICION DE ESTABILIDAD DE `next build`
+Fecha: 2026-09-10T20:01:18-05:00
+Motivo: cerrar el pendiente «build inestable, tasa observada del 25%»,
+que solo constaba en outputs/revision_codigo.md —gitignored— y sin
+definicion de que se habia medido ni como.
+
+CONDICION: `next dev` del humano VIVO en el puerto 3000 durante toda
+la tanda. Es la condicion en la que se observo el fallo, y la hipotesis
+era que dos procesos escribiendo .next a la vez se pisaban.
+Node v22.22.0 · pnpm 10.30.1 · next 15.5.25
+
+N=10 ejecuciones consecutivas de `pnpm run build`:
+
+   1  OK     23s
+   2  OK     23s
+   3  OK     25s
+   4  OK     23s
+   5  OK     24s
+   6  OK     25s
+   7  OK     24s
+   8  OK     25s
+   9  OK     26s
+  10  OK     27s
+
+RESULTADO: 0 fallos de 10. Tasa observada: 0%.
+El puerto 3000 seguia respondiendo al terminar: 200
+
+Sumadas las 14 ejecuciones de `pnpm run gates` de la misma sesion —todas en
+verde— son 24 builds consecutivos sin un solo fallo.
+
+CONCLUSION. Si la tasa real fuera del 25%, la probabilidad de encadenar 24
+exitos seria 0.75^24 = 0.1%. La tasa del 25% no se sostiene sobre el codigo de
+hoy, y la hipotesis de que `next dev` y `next build` se pisan escribiendo
+.next queda descartada en esta configuracion: los diez builds corrieron con el
+servidor de desarrollo vivo y respondiendo.
+
+QUE NO DEMUESTRA. Que nunca fallara. Un fallo intermitente puede depender de
+memoria, de carga de la maquina o de un estado de .next que hoy no se dio. Lo
+que si cierra es el PENDIENTE: no hay nada reproducible que investigar, y
+seguir arrastrandolo como bloqueante para `main` no tiene base.
+
+SI VUELVE A APARECER. Guardar la salida completa del fallo en este mismo
+directorio antes de reintentar —esa es la unica pieza que falto la primera
+vez— y anotar si habia un `next dev` vivo. Sin el log del fallo no hay nada
+que diagnosticar, solo una tasa sin denominador.

@@ -20,3 +20,13 @@ coverage/
 # edita a mano. Misma razon que src/content/legal/: el contenido es el
 # artefacto, no el formato.
 docs/sistema_diseño/
+
+# Copia literal de `fitmess-api/docs/web/definicion-web.md`. No se formatea
+# aqui: reformatearla haria que cada refresco produjera un diff falso contra
+# el original, y este archivo vale justamente por ser identico a el.
+docs/definicion-web.md
+
+# Evidencia archivada: se copia tal cual y no se toca. Reformatearla la
+# convertiria en otra cosa —un archivo que se edita deja de ser evidencia— y
+# ademas produciria un diff falso contra el artefacto original.
+docs/evidencia/

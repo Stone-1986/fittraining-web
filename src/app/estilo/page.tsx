@@ -342,6 +342,31 @@ function Meta({ children }: { children: React.ReactNode }) {
 }
 
 /**
+ * EL SUBTITULO DE UNA SECCION DE LA GUIA, y el sitio donde vive la excepcion
+ * que lo justifica — porque si no se escribe aqui, no la encuentra nadie.
+ *
+ * VA EN MAYUSCULAS Y ES UN ENCABEZADO, y § 6 dice «mayusculas completas solo
+ * en botones, etiquetas y metadatos. Nunca en un titular». No se contradicen:
+ * el NIVEL lo decide la jerarquia del documento y el ASPECTO lo deciden las
+ * clases. Son dos decisiones distintas, y § Accesibilidad ya lo dice para el
+ * caso simetrico —un `<h2 className="text-h4">` es correcto—. Esto es un `h3`
+ * porque cuelga del `h2` de su seccion, y se dibuja con `text-label` porque
+ * lo que rotula es una tabla de muestras, no un tramo de lectura: es una
+ * etiqueta que ademas ordena.
+ *
+ * Se extrae en vez de repetir la clase cuatro veces por lo mismo que `Grid`
+ * —§ 5 permite abstraer a partir de la tercera repeticion— y porque una
+ * excepcion copiada cuatro veces se acaba corrigiendo en tres.
+ */
+function SubHeading({ children }: { children: React.ReactNode }) {
+  return (
+    <h3 className="mt-11 text-label font-sans font-medium uppercase tracking-label text-subtle-foreground">
+      {children}
+    </h3>
+  );
+}
+
+/**
  * La rejilla del sistema, envuelta para no repetir la clase en cada seccion.
  *
  * La regla vive en `globals.css` como `.grid-cards`; esto solo le pone
@@ -426,9 +451,7 @@ export default function EstiloPage() {
           la regla no se cumplió.
         </p>
 
-        <h3 className="mt-11 text-label font-sans font-medium uppercase tracking-label text-subtle-foreground">
-          Superficies y límites
-        </h3>
+        <SubHeading>Superficies y límites</SubHeading>
         <div className="mt-4">
           <Grid>
             {SURFACES.map((s) => (
@@ -450,9 +473,9 @@ export default function EstiloPage() {
           </Grid>
         </div>
 
-        <h3 className="mt-11 text-label font-sans font-medium uppercase tracking-label text-subtle-foreground">
+        <SubHeading>
           Marca — el canvas lo llama «acento»; el código, «primary»
-        </h3>
+        </SubHeading>
         <div className="mt-4">
           <Grid>
             {BRAND.map((s) => (
@@ -474,9 +497,7 @@ export default function EstiloPage() {
           </Grid>
         </div>
 
-        <h3 className="mt-11 text-label font-sans font-medium uppercase tracking-label text-subtle-foreground">
-          Texto — cinco niveles, no dos
-        </h3>
+        <SubHeading>Texto — cinco niveles, no dos</SubHeading>
         <div className="mt-4 border border-border">
           {TEXT_LEVELS.map((t) => (
             <div
@@ -492,9 +513,9 @@ export default function EstiloPage() {
           ))}
         </div>
 
-        <h3 className="mt-11 text-label font-sans font-medium uppercase tracking-label text-subtle-foreground">
+        <SubHeading>
           Semánticos — solo para estado, nunca decorativos
-        </h3>
+        </SubHeading>
         <p className="mt-3 max-w-prose-doc text-body font-sans font-light text-muted-foreground">
           Ninguno aparece solo: WCAG 1.4.1 prohíbe comunicar algo únicamente con
           color, así que el punto siempre va con su texto al lado. Es el

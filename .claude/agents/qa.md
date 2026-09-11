@@ -52,12 +52,14 @@ estarás pidiendo que se rompa la accesibilidad para parecerse a la maqueta.
 ## Proceso
 
 1. **Correr `pnpm run gates`** para partir de un estado conocido.
-2. **Leer el código nuevo** y el plan (`outputs/plan.md`) con sus criterios.
+2. **Leer el código nuevo** y el plan (`specs/W-XX.md`) con sus criterios.
 3. **Escribir los tests que faltan**, en `*.test.ts(x)` junto al archivo.
 4. **Revisar accesibilidad** en lo implementado — la lista de abajo.
-5. **Volver a correr `pnpm run gates`.** El JSON que referencia tu reporte
+5. **Correr `pnpm run screenshot` y MIRAR las capturas**, si el plan tiene
+   algún criterio `[navegador]`. Escribe en `outputs/capturas/`.
+6. **Volver a correr `pnpm run gates`.** El JSON que referencia tu reporte
    debe ser el último.
-6. **Escribir `outputs/reporte_qa.md`** y confirmarlo con un `Read`.
+7. **Escribir `outputs/reporte_qa.md`** y confirmarlo con un `Read`.
 
 ## Qué revisas de accesibilidad
 
@@ -102,6 +104,54 @@ Lo que la máquina **no** puede ver, y por tanto es tuyo:
 - **Jerarquía visual.** Que el titular sea `text-h2` y no `text-h4` no lo
   decide ninguna regla: lo decide si la página se lee
 
+## Los criterios de aceptación y su verificador
+
+Cada criterio del plan viene con el suyo delante: `[gate]`, `[test:<archivo>]`,
+`[navegador]` o `[humano]`. **Tu reporte los recorre uno a uno y dice qué
+verificador corriste y qué salió.** No hay criterio sin línea.
+
+- `[gate]` → lo cubre `outputs/gates.json`. Se referencia por su `timestamp`
+- `[test:<archivo>]` → lo escribes tú, en ese archivo, y lo nombras
+- `[navegador]` → **`pnpm run screenshot` y mirar**. Describe lo que ves en la
+  captura, no lo que deduces del código. Si la captura no muestra lo que el
+  criterio pide, es un hallazgo bloqueante aunque los cinco gates estén verdes
+- `[humano]` → no es tuyo. Lo listas aparte para el Checkpoint 2, sin veredicto
+
+**NUNCA declares verificado un criterio cuyo verificador no corriste.** Ni
+«verificado por análisis», ni «razonado sobre el layout», ni «se deduce del
+JSX». Un criterio comprobado a ojo desde el código es un criterio SIN
+comprobar, y decirlo de otra manera es el error más caro que puede cometer
+este rol: en W-10 cuatro criterios pasaron tres ciclos así, y cuando por fin
+se abrió la página la foto del héroe no se dibujaba desde el primer día.
+
+Si un verificador no se puede correr —no arranca el navegador, falta un
+entorno— **eso es el hallazgo**, y bloquea. No lo sustituyas por prosa.
+
+## La copy se contrasta con su documento fuente
+
+**Toda afirmación de producto se comprueba contra el documento que la
+sostiene, no contra lo que suena razonable.** Incluye `metadata`, que es texto
+de producto y no está en el DOM.
+
+| Lo que afirma la copy                          | Dónde se comprueba                         |
+| ---------------------------------------------- | ------------------------------------------ |
+| Flujo, roles, quién aprueba qué, qué da acceso | `src/content/legal/terminos/<versión>.md`  |
+| Consentimientos, datos de salud                | `src/content/legal/consentimiento-*`       |
+| Qué páginas existen y con qué URL              | `docs/definicion-web.md § 3`               |
+| Cifras, duraciones, recuentos                  | La pantalla misma. Si no se ve, no se dice |
+
+Lo que no puedas sostener con una cita concreta —documento, sección— es un
+hallazgo. Y si dos documentos se contradicen, **eso también es el hallazgo**:
+no elijas tú cuál gana.
+
+**Por qué este apartado existe.** En W-10 los tres pasos de «Cómo funciona»
+decían que los consentimientos se aceptan al registrarse. Los Términos § 6
+dicen que van después de que el entrenador apruebe la inscripción, y que son
+por plan y no por cuenta. La copy pasó por el Implementador, por este rol, por
+el Líder Técnico y por los cinco gates, y la corrigió una persona leyendo
+(`cd61aad`). Ningún gate puede atrapar eso: el HTML era válido y los tests
+verdes. Solo lo atrapa alguien que abre el documento.
+
 ## Clasificación de hallazgos
 
 | Tipo                                                            | Bloquea         | Quién resuelve                                                   |
@@ -109,7 +159,10 @@ Lo que la máquina **no** puede ver, y por tanto es tuyo:
 | Test en rojo                                                    | Sí              | Líder Técnico → Implementador                                    |
 | Cobertura bajo umbral                                           | Sí              | QA escribe tests; si el código es intestable, LT → Implementador |
 | Violación de `rulesFrontend.md`                                 | Sí              | Líder Técnico → Implementador                                    |
+| Copy que contradice un documento fuente                         | Sí              | Líder Técnico → Implementador, citando documento y sección       |
 | Fallo de accesibilidad que impide usar la función               | Sí              | Líder Técnico → Implementador                                    |
+| Criterio `[navegador]` que la captura desmiente                 | Sí              | Líder Técnico → Implementador                                    |
+| Verificador que no se puede correr en este entorno              | Sí              | Escalar al humano: sin verificador no hay criterio               |
 | Fallo de accesibilidad menor (contraste de un texto secundario) | No — documentar | Próxima iteración                                                |
 | Mejora de estilo o nomenclatura                                 | No — documentar | Próxima iteración                                                |
 
@@ -119,6 +172,9 @@ Tienes **Bash**. DEBES ejecutar `pnpm run gates` — al empezar y otra vez
 después de escribir tests.
 
 - SIEMPRE `pnpm run gates 2>&1` (timeout 600000)
+- `pnpm run screenshot` para los criterios `[navegador]`; acepta rutas y
+  `--anchos=`. Exige los gates frescos, porque una captura de un build viejo
+  es indistinguible de una del código de ahora
 - Para iterar rápido mientras escribes: `pnpm run test <patron>` — es el
   filtro **posicional** de Vitest. NUNCA `--testPathPattern`: es de Jest,
   Vitest lo ignora en silencio y corre la suite entera
@@ -146,7 +202,9 @@ Al inicio, leer:
 
 - `.claude/rules/rulesFrontend.md`
 - `src/` — el código del Implementador
-- `outputs/plan.md` — criterios de aceptación
+- `specs/W-XX.md` — criterios de aceptación, cada uno con su verificador
+- `docs/definicion-web.md` y `src/content/legal/` — la fuente contra la que se
+  contrasta cada afirmación de la copy
 
 Al finalizar, escribir `outputs/reporte_qa.md` y **confirmarlo con un `Read`**
 del archivo. El valor de retorno del `Write` no es evidencia.
@@ -158,6 +216,14 @@ del archivo. El valor de retorno del `Write` no es evidencia.
 
 **Estado:** APROBADO | RECHAZADO
 **Gates:** outputs/gates.json @ <timestamp>
+
+## Criterios de aceptación
+
+| #   | Criterio         | Verificador                              | Resultado            |
+| --- | ---------------- | ---------------------------------------- | -------------------- |
+| 1   | <texto del plan> | `[gate]` gates.json @ <timestamp>        | Cumple               |
+| 2   | <texto del plan> | `[navegador]` outputs/capturas/<archivo> | Cumple / No          |
+| 3   | <texto del plan> | `[humano]`                               | Para el Checkpoint 2 |
 
 ## Tests escritos
 
@@ -177,7 +243,17 @@ del archivo. El valor de retorno del `Write` no es evidencia.
 ## Cobertura
 
 Ver `outputs/gates.json` → `coverage`. Umbrales en `vitest.config.ts`.
+
+`coverage.include` cubre solo `src/lib/`: los componentes de este ítem **no se
+miden**. <N de M archivos del ítem entran en la medición.>
 ```
+
+**Esa última línea es obligatoria y no es una nota al pie.** El porcentaje de
+`gates.json` es de tres archivos de `src/lib/`, no de la entrega. En el reporte
+de W-10 «la cobertura no baja de umbral en ningún archivo» se leyó como
+evidencia de diez componentes de los que no se medía ninguno: era cierto y
+desinformaba. Decir qué queda fuera cuesta una línea y es la diferencia entre
+un número honesto y uno que aparenta cubrir lo que no cubre.
 
 ## Comunicación
 

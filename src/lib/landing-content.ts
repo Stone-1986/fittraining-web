@@ -37,12 +37,29 @@ export const STEPS: readonly Step[] = [
   },
   {
     title: 'Regístrate',
+    // OJO: este paso describe un FLUJO LEGAL y hay que contrastarlo con
+    // `src/content/legal/terminos/1.1.0.md` § 6 antes de tocarlo, no
+    // reescribirlo a gusto.
+    //
+    // Decia «Creas tu cuenta y aceptas los consentimientos de salud y
+    // deportivo», y era falso en tres cosas a la vez:
+    //
+    //   - Los consentimientos NO van en el registro. Van despues de que el
+    //     entrenador apruebe: la API los acepta con
+    //     `POST /subscriptions/{id}/accept-consent`, sobre una inscripcion
+    //     que ya esta Aprobada.
+    //   - No son de la cuenta, son DE CADA PLAN. § 6: «Cada inscripcion
+    //     tiene su propio consentimiento».
+    //   - Y faltaba la aprobacion entera. El flujo real es Pendiente →
+    //     Aprobada → consentimientos → Activa, y sin ella la pagina
+    //     insinuaba que registrarse basta para entrenar. No basta.
     description:
-      'Creas tu cuenta y aceptas los consentimientos de salud y deportivo.',
+      'Creas tu cuenta y solicitas el plan. Tu entrenador aprueba la inscripción.',
   },
   {
     title: 'Entrena y registra',
-    description: 'Tu entrenador ve tu progreso y ajusta lo que haga falta.',
+    description:
+      'Aceptas los consentimientos, y tu entrenador ve tu progreso y ajusta lo que haga falta.',
   },
 ];
 

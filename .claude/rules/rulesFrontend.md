@@ -23,6 +23,24 @@ token, y el componente pide el token.
 Donde el canvas y `globals.css` difieren, hay tres desviaciones deliberadas y
 están todas justificadas en el comentario del token. Ver § Accesibilidad.
 
+## Dónde vive una excepción
+
+Toda excepción a una regla se escribe **dos veces**: en la regla que la
+contempla y en un **comentario junto a la línea que la usa**. No es
+redundancia, es que las leen personas distintas — quien define y quien
+consume— y la segunda es la única que ve quien se encuentra el código.
+
+- Una excepción que solo vive en la regla es invisible desde el código, y quien
+  la lea sin contexto la «corregirá» con los papeles en regla
+- Una que solo vive en el comentario no es una excepción: es un caso suelto que
+  el próximo se saltará
+- **NUNCA justificar una excepción citando `outputs/`.** Ese directorio está
+  gitignored y se regenera, así que una referencia como `outputs/plan.md:281`
+  deja de resolver en cuanto alguien edita el plan. Ya pasó: la excepción del
+  `<h3>` en mayúsculas de `/estilo` se apoyaba en una línea de `plan.md` que
+  acabó hablando de otra cosa. El contrato vive desde entonces en `specs/`, en
+  git — pero ni siquiera ahí se cita por número de línea: se cita por sección
+
 ---
 
 ## 1. Tokens — ningún archivo escribe un color
@@ -252,8 +270,24 @@ volviendo al valor del canvas:
 - NUNCA vale como confirmación el valor de retorno del propio `Write`, ni un
   grep de contenido que ya está en el contexto: ese grep coincide con lo que
   el agente redactó, no prueba que el disco haya cambiado
+- **El contrato de un ítem vive en `specs/W-XX.md`, en git**, con una sola
+  copia y enmendado editando el cuerpo — nunca prefijando un bloque que
+  invalide lo de abajo. Las reglas del directorio están en `specs/README.md`
+- **Al cerrar un ítem se archivan sus artefactos** en `docs/evidencia/W-XX/`:
+  el spec, el reporte del QA, la revisión y el `gates.json` que citan. Sin eso,
+  un reporte que dice «gates.json @ 00:47:10Z» apunta a un archivo que la
+  corrida siguiente sobrescribió
 - **Un gate que no corre es indistinguible de uno que pasa.** Lo mismo un
   artefacto que no se escribió
+- **Y un criterio de aceptación sin verificador es indistinguible de uno que
+  se cumple.** Cada criterio del plan declara quién lo comprueba —`[gate]`,
+  `[test:<archivo>]`, `[navegador]` o `[humano]`—; uno cuyo verificador no se
+  puede correr hoy no pasa el Checkpoint 1
+- **Lo que exige navegador se mira en un navegador**: `pnpm run screenshot`
+  levanta el build y captura la ruta a 320, 390 y 1440. NUNCA se cierra un
+  criterio `[navegador]` «por análisis» — los cinco gates estuvieron en verde
+  desde que se construyó el héroe hasta que alguien abrió la página, y en todo
+  ese tiempo su foto no se dibujaba
 
 ### El sistema de diseño lo comprueba `lint`
 

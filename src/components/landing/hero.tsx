@@ -30,11 +30,44 @@ import { SiteHeader } from '@/components/site/site-header';
 export function Hero() {
   return (
     <div className="relative flex min-h-190 flex-col overflow-hidden">
+      {/* LA FOTO DEL HEROE.
+          `alt=""` a proposito: es decoracion. Lo que esta pagina dice lo dice
+          el <h1> que va encima; describir la foto aqui obligaria a un lector
+          de pantalla a oir un parrafo antes de llegar al titular.
+
+          `priority` porque es la imagen LCP — la mas grande y la primera que
+          se ve. Es la unica de la portada que lo lleva: marcar mas de una
+          anula el efecto.
+
+          `focus="70% 20%"` PORQUE LA FOTO ES APAISADA Y EL HUECO NO LO ES.
+          `object-cover` recorta por el lado que sobra, y aqui sobra por los dos
+          —por el ancho en un telefono, por el alto en un escritorio— asi que
+          hacen falta los dos numeros y cada uno resuelve un recorte distinto.
+
+          EL 70% HORIZONTAL ES PARA EL TELEFONO. A 390x760 solo cabe una franja
+          vertical de 718px del original, el 30% del ancho. Centrada cae en la
+          pared vacia y parte a la atleta: media cara contra el borde derecho.
+          Al 70% entra completa, con la mano adelantada dentro del cuadro.
+
+          EL 20% VERTICAL ES PARA LA VENTANA ANCHA, y salio de verlo en el
+          navegador. Cuanto mas ancha es la ventana, mas alto se recorta: a
+          1900px se pierden 440 de los 1400 y centrados son 220 por arriba —
+          pero LA CABEZA EMPIEZA EN EL PIXEL 156, asi que el centro la decapita.
+          Con el 20% el corte de arriba baja a 88px, y a 2560px de ventana a
+          138: la cabeza aguanta con margen hasta donde llega un monitor real.
+          Lo que se pierde a cambio son las piernas, que es lo que hay que
+          perder.
+
+          LA FOTO ANTERIOR PEDIA LO CONTRARIO —su encuadre bueno era el centro—
+          asi que este numero se mira POR IMAGEN y no se hereda: cambiar la
+          foto obliga a volver a recortar y a corregir este comentario. */}
       <PhotoSlot
-        aria-hidden="true"
+        src="/fotos/heroe.jpg"
+        alt=""
+        sizes="100vw"
+        priority
+        focus="70% 20%"
         scrim="side"
-        align="right"
-        label="FOTO HÉROE · ATLETA ENTRENANDO, TONO OSCURO, 2400×1400"
         className="absolute inset-0"
       />
 

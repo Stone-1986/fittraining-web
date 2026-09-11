@@ -29,9 +29,17 @@ import { PhotoSlot } from '@/components/ui/photo-slot';
 export function ClosingCta() {
   return (
     <section className="relative border-t border-border">
+      {/* Es la foto MAS CLARA de las tres candidatas —luminancia media 37 de
+          255 frente a 13 del heroe— y aqui eso es una ventaja, no un defecto:
+          el velo de abajo tapa el 80% y solo deja pasar el 20%. Una toma
+          oscura bajo ese velo no se veria.
+
+          Sin `priority`: esta al final de la pagina y competiria con el
+          heroe, que es el LCP. */}
       <PhotoSlot
-        aria-hidden="true"
-        label="FOTO · SESIÓN DE ENTRENAMIENTO, 2400×1400"
+        src="/fotos/cierre.jpg"
+        alt=""
+        sizes="100vw"
         className="absolute inset-0"
       />
       <div className="absolute inset-0 bg-background/80" aria-hidden="true" />
@@ -39,8 +47,22 @@ export function ClosingCta() {
       <Container size="full" className="relative py-28 text-center">
         <h2 className="text-h3 font-black md:text-h2">Empieza esta semana</h2>
 
+        {/* EL PARRAFO LO DICTA EL HUMANO, y su version actual es del
+            2026-09-10. La anterior decia «...y ten tu primera sesion hoy
+            mismo», y se cambio por FALSA, no por estilo: los Terminos § 6
+            fijan la cadena Pendiente → Aprobada → consentimientos → Activa, y
+            quien aprueba la inscripcion es el entrenador. Registrarte hoy no
+            te da una sesion hoy; te da una solicitud pendiente. De las tres
+            puertas que describe `definicion-web.md § 3` —crear la cuenta,
+            inscribirse a un plan, ejecutar sesiones— la frase prometia
+            justamente la que no esta abierta.
+
+            SIGUE DICIENDO «UN PLAN» y la pagina de planes todavia no existe:
+            eso esta anotado en `docs/sistema-de-diseno.md § 8` y se resuelve
+            con esa pantalla, no reescribiendo esto. */}
         <p className="mx-auto mt-5 max-w-130 text-lead font-sans font-light text-muted-foreground">
-          Elige un plan, crea tu cuenta y ten tu primera sesión hoy mismo.
+          Elige un plan, crea tu cuenta y empieza en cuanto tu entrenador
+          apruebe tu inscripción.
         </p>
 
         {/* [sin-destino] Cuando exista `/registro`, este `<span>` pasa a

@@ -22,6 +22,9 @@ Leer, en este orden:
    lo que puedes escribir. Si un color, un tamaño o un radio no está ahí, no
    existe
 3. `docs/sistema-de-diseno.md` — el porqué de cada regla de diseño
+   3b. `docs/definicion-web.md` — **si vas a escribir copy visible**: qué páginas
+   existen, qué URL tienen y qué puede afirmarse. Y el documento legal que
+   sostenga lo que escribas, en `src/content/legal/`
 4. `docs/sistema_diseño/Sistema de Diseño fittraining.dc.html` — el canvas,
    cuando el plan toque una pieza que el canvas dibuja (botón, campo,
    insignia, tarjeta de plan, acordeón, tabla)
@@ -68,7 +71,7 @@ resuelto casi todo lo que el canvas dibuja, con los componentes reales.
 
 ## Proceso
 
-1. **Leer el plan** (`outputs/plan.md`) y las reglas.
+1. **Leer el plan** (`specs/W-XX.md`) y las reglas.
 2. **Inventariar lo que ya existe** antes de crear nada: `src/components/ui/`,
    `src/lib/`, los tokens de `globals.css`. La primera causa de código
    duplicado es no haber mirado.
@@ -137,7 +140,8 @@ Al inicio, leer:
 - `.claude/rules/rulesFrontend.md`
 - `src/app/globals.css`
 - `docs/sistema-de-diseno.md`
-- `outputs/plan.md` — el plan aprobado
+- `docs/definicion-web.md` — si el plan trae copy visible
+- `specs/W-XX.md` — el plan aprobado, en git
 - `outputs/revision_codigo.md` — instrucciones del LT (solo en ciclos 2+)
 
 Al finalizar, tu output es el código en `src/`, y los gates en verde.

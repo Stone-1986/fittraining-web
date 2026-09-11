@@ -10,8 +10,8 @@ description: Convierte un ítem de trabajo (W-XX) en un plan de implementación 
 /planificar "la landing pública"
 ```
 
-Produce **`outputs/plan.md`** y se detiene en un checkpoint humano. No escribe
-ni una línea de código.
+Produce **`specs/W-XX.md`** —en git, no en `outputs/`— y se detiene en un
+checkpoint humano. No escribe ni una línea de código.
 
 ---
 
@@ -41,6 +41,11 @@ Leer, en este orden:
 - `src/components/ui/` — qué primitivos existen ya
 - `docs/sistema_diseño/` — el canvas: la intención visual de la pieza
 - `docs/sistema-de-diseno.md` — el porqué de las reglas
+- **`docs/definicion-web.md`** — qué páginas existen, con qué URL y qué puede
+  afirmar la copy. Es copia del original de `fitmess-api`; si difieren, manda
+  el original
+- Los textos legales de `src/content/legal/` que toque la pantalla. Son la
+  fuente de todo lo que la copy afirme sobre el flujo, los roles o los permisos
 - El backlog o la definición del ítem, si existe
 
 **Abrir `/estilo` es parte de este paso.** Es el sistema funcionando, y la
@@ -80,7 +85,19 @@ no del QA. Mínimo AA: 4.5:1 texto normal, 3:1 texto grande y límites de
 controles. Un token que llega al Implementador sin su número medido llega a
 producción sin él.
 
-### 4. Escribir `outputs/plan.md`
+### 4. Escribir `specs/W-XX.md`
+
+**Va en `specs/`, que está en git, y hay una sola copia.** El porqué y las
+reglas de enmienda están en `specs/README.md`; lo que no puede pasar es lo que
+ya pasó: enmendar prefijando un bloque al principio y dejar el cuerpo
+prometiendo lo que se acaba de quitar.
+
+Si el ítem ya tiene spec —una revisión de alcance, un segundo intento— **se
+edita el que hay**. Nunca se crea `W-10-v2.md` ni se prefija un «lo de abajo ya
+no vale»: se reescriben las secciones afectadas, se marca cada decisión
+superada en su sitio con fecha, y se revisan los criterios de aceptación uno a
+uno. Un criterio que sobrevive a un cambio de alcance sin revisarse es
+exactamente cómo nació el hallazgo H-2 de W-10.
 
 ```markdown
 # Plan — <W-XX> <título>
@@ -129,20 +146,50 @@ metadatos.
 
 ## Criterios de aceptación
 
-Lo que el QA va a verificar. Concretos y comprobables.
+Lo que el QA va a verificar. Concretos, comprobables, y **cada uno con su
+verificador delante**:
 
-- [ ] ...
-- [ ] Accesibilidad: <lo específico de esta pantalla>
+| Etiqueta           | Quién lo comprueba                                               |
+| ------------------ | ---------------------------------------------------------------- |
+| `[gate]`           | Uno de los cinco. Incluye `lint`, que es quien cubre el diseño   |
+| `[test:<archivo>]` | Un test que hay que escribir, en el archivo que se nombra        |
+| `[navegador]`      | `pnpm run screenshot` y mirar la captura. No se cierra razonando |
+| `[humano]`         | Juicio de producto o de tono. No lo automatiza nadie             |
+
+- [ ] `[gate]` ...
+- [ ] `[test:<archivo>]` ...
+- [ ] `[navegador]` ...
+- [ ] Accesibilidad: <lo específico de esta pantalla, cada uno con su etiqueta>
 
 ## Riesgos
 
 Lo que puede salir mal y qué haríamos.
 ```
 
+**Un criterio sin verificador no es un criterio: es un deseo.** Y uno cuyo
+verificador no se puede correr hoy —falta el navegador, falta el dato, falta
+el entorno— **no pasa el Checkpoint 1**: o se resuelve el verificador antes de
+que nadie escriba código, o el criterio sale del alcance con su nombre y su
+motivo escritos.
+
+Nació de un caso medido. W-10 llevó al Checkpoint 1 cuatro criterios que
+exigían navegador —320px, el anillo de foco, el acordeón con una tecla, el
+encuadre de las fotos— en un entorno donde Chromium no arrancaba por tres
+librerías del sistema. Se aprobaron igual; el QA los declaró honestamente
+«verificados por análisis, no por píxeles» y la cadena siguió tres ciclos.
+El día que hubo navegador, la primera pantalla que se abrió llevaba desde su
+construcción sin dibujar la foto del héroe, con los cinco gates en verde
+todo ese tiempo.
+
 ### 5. Presentar y parar
 
 Mostrar el plan al humano en la terminal, resumido. **CHECKPOINT: no invocar
 `/implementar` por iniciativa propia.** El humano aprueba, corrige o rechaza.
+
+Al presentarlo, decir **cuántos criterios lleva cada verificador**. Los
+`[navegador]` y los `[humano]` son los que la cadena no puede cerrar sola: el
+humano tiene que saber cuántos son antes de aprobar, no descubrirlos en el
+Checkpoint 2.
 
 ---
 
@@ -157,8 +204,13 @@ tamaño pantalla, no para cualquier edición.
 ## Restricciones
 
 - NUNCA escribir código en esta fase
+- NUNCA enmendar un spec prefijando un bloque: se edita el cuerpo
+- NUNCA dejar dos copias del contrato —`specs/` es la única—
 - NUNCA invocar `/implementar` sin aprobación explícita del humano
 - NUNCA dar por supuesto un token o un componente sin haber verificado que existe
+- NUNCA subir al checkpoint un criterio **sin verificador**, ni uno cuyo
+  verificador no se pueda correr hoy. Si no se puede comprobar, no se aprueba:
+  se resuelve el verificador o el criterio sale del alcance por escrito
 - NUNCA copiar un hexadecimal del canvas al plan: el canvas es una maqueta. Se
   nombra el token, y si no hay token, se dice que falta
 - NUNCA proponer copy en «usted» para una pantalla de producto
