@@ -1,0 +1,32 @@
+{
+  "projectId": "7a94f319-e3f6-40c5-a6a7-5cfb819ea061",
+  "shape": "package",
+  "pkg": "fittraining",
+  "globalName": "Fittraining",
+  "buildCmd": "pnpm run build && node .design-sync/build-pkg.mjs",
+  "entry": ".design-sync/.cache/pkg/index.js",
+  "srcDir": "../../../src/components",
+  "cssEntry": "styles.css",
+  "readmeHeader": ".design-sync/conventions.md",
+  "componentSrcMap": {
+    "CardTitle": "../../../src/components/ui/card.tsx",
+    "CardBody": "../../../src/components/ui/card.tsx",
+    "CoachesBlock": "../../../src/components/landing/coaches.tsx"
+  },
+  "overrides": {
+    "Container": { "cardMode": "column", "viewport": "1400x700" },
+    "Hero": { "cardMode": "single", "viewport": "1280x800" },
+    "HowItWorks": { "cardMode": "column", "viewport": "1280x700" },
+    "CoachesBlock": { "cardMode": "column", "viewport": "1280x800" },
+    "Faq": { "cardMode": "column", "viewport": "1280x600" },
+    "SectionHeading": { "cardMode": "column" },
+    "ClosingCta": { "cardMode": "column", "viewport": "1280x600" },
+    "SiteHeader": { "cardMode": "column", "viewport": "1280x400" },
+    "SiteFooter": { "cardMode": "column", "viewport": "1280x400" }
+  },
+  "dtsPropsFor": {
+    "Button": "className?: string; id?: string; style?: React.CSSProperties; children?: React.ReactNode; /** primary: relleno cian, LA accion (como mucho una por vista). secondary: borde cian. neutral: borde gris, la salida lateral. link: texto cian sin caja. destructive: rojo, solo para lo que no se deshace. */ variant?: \"primary\" | \"secondary\" | \"neutral\" | \"link\" | \"destructive\"; /** lg 48px, md 44px (por defecto). sm 36px SOLO en tablas y paneles densos, nunca la accion principal. */ size?: \"lg\" | \"md\" | \"sm\"; /** pill por defecto. rect (2px) SOLO en la barra de navegacion. */ shape?: \"pill\" | \"rect\"; /** Deja el boton no interactivo y con aria-busy. El texto lo cambias tu: «Guardando…» por «Guardar». */ loading?: boolean; disabled?: boolean; /** Por defecto \"button\", no \"submit\". */ type?: \"button\" | \"submit\" | \"reset\"; onClick?: React.MouseEventHandler<HTMLButtonElement>; \"aria-label\"?: string;",
+    "SiteFooter": "/** Los documentos legales que enlaza el pie, en orden. Solo pinta navLabel y enlaza a /<slug>. */ documents: ReadonlyArray<{ slug: string; navLabel: string; title: string; summary: string; currentVersion: string }>;",
+    "PhotoSlot": "className?: string; id?: string; style?: React.CSSProperties; /** Texto por encima del degradado. Se pinta en una capa relative sobre la foto. */ children?: React.ReactNode; /** Degradado de proteccion: side (texto a la izquierda, el heroe), bottom (texto abajo, la tarjeta de plan), none. Si hay texto encima, NUNCA none. */ scrim?: \"none\" | \"side\" | \"bottom\"; /** La foto, como URL. O src o label: son los dos estados del hueco. */ src?: string; /** Obligatorio con src: \"\" si la foto es decorativa. */ alt?: string; /** Obligatorio con src, p. ej. \"(min-width: 768px) 50vw, 100vw\". */ sizes?: string; priority?: boolean; /** object-position de la foto, p. ej. \"70% 20%\". */ focus?: string; /** Sin foto: que falta y en que medida, en mayusculas. Ej. \"FOTO DE PLAN · 1200×1400\". */ label?: string; /** Alinea la etiqueta del hueco vacio, no la foto. */ align?: \"left\" | \"right\";"
+  }
+}

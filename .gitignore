@@ -50,3 +50,11 @@ next-env.d.ts
 
 # Marcadores de arranque de subagentes y log de hooks: estado local.
 .claude/tmp/
+
+# /design-sync: el convertidor, su salida y el estado de maquina. Lo que SI
+# va en git es el resto de `.design-sync/` (config, notas, previews).
+.ds-sync/
+ds-bundle/
+.design-sync/.cache/
+.design-sync/learnings/
+.design-sync/node_modules
