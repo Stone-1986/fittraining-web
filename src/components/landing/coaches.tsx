@@ -15,10 +15,10 @@ import { SectionHeading } from '@/components/landing/section-heading';
  *     dado de alta, asi que seria una cifra falsa — el mismo problema que la
  *     insignia «POPULAR», y se resuelve igual: fuera hasta que sea cierta.
  *
- * De los tres retratos (400×400) hoy hay UNO. Los otros dos se quedan como
- * hueco rayado y ya no llevan la etiqueta de lo que falta: con un retrato
- * real al lado, «RETRATOS DE ENTRENADORES · 400×400» describia media fila y
- * contradecia la otra media.
+ * De los tres retratos (400×400) hoy hay UNO, y es lo unico que se dibuja.
+ * Ni los otros dos huecos ni la etiqueta «RETRATOS DE ENTRENADORES · 400×400»:
+ * la etiqueta describia media fila y contradecia la otra media, y los huecos
+ * sin etiqueta ya no se leen como «falta una foto».
  *
  * NINGUNO DICE CUANTOS ENTRENADORES HAY, y es deliberado —el mismo criterio
  * que retiro el avatar «+9»—. Un retrato es una cara, no un recuento; el dia
@@ -59,15 +59,22 @@ export function CoachesBlock() {
           entrenador que sigue el progreso de sus atletas inscritos.
         </p>
 
-        {/* LOS TRES RETRATOS (400x400), y hoy solo uno es una persona. Los
-            otros dos siguen siendo el hueco rayado del sistema, sin nota al
-            lado: la nota se retiro cuando llego el primer retrato.
+        {/* UN SOLO RETRATO (400x400), y es el unico que hay. El canvas dibuja
+            tres mas el avatar «+9»; los dos huecos rayados que acompañaban a
+            este se retiraron el 2026-09-10 porque no explicaban nada: sin la
+            etiqueta de produccion al lado, un circulo gris junto a una cara
+            no se lee como «falta una foto», se lee como un defecto. Enseñar
+            lo que existe es mas honesto que enseñar su ausencia.
 
-            `overflow-hidden` SOLO EN EL QUE LLEVA FOTO, y hace falta: el
-            `rounded-full` recorta el fondo del hueco vacio —un fondo siempre
-            se recorta al radio— pero NO recorta un hijo posicionado, y la
-            imagen de `PhotoSlot` va `absolute` por `fill`. Sin esa clase el
-            retrato sale cuadrado dentro de un borde redondo.
+            NO DICE CUANTOS ENTRENADORES HAY, y por eso una cara sola tampoco
+            es un problema: es el mismo criterio que retiro el «+9», que si
+            afirmaba doce. El dia que haya mas retratos, se añaden aqui.
+
+            `overflow-hidden` HACE FALTA: el `rounded-full` recorta el fondo
+            del hueco —un fondo siempre se recorta al radio— pero NO recorta
+            un hijo posicionado, y la imagen de `PhotoSlot` va `absolute` por
+            `fill`. Sin esa clase el retrato sale cuadrado dentro de un borde
+            redondo, con los cinco gates en verde.
 
             `sizes="56px"` porque el hueco mide `size-14` y no cambia con la
             ventana. Es lo que evita que Next sirva 384px para 56. */}
@@ -78,13 +85,6 @@ export function CoachesBlock() {
             sizes="56px"
             className="relative size-14 overflow-hidden rounded-full border border-border-strong"
           />
-          {[0, 1].map((i) => (
-            <PhotoSlot
-              key={i}
-              aria-hidden="true"
-              className="relative size-14 rounded-full border border-border-strong"
-            />
-          ))}
         </div>
       </div>
     </section>
