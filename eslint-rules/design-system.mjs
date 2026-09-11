@@ -80,6 +80,37 @@ const PATTERNS = [
       'Valor suelto donde el sistema tiene escala. Usa el token (text-lead, tracking-label, rounded-pill…) — regla § 1',
   },
   {
+    id: 'base-palette',
+    // `white` y `black` son paleta de fabrica igual que `neutral-500`, pero no
+    // llevan sufijo numerico, asi que el patron de arriba no los ve. Y no son
+    // inocuos: el blanco puro no existe en el sistema —el texto es `#e8ecec`—
+    // ni el negro puro —el fondo es `#0b0d0e`—, asi que un `text-white` mete
+    // un contraste y un color que nadie midio.
+    //
+    // `transparent` y `current` SI pasan: no son colores, son la ausencia de
+    // uno y la herencia del de al lado. `button.tsx` usa `bg-transparent` para
+    // la variante de borde y es correcto.
+    test: /\b(?:bg|text|border|ring|fill|stroke|from|via|to|outline|decoration|divide|caret|placeholder)-(?:white|black)\b/,
+    message:
+      'Blanco o negro puros. El sistema no los tiene: el texto es `text-foreground` y el fondo `bg-background` — regla § 1',
+  },
+  {
+    id: 'arbitrary-spacing',
+    // SOLO ESPACIADO —padding, margin, gap, space—, que es donde la regla
+    // manda: «la escala de 4px de Tailwind. NUNCA inventar una propia». El
+    // ancho y el alto quedan fuera a proposito: un `w-[58%]` es una proporcion
+    // de dato y un `h-[calc(...)]` una medida de layout, y los dos tienen que
+    // poder escribirse.
+    //
+    // Y solo cuando el valor es una LONGITUD FIJA (`34px`, `0.4rem`): el
+    // canvas dibuja un paso de 34px que no esta en la escala, y ese es
+    // exactamente el valor que esto existe para atrapar. Un `%` o un `calc()`
+    // en un margen es raro pero legitimo, y no se prohibe.
+    test: /\b(?:p|px|py|pt|pb|pl|pr|ps|pe|m|mx|my|mt|mb|ml|mr|ms|me|gap|gap-x|gap-y|space-x|space-y)-\[\d+(?:\.\d+)?(?:px|rem|em)\]/,
+    message:
+      'Espaciado fuera de la escala de 4px. Usa la parada real (`mt-8` son 32px; el canvas dibuja 34 y la diferencia no se ve) — regla § 1',
+  },
+  {
     id: 'dark-variant',
     // `dark:[a-z[]` y no `dark:` a secas: sin eso, una mención en prosa
     // —«no hay ni una clase dark: en el repo»— sale como acierto.

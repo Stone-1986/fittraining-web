@@ -23,6 +23,14 @@ describe('lo que la regla debe atrapar', () => {
     ['text-[21px]', 'arbitrary-scale'],
     ['tracking-[.14em]', 'arbitrary-scale'],
     ['rounded-[6px]', 'arbitrary-scale'],
+    ['text-white', 'base-palette'],
+    ['bg-black', 'base-palette'],
+    // El modificador de opacidad no lo salva: sigue siendo blanco puro.
+    ['bg-white/10', 'base-palette'],
+    // El paso de 34px que el canvas dibuja y la escala no tiene.
+    ['mt-[34px]', 'arbitrary-spacing'],
+    ['p-[13px]', 'arbitrary-spacing'],
+    ['gap-[0.4rem]', 'arbitrary-spacing'],
     ['dark:bg-card', 'dark-variant'],
     ['bg-warm', 'removed-token'],
     ['text-warm', 'removed-token'],
@@ -53,6 +61,20 @@ describe('lo que NO debe atrapar', () => {
     // Una proporción de dato NO está en la escala de espaciado y tiene que
     // poder escribirse. Es el caso de la barra de progreso de /estilo.
     'h-1.5 w-[58%] bg-primary',
+    // LO QUE `arbitrary-spacing` DEJA PASAR A PROPÓSITO, y conviene que esté
+    // fijado: si alguien amplía el patrón a `w-` o a `h-`, estos tests caen y
+    // la discusión ocurre antes del merge y no después.
+    'h-[calc(100vh-4rem)]',
+    'grid-cols-[1fr_2fr]',
+    'w-[min(100%,42rem)]',
+    'm-[5%]',
+    // Números de la escala de Tailwind v4: no son valores sueltos, son la
+    // escala de 4px expresada en pasos. `min-h-190` son 760px.
+    'min-h-190 max-w-165 size-14 mt-8 gap-3.5',
+    // `transparent` y `current` NO son colores: son la ausencia de uno y la
+    // herencia del de al lado. `button.tsx` depende de esto.
+    'border border-primary bg-transparent',
+    'fill-current stroke-current',
     // Prosa que habla del sistema. La guía viva está llena de esto.
     'La interfaz vive sobre negro carbón. No hay modo claro, y por eso no hay ni una clase «dark:» en el repo.',
     'Cuatro radios: 0 en bloques, 2px en el botón rectangular de la barra.',
