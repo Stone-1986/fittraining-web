@@ -200,4 +200,8 @@ function run() {
   process.exit(report.all_passed ? 0 : 1);
 }
 
-process.argv.includes('--check') ? check() : run();
+if (process.argv.includes('--check')) {
+  check();
+} else {
+  run();
+}
