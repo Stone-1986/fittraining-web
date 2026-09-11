@@ -63,12 +63,42 @@ no, el área tocada (`legal`, `ui`, `amplify`, `deps`).
    - Cualquier `.env` con valores reales
    - `*:Zone.Identifier`
 
-6. Mostrar el resumen completo: archivos, mensaje, rama.
+6. Si el commit CIERRA un ítem (W-XX), archivar antes (ver abajo).
+
+7. Mostrar el resumen completo: archivos, mensaje, rama.
    Pedir confirmación (AskUserQuestion: Confirmar / Cancelar).
 
-7. Si confirma: `git add <archivos>` y `git commit`.
+8. Si confirma: `git add <archivos>` y `git commit`.
    Mostrar el resultado.
 ```
+
+---
+
+## Al cerrar un ítem: archivar la evidencia
+
+Cuando el commit **cierra** un ítem de trabajo —no en cada commit del ítem, solo
+en el último— sus artefactos se copian a `docs/evidencia/W-XX/`, que está en
+git, y entran en ese mismo commit:
+
+```bash
+mkdir -p docs/evidencia/W-XX
+cp specs/W-XX.md            docs/evidencia/W-XX/spec.md
+cp outputs/reporte_qa.md    docs/evidencia/W-XX/reporte_qa.md
+cp outputs/revision_codigo.md docs/evidencia/W-XX/revision_codigo.md
+cp outputs/gates.json       docs/evidencia/W-XX/gates.json
+```
+
+**Por qué.** Los tres artefactos de `outputs/` se sobrescriben en la corrida
+siguiente, y los reportes se citan entre sí por `timestamp`. Sin este paso, un
+reporte que dice «gates.json @ 00:47:10Z» apunta a un archivo que ya no existe
+—ya pasó, con los dos reportes de W-10— y la revisión de un ítem deja de poder
+auditarse en cuanto empieza el siguiente.
+
+Copiar el `gates.json` **que los reportes citan**, no el último: si no
+coinciden, el archivo lo dice y eso también es información.
+
+El `spec.md` se archiva y **se retira de `specs/`** en el mismo commit:
+`specs/` es para lo vivo.
 
 ---
 
@@ -119,7 +149,8 @@ fix(ui): el h1 del índice legal usaba tamaño de párrafo
 ## Protecciones
 
 - NUNCA stagear `.env` con valores reales, `node_modules/`, `.next/`,
-  `outputs/`, `coverage/` ni `*.tsbuildinfo`
+  `outputs/`, `coverage/` ni `*.tsbuildinfo`. La **copia** en
+  `docs/evidencia/W-XX/` sí se commitea: ahí está el sentido de copiarla
 - SIEMPRE mostrar `git status` y el resumen ANTES de pedir confirmación
 - NUNCA usar `git commit --no-verify`
 - NUNCA hacer `git push` sin que el humano lo pida de forma explícita

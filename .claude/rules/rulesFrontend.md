@@ -38,7 +38,8 @@ consume— y la segunda es la única que ve quien se encuentra el código.
   gitignored y se regenera, así que una referencia como `outputs/plan.md:281`
   deja de resolver en cuanto alguien edita el plan. Ya pasó: la excepción del
   `<h3>` en mayúsculas de `/estilo` se apoyaba en una línea de `plan.md` que
-  hoy habla de otra cosa
+  acabó hablando de otra cosa. El contrato vive desde entonces en `specs/`, en
+  git — pero ni siquiera ahí se cita por número de línea: se cita por sección
 
 ---
 
@@ -269,6 +270,13 @@ volviendo al valor del canvas:
 - NUNCA vale como confirmación el valor de retorno del propio `Write`, ni un
   grep de contenido que ya está en el contexto: ese grep coincide con lo que
   el agente redactó, no prueba que el disco haya cambiado
+- **El contrato de un ítem vive en `specs/W-XX.md`, en git**, con una sola
+  copia y enmendado editando el cuerpo — nunca prefijando un bloque que
+  invalide lo de abajo. Las reglas del directorio están en `specs/README.md`
+- **Al cerrar un ítem se archivan sus artefactos** en `docs/evidencia/W-XX/`:
+  el spec, el reporte del QA, la revisión y el `gates.json` que citan. Sin eso,
+  un reporte que dice «gates.json @ 00:47:10Z» apunta a un archivo que la
+  corrida siguiente sobrescribió
 - **Un gate que no corre es indistinguible de uno que pasa.** Lo mismo un
   artefacto que no se escribió
 - **Y un criterio de aceptación sin verificador es indistinguible de uno que

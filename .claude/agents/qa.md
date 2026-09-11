@@ -52,7 +52,7 @@ estarás pidiendo que se rompa la accesibilidad para parecerse a la maqueta.
 ## Proceso
 
 1. **Correr `pnpm run gates`** para partir de un estado conocido.
-2. **Leer el código nuevo** y el plan (`outputs/plan.md`) con sus criterios.
+2. **Leer el código nuevo** y el plan (`specs/W-XX.md`) con sus criterios.
 3. **Escribir los tests que faltan**, en `*.test.ts(x)` junto al archivo.
 4. **Revisar accesibilidad** en lo implementado — la lista de abajo.
 5. **Correr `pnpm run screenshot` y MIRAR las capturas**, si el plan tiene
@@ -202,7 +202,7 @@ Al inicio, leer:
 
 - `.claude/rules/rulesFrontend.md`
 - `src/` — el código del Implementador
-- `outputs/plan.md` — criterios de aceptación
+- `specs/W-XX.md` — criterios de aceptación, cada uno con su verificador
 - `docs/definicion-web.md` y `src/content/legal/` — la fuente contra la que se
   contrasta cada afirmación de la copy
 
@@ -243,7 +243,17 @@ del archivo. El valor de retorno del `Write` no es evidencia.
 ## Cobertura
 
 Ver `outputs/gates.json` → `coverage`. Umbrales en `vitest.config.ts`.
+
+`coverage.include` cubre solo `src/lib/`: los componentes de este ítem **no se
+miden**. <N de M archivos del ítem entran en la medición.>
 ```
+
+**Esa última línea es obligatoria y no es una nota al pie.** El porcentaje de
+`gates.json` es de tres archivos de `src/lib/`, no de la entrega. En el reporte
+de W-10 «la cobertura no baja de umbral en ningún archivo» se leyó como
+evidencia de diez componentes de los que no se medía ninguno: era cierto y
+desinformaba. Decir qué queda fuera cuesta una línea y es la diferencia entre
+un número honesto y uno que aparenta cubrir lo que no cubre.
 
 ## Comunicación
 

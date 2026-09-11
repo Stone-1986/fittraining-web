@@ -16,20 +16,20 @@ minutos y desbloquean lo demás; P2 espera al próximo ítem de trabajo.
 
 ## Estado
 
-| #   | Ítem                                                     | Prioridad | Estado    |
-| --- | -------------------------------------------------------- | --------- | --------- |
-| 1   | Librerías del navegador                                  | P0        | Hecho     |
-| 2   | Cerrar la deriva del árbol (fotos)                       | P0        | Hecho     |
-| 3   | Reenunciar el hallazgo de `definicion-web.md`            | P0        | Hecho     |
-| 4   | Cada criterio de aceptación declara su verificador       | P1        | Hecho     |
-| 5   | Las excepciones se escriben junto al código              | P1        | Hecho     |
-| 6   | `definicion-web.md` a la lista de lectura + contraste QA | P1        | Hecho     |
-| 7   | La copy del cierre contra Términos § 12                  | P1        | Hecho     |
-| 8   | Ampliar `WATCHED` en `gates.mjs`                         | P1        | Hecho     |
-| 9   | El contrato pasa a `specs/W-XX.md` versionado            | P2        | Pendiente |
-| 10  | Dos patrones más en `design-system.mjs`                  | P2        | Pendiente |
-| 11  | Escribir cuándo NO se usa la cadena                      | P2        | Pendiente |
-| 12  | La plantilla del QA dice qué mide la cobertura           | P2        | Pendiente |
+| #   | Ítem                                                     | Prioridad | Estado |
+| --- | -------------------------------------------------------- | --------- | ------ |
+| 1   | Librerías del navegador                                  | P0        | Hecho  |
+| 2   | Cerrar la deriva del árbol (fotos)                       | P0        | Hecho  |
+| 3   | Reenunciar el hallazgo de `definicion-web.md`            | P0        | Hecho  |
+| 4   | Cada criterio de aceptación declara su verificador       | P1        | Hecho  |
+| 5   | Las excepciones se escriben junto al código              | P1        | Hecho  |
+| 6   | `definicion-web.md` a la lista de lectura + contraste QA | P1        | Hecho  |
+| 7   | La copy del cierre contra Términos § 12                  | P1        | Hecho  |
+| 8   | Ampliar `WATCHED` en `gates.mjs`                         | P1        | Hecho  |
+| 9   | El contrato pasa a `specs/W-XX.md` versionado            | P2        | Hecho  |
+| 10  | Dos patrones más en `design-system.mjs`                  | P2        | Hecho  |
+| 11  | Escribir cuándo NO se usa la cadena                      | P2        | Hecho  |
+| 12  | La plantilla del QA dice qué mide la cobertura           | P2        | Hecho  |
 
 ---
 
@@ -353,7 +353,8 @@ corregir una frase.
 
 ### 9. El contrato pasa a `specs/W-XX.md`, versionado en git
 
-- [ ] **Hecho** el ****-**-** ·
+- [x] **Hecho** el 2026-09-10 · `specs/` con sus reglas de enmienda, el paso de
+      archivado en `/commit`, y W-10 archivado
 
 **Qué se hace.** `outputs/plan.md` sigue siendo el borrador; el **contrato**
 vive en `specs/W-XX.md`, dentro de git, con criterios de identificador estable
@@ -379,11 +380,33 @@ builds y despliegues: esto extiende un patrón propio, no inventa uno.
 **Coste.** Una carpeta y cinco líneas en `/commit`. **Sin** esquema, sin
 validador, sin herramienta.
 
+**Lo que se hizo, con una desviación declarada.** El ítem hablaba de «borrador
+en `outputs/` y contrato en `specs/`»; se hizo con **una sola copia**, porque
+dos copias del mismo contrato son exactamente la deriva que el ítem existe para
+evitar. `specs/W-XX.md` sustituye a `outputs/plan.md` en `/planificar`, en
+`/implementar` y en los tres agentes, y `specs/README.md` fija la regla que
+faltaba: **una enmienda se edita en el cuerpo, nunca se prefija**, las
+decisiones superadas se marcan en su sitio con fecha, y los criterios afectados
+se revisan uno a uno — que es justo lo que no se hizo en la Revisión 2 de W-10
+y de donde salió H-2.
+
+`/commit` gana el paso de archivado al cerrar un ítem, y se estrenó con W-10:
+`docs/evidencia/W-10/` conserva el spec, los dos reportes y el `gates.json`.
+Su `README` deja escritos los dos avisos que lo justifican — que el
+`gates.json` archivado **no** es el que citan los reportes, porque esos dos se
+perdieron, y que el spec se contradice a sí mismo y se archiva así, porque un
+archivo que se edita deja de ser evidencia.
+
+No hay `specs/W-10.md`: el ítem estaba terminado cuando se creó el directorio,
+así que su contrato es historia y vive en la evidencia. `specs/` empieza limpio
+con el ítem siguiente.
+
 ---
 
 ### 10. Dos patrones más en `design-system.mjs`
 
-- [ ] **Hecho** el ****-**-** ·
+- [x] **Hecho** el 2026-09-10 · `base-palette` y `arbitrary-spacing`, probados
+      contra ESLint y no solo en el test
 
 **Qué se hace.** Paleta de fábrica sin sufijo numérico (`white`, `black`,
 dejando pasar `transparent` y `current`) y valores sueltos de espaciado
@@ -409,11 +432,26 @@ punto ciego de los dos revisores.
 patrones —solo `bg-transparent`, que es legítimo—, así que es cerrar la puerta
 antes de que entre nadie.
 
+**Lo que se hizo, y dónde se puso el límite.** `base-palette` atrapa
+`white`/`black` con o sin modificador de opacidad, y deja pasar `transparent` y
+`current`, que no son colores. `arbitrary-spacing` cubre **solo** padding,
+margin, gap y space, y **solo** cuando el valor es una longitud fija
+(`mt-[34px]`, `p-[13px]`, `gap-[0.4rem]`): el ancho y el alto quedan fuera a
+propósito porque un `w-[58%]` es una proporción de dato y un
+`h-[calc(100vh-4rem)]` una medida de layout, y los dos tienen que poder
+escribirse.
+
+Los tests fijan por primera vez **lo que se deja pasar a propósito** —`calc`,
+`%`, `grid-cols-[1fr_2fr]`, la escala numérica de v4, `transparent`—: si
+alguien amplía el patrón a `w-` o a `h-`, esos tests caen y la discusión ocurre
+antes del merge. Y se comprobó con una sonda temporal en `src/` que ESLint
+falla de verdad con los dos, no solo que el test unitario pasa.
+
 ---
 
 ### 11. Escribir cuándo NO se usa la cadena
 
-- [ ] **Hecho** el ****-**-** ·
+- [x] **Hecho** el 2026-09-10 · tabla en `/implementar` y párrafo en `CLAUDE.md`
 
 **Qué se hace.** Un párrafo en `CLAUDE.md` y otro en `/implementar`: cadena
 completa para pantallas con lógica, datos o contrato de API; Implementador +
@@ -429,11 +467,20 @@ saltársela es una decisión y no un olvido.
 
 **Coste.** Dos párrafos.
 
+**Lo que se hizo.** Una tabla de tres filas en `/implementar` —cadena completa
+para pantalla con lógica, datos o contrato de API; Implementador más revisión
+humana para presentación sin ramas; directo para copy, un token o una línea— y
+el resumen en `CLAUDE.md`. Con el dato que la justifica escrito al lado: de
+cinco cambios materiales de W-10 solo dos pasaron por la cadena completa. Y la
+condición que impide que esto degrade nada: **la ruta corta ahorra agentes,
+nunca evidencia** — el cambio se registra igual en el spec y los gates corren
+igual.
+
 ---
 
 ### 12. La plantilla del QA dice qué mide la cobertura
 
-- [ ] **Hecho** el ****-**-** ·
+- [x] **Hecho** el 2026-09-10 · línea obligatoria en el reporte
 
 **Qué se hace.** Una línea fija en el reporte: «`coverage.include` cubre
 `src/lib/`: los componentes de este ítem **no** se miden».
@@ -446,6 +493,12 @@ veintidós (`design-tokens.ts`, `landing-content.ts`, `legal.ts`).
 umbral ni una configuración.
 
 **Coste.** Una línea.
+
+**Lo que se hizo.** La línea es obligatoria en el reporte y dice cuántos
+archivos del ítem entran en la medición, con el motivo escrito debajo: el
+porcentaje de `gates.json` es de tres archivos de `src/lib/`, y en W-10 «la
+cobertura no baja de umbral en ningún archivo» se leyó como evidencia de diez
+componentes de los que no se medía ninguno. Era cierto y desinformaba.
 
 ---
 
@@ -480,6 +533,8 @@ nuevo escrito debajo, no por inercia.
 | Fecha      | Qué                                                                                                                                                                                                                     |
 | ---------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | 2026-09-09 | Auditoría de la cadena de W-10. Se abre esta lista con 12 ítems. Ítem 3 cerrado en el acto.                                                                                                                             |
+| 2026-09-10 | Ítems 10, 11 y 12 cerrados. **El seguimiento queda completo: 12 de 12.**                                                                                                                                                |
+| 2026-09-10 | Ítem 9 cerrado: `specs/` sustituye a `outputs/plan.md`, con regla de enmienda y archivado al cerrar. W-10 archivado en `docs/evidencia/W-10/`.                                                                          |
 | 2026-09-10 | Medido el «build inestable»: 10 builds seguidos con `next dev` vivo, 0 fallos (24 con los de la sesión). El pendiente no tenía definición ni evidencia y se cierra — `docs/evidencia/2026-09-10-build-estabilidad.txt`. |
 | 2026-09-10 | Ítem 7 cerrado, y al revés de como estaba escrito: los Términos ya permitían el registro; lo falso era la copy del cierre.                                                                                              |
 | 2026-09-10 | Ítems 5, 6 y 8 cerrados. Al traer `definicion-web.md` se descubre que su § 3 ya estaba corregido: el pendiente de § 8 se cierra.                                                                                        |

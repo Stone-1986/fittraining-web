@@ -1,0 +1,48 @@
+{
+  "timestamp": "2026-09-11T00:58:53.748Z",
+  "started_at": "2026-09-11T00:58:19.651Z",
+  "all_passed": true,
+  "coverage": {
+    "lines": 100,
+    "statements": 98.03,
+    "functions": 100,
+    "branches": 95.45
+  },
+  "gates": [
+    {
+      "name": "typecheck",
+      "command": "pnpm run typecheck",
+      "passed": true,
+      "duration_ms": 2392,
+      "tail": null
+    },
+    {
+      "name": "lint",
+      "command": "pnpm run lint",
+      "passed": true,
+      "duration_ms": 2028,
+      "tail": null
+    },
+    {
+      "name": "format",
+      "command": "pnpm run format:check",
+      "passed": true,
+      "duration_ms": 2095,
+      "tail": null
+    },
+    {
+      "name": "test",
+      "command": "pnpm run test:cov",
+      "passed": true,
+      "duration_ms": 4141,
+      "tail": null
+    },
+    {
+      "name": "build",
+      "command": "pnpm run build",
+      "passed": true,
+      "duration_ms": 23439,
+      "tail": null
+    }
+  ]
+}

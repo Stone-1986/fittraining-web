@@ -85,7 +85,10 @@ ningún agente transcribe un porcentaje a un reporte, lo referencia por su
 ## Arquitectura
 
 ```
+specs/                     ← EL CONTRATO de cada ítem vivo (W-XX.md), en git.
+                             Una sola copia, y se enmienda editando el cuerpo
 docs/
+  evidencia/               ← lo archivado al cerrar un ítem, y las medidas
   sistema_diseño/          ← EL CANVAS: el sistema y la landing, como maqueta
   sistema-de-diseno.md     ← el porqué de las reglas
   definicion-web.md        ← COPIA de fitmess-api: qué páginas existen, con qué
@@ -148,14 +151,19 @@ ninguna instrucción.
 
 ### Skills
 
-| Skill          | Cuándo                                                                                |
-| -------------- | ------------------------------------------------------------------------------------- |
-| `/planificar`  | Fase 1 — convierte un ítem (W-XX) en `outputs/plan.md`. **Para en checkpoint humano** |
-| `/implementar` | Fase 2 — orquesta la cadena sobre un plan aprobado. Máximo 3 ciclos                   |
-| `/commit`      | Commits estandarizados. La **única** excepción a «git lo opera el humano»             |
+| Skill          | Cuándo                                                                              |
+| -------------- | ----------------------------------------------------------------------------------- |
+| `/planificar`  | Fase 1 — convierte un ítem (W-XX) en `specs/W-XX.md`. **Para en checkpoint humano** |
+| `/implementar` | Fase 2 — orquesta la cadena sobre un plan aprobado. Máximo 3 ciclos                 |
+| `/commit`      | Commits estandarizados. La **única** excepción a «git lo opera el humano»           |
 
-Para un cambio de una línea, **no** uses el flujo de agentes: cuesta más que
-hacerlo.
+**La cadena no es el proceso por defecto.** Va para trabajo de tamaño pantalla
+con lógica, datos o contrato de API. La presentación sin ramas se hace con el
+Implementador y una revisión humana; la copy, un token o una línea se hacen
+directo con `pnpm run gates` detrás. El reparto completo está en
+`/implementar § Cuándo NO se usa esta cadena`, con una condición que no se
+negocia: **la ruta corta ahorra agentes, nunca evidencia** — el cambio se
+registra igual en el spec y los gates corren igual.
 
 ### Hooks
 

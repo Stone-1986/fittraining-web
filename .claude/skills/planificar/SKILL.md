@@ -10,8 +10,8 @@ description: Convierte un ítem de trabajo (W-XX) en un plan de implementación 
 /planificar "la landing pública"
 ```
 
-Produce **`outputs/plan.md`** y se detiene en un checkpoint humano. No escribe
-ni una línea de código.
+Produce **`specs/W-XX.md`** —en git, no en `outputs/`— y se detiene en un
+checkpoint humano. No escribe ni una línea de código.
 
 ---
 
@@ -85,7 +85,19 @@ no del QA. Mínimo AA: 4.5:1 texto normal, 3:1 texto grande y límites de
 controles. Un token que llega al Implementador sin su número medido llega a
 producción sin él.
 
-### 4. Escribir `outputs/plan.md`
+### 4. Escribir `specs/W-XX.md`
+
+**Va en `specs/`, que está en git, y hay una sola copia.** El porqué y las
+reglas de enmienda están en `specs/README.md`; lo que no puede pasar es lo que
+ya pasó: enmendar prefijando un bloque al principio y dejar el cuerpo
+prometiendo lo que se acaba de quitar.
+
+Si el ítem ya tiene spec —una revisión de alcance, un segundo intento— **se
+edita el que hay**. Nunca se crea `W-10-v2.md` ni se prefija un «lo de abajo ya
+no vale»: se reescriben las secciones afectadas, se marca cada decisión
+superada en su sitio con fecha, y se revisan los criterios de aceptación uno a
+uno. Un criterio que sobrevive a un cambio de alcance sin revisarse es
+exactamente cómo nació el hallazgo H-2 de W-10.
 
 ```markdown
 # Plan — <W-XX> <título>
@@ -192,6 +204,8 @@ tamaño pantalla, no para cualquier edición.
 ## Restricciones
 
 - NUNCA escribir código en esta fase
+- NUNCA enmendar un spec prefijando un bloque: se edita el cuerpo
+- NUNCA dejar dos copias del contrato —`specs/` es la única—
 - NUNCA invocar `/implementar` sin aprobación explícita del humano
 - NUNCA dar por supuesto un token o un componente sin haber verificado que existe
 - NUNCA subir al checkpoint un criterio **sin verificador**, ni uno cuyo

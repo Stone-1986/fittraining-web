@@ -71,7 +71,7 @@ resuelto casi todo lo que el canvas dibuja, con los componentes reales.
 
 ## Proceso
 
-1. **Leer el plan** (`outputs/plan.md`) y las reglas.
+1. **Leer el plan** (`specs/W-XX.md`) y las reglas.
 2. **Inventariar lo que ya existe** antes de crear nada: `src/components/ui/`,
    `src/lib/`, los tokens de `globals.css`. La primera causa de código
    duplicado es no haber mirado.
@@ -141,7 +141,7 @@ Al inicio, leer:
 - `src/app/globals.css`
 - `docs/sistema-de-diseno.md`
 - `docs/definicion-web.md` — si el plan trae copy visible
-- `outputs/plan.md` — el plan aprobado
+- `specs/W-XX.md` — el plan aprobado, en git
 - `outputs/revision_codigo.md` — instrucciones del LT (solo en ciclos 2+)
 
 Al finalizar, tu output es el código en `src/`, y los gates en verde.

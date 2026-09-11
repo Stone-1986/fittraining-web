@@ -25,3 +25,8 @@ docs/sistema_diseño/
 # aqui: reformatearla haria que cada refresco produjera un diff falso contra
 # el original, y este archivo vale justamente por ser identico a el.
 docs/definicion-web.md
+
+# Evidencia archivada: se copia tal cual y no se toca. Reformatearla la
+# convertiria en otra cosa —un archivo que se edita deja de ser evidencia— y
+# ademas produciria un diff falso contra el artefacto original.
+docs/evidencia/

@@ -9,8 +9,8 @@ description: Orquesta la cadena de implementación de fittraining-web — Implem
 /implementar
 ```
 
-Requiere **`outputs/plan.md` aprobado por el humano**. Si no existe, este
-skill se detiene y pide correr `/planificar` primero.
+Requiere **`specs/W-XX.md` aprobado por el humano**. Si no existe, este skill
+se detiene y pide correr `/planificar` primero.
 
 ---
 
@@ -18,7 +18,7 @@ skill se detiene y pide correr `/planificar` primero.
 
 ```
         ┌──────────────────────────────────────────────┐
-        │  outputs/plan.md  (aprobado por el humano)   │
+        │  specs/W-XX.md  (aprobado por el humano)     │
         └──────────────────────┬───────────────────────┘
                                ▼
    ┌───────────────┐    ┌──────────┐    ┌─────────────────┐
@@ -44,11 +44,36 @@ diseño y se comunica por artefactos en disco; no necesita debatir.
 
 ---
 
+## Cuándo NO se usa esta cadena
+
+La cadena cuesta tres agentes y varias horas de reloj. **No es el proceso por
+defecto: es el proceso para trabajo de tamaño pantalla.**
+
+| Qué                                                      | Cómo se hace                         |
+| -------------------------------------------------------- | ------------------------------------ |
+| Pantalla con lógica, datos, estado o contrato de API     | **Cadena completa**                  |
+| Presentación sin ramas: maquetar, componer, mover piezas | Implementador + revisión humana      |
+| Copy, un ajuste de token, un comentario, una línea       | Directo, con `pnpm run gates` detrás |
+
+**Esto no es permiso para saltársela: es la descripción de lo que ya pasa.** En
+W-10, de cinco cambios materiales solo dos pasaron por la cadena completa —el
+ciclo 2 se quedó sin Líder Técnico, la revisión 2 sin segundo QA, el arreglo
+del flujo de consentimiento y todo el trabajo de fotos fueron por la ruta
+directa—. Un proceso que se incumple en la mayoría de los casos y no lo dice
+es peor que uno más corto y escrito.
+
+**La condición es innegociable, y es la que hace que esto no degrade nada:**
+toda ruta que no pase por la cadena **deja igualmente su registro en el spec**
+—qué se cambió y por qué— y corre los gates antes de darse por terminada. Lo
+que se ahorra son los agentes, nunca la evidencia.
+
+---
+
 ## Proceso
 
 ### Paso 0 — Verificar que se puede empezar
 
-- ¿Existe `outputs/plan.md`? Si no → parar y pedir `/planificar`
+- ¿Existe `specs/W-XX.md`? Si no → parar y pedir `/planificar`
 - ¿El humano lo aprobó? Si no consta → **preguntar**, no suponer
 - `git branch --show-current`: si es `main`, avisar antes de tocar nada
 - `pnpm run gates` para partir de un estado conocido y limpio
@@ -158,7 +183,7 @@ falta, no código que corregir.** Proponer al humano el texto para
 
 ## Restricciones
 
-- NUNCA empezar sin `outputs/plan.md` aprobado
+- NUNCA empezar sin `specs/W-XX.md` aprobado
 - NUNCA lanzar los agentes como teammates
 - NUNCA intentar un ciclo 4
 - NUNCA ejecutar comandos git — ni el orquestador ni los agentes

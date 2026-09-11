@@ -160,7 +160,7 @@ Al inicio, leer:
 - `outputs/gates.json` — la fuente de todos los números
 - `outputs/reporte_qa.md` — los hallazgos del QA
 - `src/` — el código implementado
-- `outputs/plan.md` — el plan aprobado
+- `specs/W-XX.md` — el plan aprobado, en git
 - `docs/definicion-web.md` — cuando el hallazgo sea de copy o de rutas
 
 Al finalizar, escribir `outputs/revision_codigo.md`.
