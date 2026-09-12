@@ -188,6 +188,13 @@ Y el tono, que es lo que más se olvida:
   que falta. NUNCA un `<div>` gris improvisado ni una imagen de relleno de un
   tercero
 - Tamaños: héroe 2400×1400, tarjeta 1200×1400, retrato 400×400
+- **Cambiar una foto es cambiar su nombre de archivo.** `heroe.jpg` →
+  `heroe-2.jpg`, y se actualiza la ruta en el componente. Las variantes
+  optimizadas se cachean un año (`minimumCacheTTL` en `next.config.ts`) y su
+  URL se construye con el nombre, que no cambia al desplegar: reemplazar el
+  archivo conservando el nombre deja a quien ya la tenga viendo la vieja
+- Toda foto pasa por `PhotoSlot` con `sizes`, nunca por un `<img>` suelto. Sin
+  `sizes`, `fill` asume `100vw` y le sirve a un teléfono el archivo entero
 - Sin filtros de color de marca sobre la piel
 
 ## Movimiento

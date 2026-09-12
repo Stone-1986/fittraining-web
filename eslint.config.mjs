@@ -51,6 +51,13 @@ const eslintConfig = [
       'out/**',
       'build/**',
       'next-env.d.ts',
+      // `/design-sync`: el empaquetado para Claude Design. No es la app —las
+      // previews importan de un paquete `fittraining` que solo existe en
+      // `.design-sync/.cache/`— y los otros dos directorios son el
+      // convertidor y su salida, regenerados en cada sync.
+      '.design-sync/**',
+      '.ds-sync/**',
+      'ds-bundle/**',
     ],
   },
 ];

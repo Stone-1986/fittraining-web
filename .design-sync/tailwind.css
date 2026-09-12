@@ -1,0 +1,56 @@
+/* ==========================================================================
+ * LA HOJA DEL SISTEMA TAL COMO LA RECIBE CLAUDE DESIGN.
+ *
+ * Es `globals.css` —los mismos tokens, las mismas cuatro clases globales—
+ * compilado por el mismo Tailwind de la app. Lo unico que cambia es QUE
+ * CLASES SE GENERAN: Tailwind solo emite las que encuentra escritas, y el
+ * agente de Claude Design escribe JSX nuevo que ningun escaneo ve. Por eso,
+ * ademas de los componentes y las previews, se genera de antemano un
+ * vocabulario cerrado (`@source inline`): los roles de color, la escala
+ * tipografica, el tracking, los radios y las utilidades de maquetacion de la
+ * escala de 4px.
+ *
+ * Lo que NO esta aqui no existe en los disenos. Es a proposito: un
+ * `bg-neutral-800` o un `text-[21px]` que el agente se invente sale sin
+ * estilo en vez de salir con un valor fuera del sistema.
+ *
+ * `build-pkg.mjs` la compila con `base` apuntando a un directorio vacio, asi
+ * que la deteccion automatica de Tailwind no escanea el repo: solo cuentan
+ * los `@source` de abajo.
+ * ========================================================================== */
+
+@import '../src/app/globals.css';
+
+@source '../src/components';
+@source './previews';
+
+/* --- Color: solo roles del sistema (regla § 1) --------------------------- */
+@source inline('{hover:,}{bg,text,border}-{background,card,muted,border,border-strong,input,ring,title,foreground,muted-foreground,subtle-foreground,meta-foreground,disabled-foreground,primary,primary-hover,primary-pressed,primary-soft,primary-foreground,success,success-foreground,warning,warning-foreground,destructive,destructive-foreground,info,info-foreground}');
+@source inline('{border-t,border-b,border-l,border-r}-{border,border-strong,input,primary}');
+@source inline('text-decorative bg-background/80 divide-y divide-border');
+
+/* --- Tipografia: la escala de lectura, las familias y el tracking ------- */
+@source inline('{,sm:,md:,lg:}text-{display,h2,h3,h4,lead,body,ui,label,action,action-lg}');
+@source inline('font-{sans,heading,mono,light,normal,medium,semibold,bold,extrabold,black}');
+@source inline('tracking-{brand,eyebrow,label,meta,nav}');
+@source inline('uppercase normal-case tabular text-{left,center,right} truncate whitespace-nowrap underline underline-offset-4');
+
+/* --- Forma: los cuatro radios, los bordes de 1, 2 y 4px ----------------- */
+@source inline('rounded-{none,sm,pill,full}');
+@source inline('{border,border-t,border-b,border-l,border-r,border-y,border-x}{,-2,-4}');
+
+/* --- Maquetacion: la escala de 4px, con los puntos de quiebre md y lg --- */
+@source inline('{,md:,lg:}{flex,inline-flex,grid,block,inline-block,hidden}');
+@source inline('{,md:,lg:}flex-{row,col,wrap,1,none}');
+@source inline('{,md:,lg:}{items,justify,self}-{start,center,end,between,stretch,baseline}');
+@source inline('{,md:,lg:}grid-cols-{1,2,3,4,6,12}');
+@source inline('{,md:,lg:}col-span-{1,2,3,4,6,full}');
+@source inline('{,md:,lg:}gap{,-x,-y}-{0,0.5,1,1.5,2,2.5,3,3.5,4,5,6,8,10,12,14,16,20,24}');
+@source inline('{,md:,lg:}{p,px,py,pt,pb,pl,pr}-{0,0.5,1,1.5,2,2.5,3,3.5,4,5,6,8,10,12,14,16,20,24,28,32}');
+@source inline('{,md:,lg:}{m,mx,my,mt,mb,ml,mr}-{0,0.5,1,1.5,2,2.5,3,3.5,4,5,6,8,10,12,14,16,20,24,auto}');
+@source inline('space-y-{1,2,3,4,5,6,8,10,12}');
+@source inline('{w,h}-{full,auto,fit} min-h-screen min-w-0 shrink-0 grow');
+@source inline('max-w-{prose-doc,wide,none,full} size-{6,8,10,12,14,16,20,24}');
+@source inline('relative absolute sticky inset-0 inset-x-0 top-0 bottom-0 left-0 right-0 z-{0,10,20}');
+@source inline('overflow-{hidden,auto,x-auto} list-none cursor-pointer pointer-events-none sr-only');
+@source inline('object-cover aspect-{square,video} transition-colors opacity-{50,80}');
